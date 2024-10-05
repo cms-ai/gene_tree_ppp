@@ -1,4 +1,5 @@
 {
   "@@locale": "vi",
-  "test": "Đây là chuỗi test common trong project"
+  "test": "Đây là chuỗi test common trong project",
+  "text2": "Hello world"
 }

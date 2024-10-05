@@ -97,7 +97,7 @@ flutter:
 
 flutter_intl:
   enabled: true
-  arb_dir: lib/modules/onboard/l10n/arbs
-  output_dir: lib/modules/onboard/l10n/generated
+  arb_dir: lib/modules/common/l10n/arbs
+  output_dir: lib/modules/common/l10n/generated
   default_locale: vi
-  class_name: OnboardLocalizations
+  class_name: CommonLocalizations
