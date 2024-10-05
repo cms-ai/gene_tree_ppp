@@ -12,42 +12,42 @@ import 'intl/messages_all.dart';
 // ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
 // ignore_for_file: avoid_redundant_argument_values, avoid_escaping_inner_quotes
 
-class S {
-  S();
+class CommonLocalizations {
+  CommonLocalizations();
 
-  static S? _current;
+  static CommonLocalizations? _current;
 
-  static S get current {
+  static CommonLocalizations get current {
     assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+        'No instance of CommonLocalizations was loaded. Try to initialize the CommonLocalizations delegate before accessing CommonLocalizations.current.');
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
-  static Future<S> load(Locale locale) {
+  static Future<CommonLocalizations> load(Locale locale) {
     final name = (locale.countryCode?.isEmpty ?? false)
         ? locale.languageCode
         : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      final instance = S();
-      S._current = instance;
+      final instance = CommonLocalizations();
+      CommonLocalizations._current = instance;
 
       return instance;
     });
   }
 
-  static S of(BuildContext context) {
-    final instance = S.maybeOf(context);
+  static CommonLocalizations of(BuildContext context) {
+    final instance = CommonLocalizations.maybeOf(context);
     assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+        'No instance of CommonLocalizations present in the widget tree. Did you add CommonLocalizations.delegate in localizationsDelegates?');
     return instance!;
   }
 
-  static S? maybeOf(BuildContext context) {
-    return Localizations.of<S>(context, S);
+  static CommonLocalizations? maybeOf(BuildContext context) {
+    return Localizations.of<CommonLocalizations>(context, CommonLocalizations);
   }
 
   /// `This is test common string for the project`
@@ -71,7 +71,8 @@ class S {
   }
 }
 
-class AppLocalizationDelegate extends LocalizationsDelegate<S> {
+class AppLocalizationDelegate
+    extends LocalizationsDelegate<CommonLocalizations> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
@@ -84,7 +85,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
   @override
-  Future<S> load(Locale locale) => S.load(locale);
+  Future<CommonLocalizations> load(Locale locale) =>
+      CommonLocalizations.load(locale);
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 
