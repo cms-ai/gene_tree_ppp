@@ -7,7 +7,7 @@ clean:
 # setup project trước khi run app
 .PHONY: setup
 setup:
-	./bin/setup.bash
+	bash ./bin/setup.bash
 
 # Build APK hoặc iOS
 .PHONY: build-android-dev
@@ -26,7 +26,19 @@ build-runner:
 # khởi tạo intl	
 .PHONY: generate
 generate:
-	./bin/generate_intl/generate_intl.bash
+	bash ./bin/generate_intl/generate_intl.bash
+
+.PHONY: generate_asset
+generate_asset:
+	bash ./bin/generate_asset/generate_asset.bash
+
+.PHONY: gen_image
+gen_image:
+	bash ./bin/generate_asset/generate_image.bash
+
+.PHONY: gen_icon
+gen_icon:
+	bash ./bin/generate_asset/generate_icon.bash
 
 # Chạy ứng dụng trên thiết bị kết nối
 .PHONY: run
