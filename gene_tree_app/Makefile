@@ -40,6 +40,10 @@ gen_image:
 gen_icon:
 	bash ./bin/generate_asset/generate_icon.bash
 
+.PHONY: create_template
+template:
+	dart ./bin/create_files_template/create_templates.dart
+
 # Chạy ứng dụng trên thiết bị kết nối
 .PHONY: run
 run:
