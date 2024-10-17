@@ -29,8 +29,6 @@ void main() {
         exit(0);
       case "1":
         _CreateFileHelper.createFile(
-          className: "ThemeTest",
-          fileName: "them_test",
           templatePath:
               "bin/templates/screen_templates/full_page_folder/simple/file_name/blfile_name_bloc.dart.tmpl",
           destinationPath: "lib/modules/common/theme/ai.dart",
@@ -45,17 +43,19 @@ void main() {
 
       case "2":
         isInputValueValid = true;
+        _CreateFileHelper.createScreenWithBloc();
         break;
 
       case "3":
         // Tạo một bloc
         isInputValueValid = true;
-        _CreateFileHelper.createBloc(
-          templatePath:
-              "bin/templates/screen_templates/full_page_folder/simple/file_name/file_name_bloc.dart.tmpl",
-        );
+        _CreateFileHelper.createBloc();
         break;
+      case "4":
+        isInputValueValid = true;
+        _CreateFileHelper.createComponent();
 
+        break;
       default:
     }
   } while (!isInputValueValid);

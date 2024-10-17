@@ -3,40 +3,81 @@
 part of 'create_templates.dart';
 
 class _CreateFileHelper {
-  static Future<void> createBloc({
-    // required String className,
-    // required String fileName,
-    required String templatePath,
-  }) async {
+  static Future<void> createScreenWithBloc() async {
+    _ReplaceRegexHolderHelper.handleGetPathAndScreenName(
+      onValidInput: (pathInput, fileNameInput) async {
+        final className = fileNameInput.toPascalCase();
+        final fileName = fileNameInput.toSnakeCase();
+
+        await _CreateFileHelper.createFile(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/simple/file_name/file_name_screen.dart.tmpl",
+          destinationPath: "$pathInput/$fileName/${fileNameInput}_screen.dart",
+          from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
+          replace: [className, fileName],
+        );
+
+        await _CreateFileHelper.createFile(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/simple/file_name/models/file_name_argument.dart.tmpl",
+          destinationPath:
+              "$pathInput/$fileName/models/${fileNameInput}_argument.dart",
+          from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
+          replace: [className, fileName],
+        );
+
+        await _CreateFileHelper.createFile(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/simple/file_name/bloc/file_name_bloc.dart.tmpl",
+          destinationPath:
+              "$pathInput/$fileName/bloc/${fileNameInput}_bloc.dart",
+          from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
+          replace: [className, fileName],
+        );
+
+        await _CreateFileHelper.createFile(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/simple/file_name/bloc/file_name_state.dart.tmpl",
+          destinationPath: "$pathInput/$fileName/bloc/${fileName}_state.dart",
+          from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
+          replace: [className, fileName],
+        );
+
+        await _CreateFileHelper.createFile(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/simple/file_name/bloc/file_name_event.dart.tmpl",
+          destinationPath: "$pathInput/$fileName/bloc/${fileName}_event.dart",
+          from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
+          replace: [className, fileName],
+        );
+      },
+    );
+  }
+
+  static Future<void> createBloc() async {
     _ReplaceRegexHolderHelper.handleGetPathAndScreenName(
       onValidInput: (pathInput, fileNameInput) async {
         final className = fileNameInput.toPascalCase();
         final fileName = fileNameInput.toSnakeCase();
         await _CreateFileHelper.createFile(
-          className: fileNameInput,
-          fileName: fileNameInput,
           templatePath:
-              "bin/templates/screen_templates/full_page_folder/simple/file_name/file_name_bloc.dart.tmpl",
+              "bin/templates/screen_templates/full_page_folder/simple/file_name/bloc/file_name_bloc.dart.tmpl",
           destinationPath: "$pathInput/bloc/${fileNameInput}_bloc.dart",
           from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
           replace: [className, fileName],
         );
 
         await _CreateFileHelper.createFile(
-          className: fileNameInput,
-          fileName: fileNameInput,
           templatePath:
-              "bin/templates/screen_templates/full_page_folder/simple/file_name/file_name_state.dart.tmpl",
+              "bin/templates/screen_templates/full_page_folder/simple/file_name/bloc/file_name_state.dart.tmpl",
           destinationPath: "$pathInput/bloc/${fileName}_state.dart",
           from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
           replace: [className, fileName],
         );
 
         await _CreateFileHelper.createFile(
-          className: fileNameInput,
-          fileName: fileNameInput,
           templatePath:
-              "bin/templates/screen_templates/full_page_folder/simple/file_name/file_name_event.dart.tmpl",
+              "bin/templates/screen_templates/full_page_folder/simple/file_name/bloc/file_name_event.dart.tmpl",
           destinationPath: "$pathInput/bloc/${fileName}_event.dart",
           from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
           replace: [className, fileName],
@@ -46,9 +87,33 @@ class _CreateFileHelper {
     // Khởi tạo bloc vs function createFile
   }
 
+  static Future<void> createComponent() async {
+    _ReplaceRegexHolderHelper.handleGetPathAndScreenName(
+      onValidInput: (pathInput, fileNameInput) async {
+        final className = fileNameInput.toPascalCase();
+        final fileName = fileNameInput.toSnakeCase();
+        await _CreateFileHelper.createFile(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/components/cp_file_name.dart.tmpl",
+          destinationPath: "$pathInput/$fileName/cp_$fileName.dart",
+          from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
+          replace: [className, fileName],
+        );
+        // create config file
+        await _CreateFileHelper.createFile(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/components/models/cp_file_name_configs.dart.tmpl",
+          destinationPath:
+              "$pathInput/$fileName/models/cp_${fileName}_configs.dart",
+          from: [RegExp(r'\$ClassName\$'), RegExp(r'\$FileName\$')],
+          replace: [className, fileName],
+        );
+      },
+    );
+    // Khởi tạo bloc vs function createFile
+  }
+
   static Future<void> createFile({
-    required String className,
-    required String fileName,
     required String templatePath,
     required String destinationPath,
     List<Pattern>? from,
