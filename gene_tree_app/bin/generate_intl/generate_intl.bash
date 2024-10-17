@@ -26,7 +26,7 @@ generate_intl() {
     CLASS_NAME=""
 
 
-    # Duyệt từng từ trong chuỗi
+    # Duyệt từng từ trong chuỗi   
     for word in $classname; do
       # Chuyển chữ cái đầu tiên thành chữ hoa và các chữ cái còn lại thành chữ thường
       capitalized_word=$(echo "${word:0:1}" | tr '[:lower:]' '[:upper:]')$(echo "${word:1}" | tr '[:lower:]' '[:lower:]')

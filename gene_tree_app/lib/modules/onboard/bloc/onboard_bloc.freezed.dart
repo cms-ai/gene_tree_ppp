@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'theme_bloc.dart';
+part of 'onboard_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ThemeEvent {
+mixin _$OnboardEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -51,16 +51,16 @@ mixin _$ThemeEvent {
 }
 
 /// @nodoc
-abstract class $ThemeEventCopyWith<$Res> {
-  factory $ThemeEventCopyWith(
-          ThemeEvent value, $Res Function(ThemeEvent) then) =
-      _$ThemeEventCopyWithImpl<$Res, ThemeEvent>;
+abstract class $OnboardEventCopyWith<$Res> {
+  factory $OnboardEventCopyWith(
+          OnboardEvent value, $Res Function(OnboardEvent) then) =
+      _$OnboardEventCopyWithImpl<$Res, OnboardEvent>;
 }
 
 /// @nodoc
-class _$ThemeEventCopyWithImpl<$Res, $Val extends ThemeEvent>
-    implements $ThemeEventCopyWith<$Res> {
-  _$ThemeEventCopyWithImpl(this._value, this._then);
+class _$OnboardEventCopyWithImpl<$Res, $Val extends OnboardEvent>
+    implements $OnboardEventCopyWith<$Res> {
+  _$OnboardEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -77,7 +77,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ThemeEventCopyWithImpl<$Res, _$InitialImpl>
+    extends _$OnboardEventCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -91,7 +91,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'ThemeEvent.initial()';
+    return 'OnboardEvent.initial()';
   }
 
   @override
@@ -160,24 +160,24 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements ThemeEvent {
+abstract class _Initial implements OnboardEvent {
   const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-mixin _$ThemeState {}
+mixin _$OnboardState {}
 
 /// @nodoc
-abstract class $ThemeStateCopyWith<$Res> {
-  factory $ThemeStateCopyWith(
-          ThemeState value, $Res Function(ThemeState) then) =
-      _$ThemeStateCopyWithImpl<$Res, ThemeState>;
+abstract class $OnboardStateCopyWith<$Res> {
+  factory $OnboardStateCopyWith(
+          OnboardState value, $Res Function(OnboardState) then) =
+      _$OnboardStateCopyWithImpl<$Res, OnboardState>;
 }
 
 /// @nodoc
-class _$ThemeStateCopyWithImpl<$Res, $Val extends ThemeState>
-    implements $ThemeStateCopyWith<$Res> {
-  _$ThemeStateCopyWithImpl(this._value, this._then);
+class _$OnboardStateCopyWithImpl<$Res, $Val extends OnboardState>
+    implements $OnboardStateCopyWith<$Res> {
+  _$OnboardStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -186,41 +186,41 @@ class _$ThemeStateCopyWithImpl<$Res, $Val extends ThemeState>
 }
 
 /// @nodoc
-abstract class _$$ThemeStateImplCopyWith<$Res> {
-  factory _$$ThemeStateImplCopyWith(
-          _$ThemeStateImpl value, $Res Function(_$ThemeStateImpl) then) =
-      __$$ThemeStateImplCopyWithImpl<$Res>;
+abstract class _$$OnboardStateImplCopyWith<$Res> {
+  factory _$$OnboardStateImplCopyWith(
+          _$OnboardStateImpl value, $Res Function(_$OnboardStateImpl) then) =
+      __$$OnboardStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ThemeStateImplCopyWithImpl<$Res>
-    extends _$ThemeStateCopyWithImpl<$Res, _$ThemeStateImpl>
-    implements _$$ThemeStateImplCopyWith<$Res> {
-  __$$ThemeStateImplCopyWithImpl(
-      _$ThemeStateImpl _value, $Res Function(_$ThemeStateImpl) _then)
+class __$$OnboardStateImplCopyWithImpl<$Res>
+    extends _$OnboardStateCopyWithImpl<$Res, _$OnboardStateImpl>
+    implements _$$OnboardStateImplCopyWith<$Res> {
+  __$$OnboardStateImplCopyWithImpl(
+      _$OnboardStateImpl _value, $Res Function(_$OnboardStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ThemeStateImpl implements _ThemeState {
-  const _$ThemeStateImpl();
+class _$OnboardStateImpl implements _OnboardState {
+  const _$OnboardStateImpl();
 
   @override
   String toString() {
-    return 'ThemeState()';
+    return 'OnboardState()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ThemeStateImpl);
+        (other.runtimeType == runtimeType && other is _$OnboardStateImpl);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 }
 
-abstract class _ThemeState implements ThemeState {
-  const factory _ThemeState() = _$ThemeStateImpl;
+abstract class _OnboardState implements OnboardState {
+  const factory _OnboardState() = _$OnboardStateImpl;
 }

@@ -1,16 +1,19 @@
-import 'dart:developer' as dev;
+// ignore_for_file: avoid_print
+
 import 'dart:io';
+
+import 'package:gene_tree_app/modules/common/extensions/string_extensions.dart';
 
 part 'helpers.dart';
 
 void main() {
   print("Tính năng tạo template");
-
   print("======================================================");
   print("0. Exit");
   print("1. Tạo 1 màn hình đơn giản");
   print("2. Tạo 1 màn hình (có sử dụng bloc)");
-  print("3. Tạo component");
+  print("3. Tạo 1 bloc");
+  print("4. Tạo component");
   print("5. Thêm api mới vào file có sẵn");
   print("======================================================");
 
@@ -25,14 +28,16 @@ void main() {
       case "0":
         exit(0);
       case "1":
-        print("Running======");
         _CreateFileHelper.createFile(
           className: "ThemeTest",
           fileName: "them_test",
           templatePath:
-              "bin/templates/screen_templates/full_page_folder/simple/file_name/file_name_bloc.dart.tmpl",
+              "bin/templates/screen_templates/full_page_folder/simple/file_name/blfile_name_bloc.dart.tmpl",
           destinationPath: "lib/modules/common/theme/ai.dart",
-          from: [],
+          from: [
+            RegExp(r'\$ClassName\$'),
+            RegExp(r'\$FileName\$'),
+          ],
           replace: [],
         );
         isInputValueValid = true;
@@ -43,7 +48,12 @@ void main() {
         break;
 
       case "3":
+        // Tạo một bloc
         isInputValueValid = true;
+        _CreateFileHelper.createBloc(
+          templatePath:
+              "bin/templates/screen_templates/full_page_folder/simple/file_name/file_name_bloc.dart.tmpl",
+        );
         break;
 
       default:

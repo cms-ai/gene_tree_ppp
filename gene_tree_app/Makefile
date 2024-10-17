@@ -43,6 +43,7 @@ gen_icon:
 .PHONY: create_template
 template:
 	dart ./bin/create_files_template/create_templates.dart
+	flutter pub run build_runner build --delete-conflicting-outputs
 
 # Chạy ứng dụng trên thiết bị kết nối
 .PHONY: run
