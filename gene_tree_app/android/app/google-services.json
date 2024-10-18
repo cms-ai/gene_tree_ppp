@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:253222200495:android:814ab195a61932af61605a",
+        "mobilesdk_app_id": "1:253222200495:android:ebbd613582f9870c61605a",
         "android_client_info": {
-          "package_name": "com.genetreemobileai.dev"
+          "package_name": "com.aigenetreemobile.dev"
         }
       },
       "oauth_client": [],

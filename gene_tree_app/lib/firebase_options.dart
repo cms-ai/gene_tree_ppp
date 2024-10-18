@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBy2DZyGNJDX5fTKbWFDuFbz0gulPs2T18',
-    appId: '1:253222200495:android:814ab195a61932af61605a',
+    appId: '1:253222200495:android:ebbd613582f9870c61605a',
     messagingSenderId: '253222200495',
     projectId: 'gene-tree-dev-2e250',
     storageBucket: 'gene-tree-dev-2e250.appspot.com',
@@ -59,10 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyC_Mv9ILMErxq4Jf9d1M1iuXEl-k-M0Udc',
-    appId: '1:253222200495:ios:0313df88f767b6fe61605a',
+    appId: '1:253222200495:ios:6a4e2a4f54b908c061605a',
     messagingSenderId: '253222200495',
     projectId: 'gene-tree-dev-2e250',
     storageBucket: 'gene-tree-dev-2e250.appspot.com',
     iosBundleId: 'com.genetreemobileai.dev',
   );
+
 }
