@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "253222200495",
+    "project_id": "gene-tree-dev-2e250",
+    "storage_bucket": "gene-tree-dev-2e250.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253222200495:android:814ab195a61932af61605a",
+        "android_client_info": {
+          "package_name": "com.genetreemobileai.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy2DZyGNJDX5fTKbWFDuFbz0gulPs2T18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

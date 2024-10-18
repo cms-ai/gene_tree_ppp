@@ -37,6 +37,7 @@ gen_image:
 	bash ./bin/generate_asset/generate_image.bash
 
 .PHONY: gen_icon
+
 gen_icon:
 	bash ./bin/generate_asset/generate_icon.bash
 
