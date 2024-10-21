@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'sign_inn_bloc.dart';
+part of 'theme_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SignInnEvent {
+mixin _$ThemeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -51,16 +51,16 @@ mixin _$SignInnEvent {
 }
 
 /// @nodoc
-abstract class $SignInnEventCopyWith<$Res> {
-  factory $SignInnEventCopyWith(
-          SignInnEvent value, $Res Function(SignInnEvent) then) =
-      _$SignInnEventCopyWithImpl<$Res, SignInnEvent>;
+abstract class $ThemeEventCopyWith<$Res> {
+  factory $ThemeEventCopyWith(
+          ThemeEvent value, $Res Function(ThemeEvent) then) =
+      _$ThemeEventCopyWithImpl<$Res, ThemeEvent>;
 }
 
 /// @nodoc
-class _$SignInnEventCopyWithImpl<$Res, $Val extends SignInnEvent>
-    implements $SignInnEventCopyWith<$Res> {
-  _$SignInnEventCopyWithImpl(this._value, this._then);
+class _$ThemeEventCopyWithImpl<$Res, $Val extends ThemeEvent>
+    implements $ThemeEventCopyWith<$Res> {
+  _$ThemeEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -77,7 +77,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SignInnEventCopyWithImpl<$Res, _$InitialImpl>
+    extends _$ThemeEventCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -91,7 +91,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'SignInnEvent.initial()';
+    return 'ThemeEvent.initial()';
   }
 
   @override
@@ -160,67 +160,125 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements SignInnEvent {
+abstract class _Initial implements ThemeEvent {
   const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-mixin _$SignInnState {}
+mixin _$ThemeState {
+  AppThemeModel get themeData => throw _privateConstructorUsedError;
 
-/// @nodoc
-abstract class $SignInnStateCopyWith<$Res> {
-  factory $SignInnStateCopyWith(
-          SignInnState value, $Res Function(SignInnState) then) =
-      _$SignInnStateCopyWithImpl<$Res, SignInnState>;
+  @JsonKey(ignore: true)
+  $ThemeStateCopyWith<ThemeState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class _$SignInnStateCopyWithImpl<$Res, $Val extends SignInnState>
-    implements $SignInnStateCopyWith<$Res> {
-  _$SignInnStateCopyWithImpl(this._value, this._then);
+abstract class $ThemeStateCopyWith<$Res> {
+  factory $ThemeStateCopyWith(
+          ThemeState value, $Res Function(ThemeState) then) =
+      _$ThemeStateCopyWithImpl<$Res, ThemeState>;
+  @useResult
+  $Res call({AppThemeModel themeData});
+}
+
+/// @nodoc
+class _$ThemeStateCopyWithImpl<$Res, $Val extends ThemeState>
+    implements $ThemeStateCopyWith<$Res> {
+  _$ThemeStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? themeData = null,
+  }) {
+    return _then(_value.copyWith(
+      themeData: null == themeData
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as AppThemeModel,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$SignInnStateImplCopyWith<$Res> {
-  factory _$$SignInnStateImplCopyWith(
-          _$SignInnStateImpl value, $Res Function(_$SignInnStateImpl) then) =
-      __$$SignInnStateImplCopyWithImpl<$Res>;
+abstract class _$$ThemeStateImplCopyWith<$Res>
+    implements $ThemeStateCopyWith<$Res> {
+  factory _$$ThemeStateImplCopyWith(
+          _$ThemeStateImpl value, $Res Function(_$ThemeStateImpl) then) =
+      __$$ThemeStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({AppThemeModel themeData});
 }
 
 /// @nodoc
-class __$$SignInnStateImplCopyWithImpl<$Res>
-    extends _$SignInnStateCopyWithImpl<$Res, _$SignInnStateImpl>
-    implements _$$SignInnStateImplCopyWith<$Res> {
-  __$$SignInnStateImplCopyWithImpl(
-      _$SignInnStateImpl _value, $Res Function(_$SignInnStateImpl) _then)
+class __$$ThemeStateImplCopyWithImpl<$Res>
+    extends _$ThemeStateCopyWithImpl<$Res, _$ThemeStateImpl>
+    implements _$$ThemeStateImplCopyWith<$Res> {
+  __$$ThemeStateImplCopyWithImpl(
+      _$ThemeStateImpl _value, $Res Function(_$ThemeStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? themeData = null,
+  }) {
+    return _then(_$ThemeStateImpl(
+      themeData: null == themeData
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as AppThemeModel,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$SignInnStateImpl implements _SignInnState {
-  const _$SignInnStateImpl();
+class _$ThemeStateImpl implements _ThemeState {
+  const _$ThemeStateImpl({required this.themeData});
+
+  @override
+  final AppThemeModel themeData;
 
   @override
   String toString() {
-    return 'SignInnState()';
+    return 'ThemeState(themeData: $themeData)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SignInnStateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ThemeStateImpl &&
+            (identical(other.themeData, themeData) ||
+                other.themeData == themeData));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, themeData);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ThemeStateImplCopyWith<_$ThemeStateImpl> get copyWith =>
+      __$$ThemeStateImplCopyWithImpl<_$ThemeStateImpl>(this, _$identity);
 }
 
-abstract class _SignInnState implements SignInnState {
-  const factory _SignInnState() = _$SignInnStateImpl;
+abstract class _ThemeState implements ThemeState {
+  const factory _ThemeState({required final AppThemeModel themeData}) =
+      _$ThemeStateImpl;
+
+  @override
+  AppThemeModel get themeData;
+  @override
+  @JsonKey(ignore: true)
+  _$$ThemeStateImplCopyWith<_$ThemeStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

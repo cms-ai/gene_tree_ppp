@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
-import './bloc/sign_inn_bloc.dart';
-part './models/sign_inn_argument.dart';
+import './bloc/sign_in_bloc.dart';
+part './models/sign_in_argument.dart';
 
-class SignInnScreen extends StatelessWidget {
-  const SignInnScreen({
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({
     super.key,
     required this.argument,
   });
-  final SignInnArgument argument;
+  final SignInArgument argument;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class SignInnScreen extends StatelessWidget {
             nameScreen: "Home",
             body: BlocProvider(
               lazy: false,
-              create: (context) => SignInnBloc(),
+              create: (context) => SignInBloc(),
               child: Container(),
             ),
           ),
