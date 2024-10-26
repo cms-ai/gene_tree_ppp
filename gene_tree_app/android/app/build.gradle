@@ -47,16 +47,10 @@ android {
         dev {
             dimension "env"
             applicationId "com.aigenetreemobile.dev"
-            // manifestPlaceholders = [appName: "Production App Flavors"]
-            // versionCode 1
-            // versionName "1.0-dev"
         }       
         prod {
             dimension "env"
             applicationId "com.aigenetreemobile.prod"
-            // manifestPlaceholders = [appName: "[DEV] My Test App Flavors"]
-            // versionCode 2
-            // versionName "1.0"
         }
     }
 
