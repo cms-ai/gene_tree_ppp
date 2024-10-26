@@ -23,6 +23,10 @@ test:
 # Build runner cho project
 build-runner:
 
+
+.PHONY: run_flutterfire
+run_flutterfire:
+	bash ./bin/firebase/flutterfire-config.sh $(ENV)
 # khởi tạo intl	
 .PHONY: generate
 generate:

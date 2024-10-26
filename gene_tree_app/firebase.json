@@ -1,1 +1,78 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"gene-tree-dev-2e250","appId":"1:253222200495:android:ebbd613582f9870c61605a","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"gene-tree-dev-2e250","appId":"1:253222200495:ios:6a4e2a4f54b908c061605a","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"gene-tree-dev-2e250","configurations":{"android":"1:253222200495:android:ebbd613582f9870c61605a","ios":"1:253222200495:ios:6a4e2a4f54b908c061605a"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "gene-tree-dev-2e250",
+          "appId": "1:253222200495:android:ebbd613582f9870c61605a",
+          "fileOutput": "android/app/google-services.json"
+        },
+        "buildConfigurations": {
+          "src/dev": {
+            "projectId": "gene-tree-dev-2e250",
+            "appId": "1:253222200495:android:3b258e06311ebfcc61605a",
+            "fileOutput": "android/app/src/dev/google-services.json"
+          },
+          "src/prod": {
+            "projectId": "gene-tree-prod",
+            "appId": "1:597393642223:android:b52da3d65a8e8b5a25c11a",
+            "fileOutput": "android/app/src/prod/google-services.json"
+          }
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "gene-tree-dev-2e250",
+          "appId": "1:253222200495:ios:6a4e2a4f54b908c061605a",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        },
+        "buildConfigurations": {
+          "Debug-dev": {
+            "projectId": "gene-tree-prod",
+            "appId": "1:597393642223:ios:3f5d7a23b5d1feb725c11a",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/flavors/prod/GoogleService-Info.plist"
+          }
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "gene-tree-dev-2e250",
+          "configurations": {
+            "android": "1:253222200495:android:ebbd613582f9870c61605a",
+            "ios": "1:253222200495:ios:6a4e2a4f54b908c061605a"
+          }
+        },
+        "lib/firebase_options_dev.dart": {
+          "projectId": "gene-tree-dev-2e250",
+          "configurations": {
+            "android": "1:253222200495:android:3b258e06311ebfcc61605a",
+            "ios": "1:253222200495:ios:2019899f4fd3281061605a",
+            "macos": "1:253222200495:ios:345e7a85af686e5961605a",
+            "web": "1:253222200495:web:b39ee10fa118589061605a",
+            "windows": "1:253222200495:web:9289299c6304210261605a"
+          }
+        },
+        "lib/firebase_options_prod.dart": {
+          "projectId": "gene-tree-prod",
+          "configurations": {
+            "android": "1:597393642223:android:b52da3d65a8e8b5a25c11a",
+            "ios": "1:597393642223:ios:3f5d7a23b5d1feb725c11a",
+            "macos": "1:597393642223:ios:69061e437354f2ca25c11a",
+            "web": "1:597393642223:web:83b4cf96db543fb825c11a",
+            "windows": "1:597393642223:web:1d7d4af9f2614c4d25c11a"
+          }
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "gene-tree-prod",
+          "appId": "1:597393642223:ios:69061e437354f2ca25c11a",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      }
+    }
+  }
+}

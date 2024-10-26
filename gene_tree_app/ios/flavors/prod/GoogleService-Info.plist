@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.geneTreeApp</string>
+	<string>com.aigenetreemobile.prod</string>
 	<key>PROJECT_ID</key>
 	<string>gene-tree-prod</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:597393642223:ios:69061e437354f2ca25c11a</string>
+	<string>1:597393642223:ios:3f5d7a23b5d1feb725c11a</string>
 </dict>
 </plist>

@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyC7PxOYWE67NkntFxxaGhjPe25oBEw8LA0</string>
+	<string>AIzaSyC_Mv9ILMErxq4Jf9d1M1iuXEl-k-M0Udc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>597393642223</string>
+	<string>253222200495</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.geneTreeApp</string>
+	<string>com.aigenetreemobile.dev</string>
 	<key>PROJECT_ID</key>
-	<string>gene-tree-prod</string>
+	<string>gene-tree-dev-2e250</string>
 	<key>STORAGE_BUCKET</key>
-	<string>gene-tree-prod.appspot.com</string>
+	<string>gene-tree-dev-2e250.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:597393642223:ios:69061e437354f2ca25c11a</string>
+	<string>1:253222200495:ios:2019899f4fd3281061605a</string>
 </dict>
 </plist>

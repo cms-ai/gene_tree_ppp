@@ -16,14 +16,14 @@ Future<void> main() async {
   // See related issue: https://github.com/flutter/flutter/issues/96391
 
   // We store the app and auth to make testing with a named instance easier.
-  try {
-    app = await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    auth = FirebaseAuth.instanceFor(app: app);
-  } catch (e) {
-    print("Error: ${e}");
-  }
+  // try {
+  //   app = await Firebase.initializeApp(
+  //     options: DefaultFirebaseOptions.currentPlatform,
+  //   );
+  //   auth = FirebaseAuth.instanceFor(app: app);
+  // } catch (e) {
+  //   print("Error: ${e}");
+  // }
 
   // initialize singleton
   runApp(ModularApp(module: AppModule(), child: const MyApp()));
