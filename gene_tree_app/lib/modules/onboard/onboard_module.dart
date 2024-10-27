@@ -1,25 +1,18 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-class AuthModule extends Module {
-  static String path = "/auth";
+class OnboardModule extends Module {
+  static const String path = "/onboard";
   @override
   void routes(RouteManager r) {
-    // // Sign In Route
-    // r.child(
-    //   AuthModuleEnum.signIn.path,
-    //   child: (context) => SignInScreen(
-    //     argument: r.args.data,
-    //   ),
-    // );
     // ChildRoute(
-    //   AuthModuleEnum.splash.path,
+    //   OnboardModuleEnum.splash.path,
     //   child: (context) => SplashScreen(
     //     argument: r.args.data,
     //   ),
     // );
     // ChildRoute(
-    //   AuthModuleEnum.signIn.path,
-    //   child: (context) => SignInScreen(
+    //   OnboardModuleEnum.welcome.path,
+    //   child: (context) => WelcomeScreen(
     //     argument: r.args.data,
     //   ),
     // );
@@ -49,12 +42,11 @@ class AuthModule extends Module {
 //   final String singInPath = "/";
 // }
 
-enum AuthModuleEnum {
+enum OnboardModuleEnum {
   splash("/splash"),
-  signIn("/signIn"),
-  signUp("signUp"),
+  welcome("/welcome"),
   ;
 
   final String path;
-  const AuthModuleEnum(this.path);
+  const OnboardModuleEnum(this.path);
 }
