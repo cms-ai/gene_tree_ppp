@@ -19,32 +19,38 @@ mixin _$ThemeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() toogleTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? toogleTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? toogleTheme,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_ToogleTheme value) toogleTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_ToogleTheme value)? toogleTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_ToogleTheme value)? toogleTheme,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() toogleTheme,
   }) {
     return initial();
   }
@@ -115,6 +122,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? toogleTheme,
   }) {
     return initial?.call();
   }
@@ -123,6 +131,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? toogleTheme,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -135,6 +144,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_ToogleTheme value) toogleTheme,
   }) {
     return initial(this);
   }
@@ -143,6 +153,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
+    TResult? Function(_ToogleTheme value)? toogleTheme,
   }) {
     return initial?.call(this);
   }
@@ -151,6 +162,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_ToogleTheme value)? toogleTheme,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -165,13 +177,123 @@ abstract class _Initial implements ThemeEvent {
 }
 
 /// @nodoc
-mixin _$ThemeState {}
+abstract class _$$ToogleThemeImplCopyWith<$Res> {
+  factory _$$ToogleThemeImplCopyWith(
+          _$ToogleThemeImpl value, $Res Function(_$ToogleThemeImpl) then) =
+      __$$ToogleThemeImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ToogleThemeImplCopyWithImpl<$Res>
+    extends _$ThemeEventCopyWithImpl<$Res, _$ToogleThemeImpl>
+    implements _$$ToogleThemeImplCopyWith<$Res> {
+  __$$ToogleThemeImplCopyWithImpl(
+      _$ToogleThemeImpl _value, $Res Function(_$ToogleThemeImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ToogleThemeImpl implements _ToogleTheme {
+  const _$ToogleThemeImpl();
+
+  @override
+  String toString() {
+    return 'ThemeEvent.toogleTheme()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ToogleThemeImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() toogleTheme,
+  }) {
+    return toogleTheme();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? toogleTheme,
+  }) {
+    return toogleTheme?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? toogleTheme,
+    required TResult orElse(),
+  }) {
+    if (toogleTheme != null) {
+      return toogleTheme();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ToogleTheme value) toogleTheme,
+  }) {
+    return toogleTheme(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_ToogleTheme value)? toogleTheme,
+  }) {
+    return toogleTheme?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ToogleTheme value)? toogleTheme,
+    required TResult orElse(),
+  }) {
+    if (toogleTheme != null) {
+      return toogleTheme(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToogleTheme implements ThemeEvent {
+  const factory _ToogleTheme() = _$ToogleThemeImpl;
+}
+
+/// @nodoc
+mixin _$ThemeState {
+  ThemeData get themeData => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ThemeStateCopyWith<ThemeState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $ThemeStateCopyWith<$Res> {
   factory $ThemeStateCopyWith(
           ThemeState value, $Res Function(ThemeState) then) =
       _$ThemeStateCopyWithImpl<$Res, ThemeState>;
+  @useResult
+  $Res call({ThemeData themeData});
 }
 
 /// @nodoc
@@ -183,13 +305,30 @@ class _$ThemeStateCopyWithImpl<$Res, $Val extends ThemeState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? themeData = null,
+  }) {
+    return _then(_value.copyWith(
+      themeData: null == themeData
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as ThemeData,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$ThemeStateImplCopyWith<$Res> {
+abstract class _$$ThemeStateImplCopyWith<$Res>
+    implements $ThemeStateCopyWith<$Res> {
   factory _$$ThemeStateImplCopyWith(
           _$ThemeStateImpl value, $Res Function(_$ThemeStateImpl) then) =
       __$$ThemeStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ThemeData themeData});
 }
 
 /// @nodoc
@@ -199,28 +338,61 @@ class __$$ThemeStateImplCopyWithImpl<$Res>
   __$$ThemeStateImplCopyWithImpl(
       _$ThemeStateImpl _value, $Res Function(_$ThemeStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? themeData = null,
+  }) {
+    return _then(_$ThemeStateImpl(
+      themeData: null == themeData
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as ThemeData,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ThemeStateImpl implements _ThemeState {
-  const _$ThemeStateImpl();
+  const _$ThemeStateImpl({required this.themeData});
+
+  @override
+  final ThemeData themeData;
 
   @override
   String toString() {
-    return 'ThemeState()';
+    return 'ThemeState(themeData: $themeData)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ThemeStateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ThemeStateImpl &&
+            (identical(other.themeData, themeData) ||
+                other.themeData == themeData));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, themeData);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ThemeStateImplCopyWith<_$ThemeStateImpl> get copyWith =>
+      __$$ThemeStateImplCopyWithImpl<_$ThemeStateImpl>(this, _$identity);
 }
 
 abstract class _ThemeState implements ThemeState {
-  const factory _ThemeState() = _$ThemeStateImpl;
+  const factory _ThemeState({required final ThemeData themeData}) =
+      _$ThemeStateImpl;
+
+  @override
+  ThemeData get themeData;
+  @override
+  @JsonKey(ignore: true)
+  _$$ThemeStateImplCopyWith<_$ThemeStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

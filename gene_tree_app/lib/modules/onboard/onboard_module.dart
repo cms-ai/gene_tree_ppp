@@ -1,39 +1,60 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gene_tree_app/modules/onboard/container/sign_in/sign_in_screen.dart';
+import 'package:gene_tree_app/modules/onboard/container/sign_up/sign_up_screen.dart';
+import 'package:gene_tree_app/modules/onboard/container/splash/bloc/splash_bloc.dart';
+import 'package:gene_tree_app/modules/onboard/container/splash/splash_screen.dart';
+import 'package:gene_tree_app/modules/onboard/container/welcome/bloc/welcome_bloc.dart';
+import 'package:gene_tree_app/modules/onboard/container/welcome/welcome_screen.dart';
 
 class OnboardModule extends Module {
-  static const String path = "/onboard";
+  static const String path = "/onboard/";
   @override
   void routes(RouteManager r) {
-    // ChildRoute(
-    //   OnboardModuleEnum.splash.path,
-    //   child: (context) => SplashScreen(
-    //     argument: r.args.data,
-    //   ),
-    // );
-    // ChildRoute(
-    //   OnboardModuleEnum.welcome.path,
-    //   child: (context) => WelcomeScreen(
-    //     argument: r.args.data,
-    //   ),
-    // );
+    r.child(
+      '/',
+      child: (context) => SplashScreen(
+        argument: r.args.data,
+      ),
+    );
+
+    r.child(
+      OnboardModuleEnum.signIn.path,
+      child: (context) => SignInScreen(
+        argument: r.args.data,
+      ),
+    );
+
+    r.child(
+      OnboardModuleEnum.signUp.path,
+      child: (context) => SignUpScreen(
+        argument: r.args.data,
+      ),
+    );
+    r.child(
+      OnboardModuleEnum.welcome.path,
+      child: (context) => WelcomeScreen(
+        argument: r.args.data,
+      ),
+    );
+
     super.routes(r);
   }
 
   @override
   void binds(Injector i) {
     super.binds(i);
-    // i.addSingleton<SplashBloc>(
-    //   SplashBloc.new,
-    //   config: BindConfig(
-    //     onDispose: (bloc) => bloc.close(),
-    //   ),
-    // );
-    // i.addSingleton<SignInBloc>(
-    //   SignInBloc.new,
-    //   config: BindConfig(
-    //     onDispose: (bloc) => bloc.close(),
-    //   ),
-    // );
+    i.addSingleton<SplashBloc>(
+      SplashBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addSingleton<WelcomeBloc>(
+      WelcomeBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
 
@@ -43,8 +64,10 @@ class OnboardModule extends Module {
 // }
 
 enum OnboardModuleEnum {
-  splash("/splash"),
+  splash("/"),
   welcome("/welcome"),
+  signIn("/signIn"),
+  signUp("/signUp"),
   ;
 
   final String path;

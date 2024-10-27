@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gene_tree_app/modules/common/theme/bloc/theme_bloc.dart';
 
 part 'base_scaffold_configs.dart';
 
@@ -16,8 +18,13 @@ class BaseScaffold extends StatefulWidget {
 class _BaseScaffoldState extends State<BaseScaffold> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: widget.configs.body,
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: state.themeData.colorScheme.background,
+          body: widget.configs.body,
+        );
+      },
     );
   }
 }
