@@ -23,6 +23,10 @@ test:
 # Build runner cho project
 build-runner:
 
+
+.PHONY: run_flutterfire
+run_flutterfire:
+	bash ./bin/firebase/flutterfire-config.sh $(ENV)
 # khởi tạo intl	
 .PHONY: generate
 generate:
@@ -37,6 +41,7 @@ gen_image:
 	bash ./bin/generate_asset/generate_image.bash
 
 .PHONY: gen_icon
+
 gen_icon:
 	bash ./bin/generate_asset/generate_icon.bash
 
