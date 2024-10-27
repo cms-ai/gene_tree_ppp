@@ -1,5 +1,4 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gene_tree_app/modules/auth/auth_module.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 
 class AppModule extends Module {
@@ -17,7 +16,6 @@ class AppModule extends Module {
   @override
   void routes(RouteManager r) {
     ModuleRoute(OnboardModule.path, module: OnboardModule());
-    ModuleRoute(AuthModule.path, module: AuthModule());
 
     super.routes(r);
   }
