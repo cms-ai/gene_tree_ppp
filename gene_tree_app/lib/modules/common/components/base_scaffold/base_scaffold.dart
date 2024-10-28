@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gene_tree_app/modules/common/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/modules/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/modules/utils/theme/models/app_theme_model.dart';
 
 part 'base_scaffold_configs.dart';
 
@@ -21,7 +22,8 @@ class _BaseScaffoldState extends State<BaseScaffold> {
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: state.themeData.colorScheme.background,
+          backgroundColor:
+              state.appThemeEnum.themeData().theme.colorScheme.background,
           body: widget.configs.body,
         );
       },

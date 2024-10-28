@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gene_tree_app/modules/common/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
-import 'package:gene_tree_app/modules/utils/databasse/share_preference_keys.dart';
+import 'package:gene_tree_app/modules/utils/theme/bloc/theme_bloc.dart';
 
 class AppModule extends Module {
   var brightness =
@@ -11,7 +9,7 @@ class AppModule extends Module {
 
   @override
   void binds(Injector i) {
-    i.addSingleton(() => ThemeBloc(isDarkMode: brightness == Brightness.dark));
+    i.addSingleton(() => ThemeBloc());
     super.binds(i);
   }
 

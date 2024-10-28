@@ -8,33 +8,30 @@ import 'package:gene_tree_app/modules/onboard/container/welcome/welcome_screen.d
 
 class OnboardModule extends Module {
   static const String path = "/onboard/";
+
+  static String getRoutePath(OnboardModuleEnum router) {
+    return path + router.name;
+  }
+
   @override
   void routes(RouteManager r) {
     r.child(
       '/',
-      child: (context) => SplashScreen(
-        argument: r.args.data,
-      ),
+      child: (context) => SplashScreen(argument: r.args.data),
     );
 
     r.child(
       OnboardModuleEnum.signIn.path,
-      child: (context) => SignInScreen(
-        argument: r.args.data,
-      ),
+      child: (context) => SignInScreen(argument: r.args.data),
     );
 
     r.child(
       OnboardModuleEnum.signUp.path,
-      child: (context) => SignUpScreen(
-        argument: r.args.data,
-      ),
+      child: (context) => SignUpScreen(argument: r.args.data),
     );
     r.child(
       OnboardModuleEnum.welcome.path,
-      child: (context) => WelcomeScreen(
-        argument: r.args.data,
-      ),
+      child: (context) => WelcomeScreen(argument: r.args.data),
     );
 
     super.routes(r);

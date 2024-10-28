@@ -4,11 +4,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
-import 'package:gene_tree_app/modules/common/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/modules/utils/databasse/share_preference_keys.dart';
+import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
+import 'package:gene_tree_app/modules/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/modules/utils/theme/models/app_theme_model.dart';
 import './bloc/splash_bloc.dart';
 part './models/splash_argument.dart';
-part './extensions/splash_ext.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
@@ -19,6 +19,8 @@ class SplashScreen extends StatefulWidget {
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
+
+  State<SplashScreen> get splashState => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -27,6 +29,15 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     initData();
+  }
+
+  // Main function
+  Future<void> initData() async {
+    Future.delayed(const Duration(seconds: 1), () {
+      Modular.to.navigate(
+        OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
+      );
+    });
   }
 
   @override
@@ -42,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Center(
                 child: BlocBuilder<ThemeBloc, ThemeState>(
                   buildWhen: (previous, current) =>
-                      previous.themeData != current.themeData,
+                      previous.appThemeEnum != current.appThemeEnum,
                   builder: (context, state) {
                     return GestureDetector(
                       onTap: () {
@@ -51,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         // Modular.to.navigate(
                         //     "/onboard" + OnboardModuleEnum.signIn.path);
                       },
-                      child: state.themeData == ThemeData.dark()
+                      child: state.appThemeEnum == AppThemeEnum.darkTheme
                           ? Assets.images.darkLogo.svg()
                           : Assets.images.lightLogo.svg(),
                     );

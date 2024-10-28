@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/app_module.dart';
-import 'package:gene_tree_app/modules/common/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/modules/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/modules/utils/theme/models/app_theme_model.dart';
 // import 'firebase_options.dart';
 
 late final FirebaseApp app;
@@ -20,7 +21,7 @@ Future<void> main() async {
   runApp(
     ModularApp(
       module: AppModule(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -42,21 +43,29 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [BlocProvider.value(value: Modular.get<ThemeBloc>())],
-      child: BlocConsumer<ThemeBloc, ThemeState>(
-        listener: (context, state) {
-          setState(() {});
-        },
-        builder: (context, state) {
-          return MaterialApp.router(
-            routerConfig: Modular.routerConfig,
-            title: 'Flutter Demo',
-            theme: state.themeData,
-            // home: const MyApp(),
-          );
-        },
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      // Use builder only if you need to use library outside ScreenUtilInit context
+      builder: (_, child) {
+        return MultiBlocProvider(
+          providers: [BlocProvider.value(value: Modular.get<ThemeBloc>())],
+          child: BlocConsumer<ThemeBloc, ThemeState>(
+            listener: (context, state) {
+              setState(() {});
+            },
+            builder: (context, state) {
+              return MaterialApp.router(
+                routerConfig: Modular.routerConfig,
+                title: 'Flutter Demo',
+                theme: state.appThemeEnum.themeData().theme,
+                // home: const MyApp(),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

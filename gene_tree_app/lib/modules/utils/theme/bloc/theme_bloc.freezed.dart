@@ -280,7 +280,7 @@ abstract class _ToogleTheme implements ThemeEvent {
 
 /// @nodoc
 mixin _$ThemeState {
-  ThemeData get themeData => throw _privateConstructorUsedError;
+  AppThemeEnum get appThemeEnum => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ThemeStateCopyWith<ThemeState> get copyWith =>
@@ -293,7 +293,7 @@ abstract class $ThemeStateCopyWith<$Res> {
           ThemeState value, $Res Function(ThemeState) then) =
       _$ThemeStateCopyWithImpl<$Res, ThemeState>;
   @useResult
-  $Res call({ThemeData themeData});
+  $Res call({AppThemeEnum appThemeEnum});
 }
 
 /// @nodoc
@@ -309,13 +309,13 @@ class _$ThemeStateCopyWithImpl<$Res, $Val extends ThemeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? themeData = null,
+    Object? appThemeEnum = null,
   }) {
     return _then(_value.copyWith(
-      themeData: null == themeData
-          ? _value.themeData
-          : themeData // ignore: cast_nullable_to_non_nullable
-              as ThemeData,
+      appThemeEnum: null == appThemeEnum
+          ? _value.appThemeEnum
+          : appThemeEnum // ignore: cast_nullable_to_non_nullable
+              as AppThemeEnum,
     ) as $Val);
   }
 }
@@ -328,7 +328,7 @@ abstract class _$$ThemeStateImplCopyWith<$Res>
       __$$ThemeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeData themeData});
+  $Res call({AppThemeEnum appThemeEnum});
 }
 
 /// @nodoc
@@ -342,13 +342,13 @@ class __$$ThemeStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? themeData = null,
+    Object? appThemeEnum = null,
   }) {
     return _then(_$ThemeStateImpl(
-      themeData: null == themeData
-          ? _value.themeData
-          : themeData // ignore: cast_nullable_to_non_nullable
-              as ThemeData,
+      appThemeEnum: null == appThemeEnum
+          ? _value.appThemeEnum
+          : appThemeEnum // ignore: cast_nullable_to_non_nullable
+              as AppThemeEnum,
     ));
   }
 }
@@ -356,14 +356,14 @@ class __$$ThemeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ThemeStateImpl implements _ThemeState {
-  const _$ThemeStateImpl({required this.themeData});
+  const _$ThemeStateImpl({required this.appThemeEnum});
 
   @override
-  final ThemeData themeData;
+  final AppThemeEnum appThemeEnum;
 
   @override
   String toString() {
-    return 'ThemeState(themeData: $themeData)';
+    return 'ThemeState(appThemeEnum: $appThemeEnum)';
   }
 
   @override
@@ -371,12 +371,12 @@ class _$ThemeStateImpl implements _ThemeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThemeStateImpl &&
-            (identical(other.themeData, themeData) ||
-                other.themeData == themeData));
+            (identical(other.appThemeEnum, appThemeEnum) ||
+                other.appThemeEnum == appThemeEnum));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, themeData);
+  int get hashCode => Object.hash(runtimeType, appThemeEnum);
 
   @JsonKey(ignore: true)
   @override
@@ -386,11 +386,11 @@ class _$ThemeStateImpl implements _ThemeState {
 }
 
 abstract class _ThemeState implements ThemeState {
-  const factory _ThemeState({required final ThemeData themeData}) =
+  const factory _ThemeState({required final AppThemeEnum appThemeEnum}) =
       _$ThemeStateImpl;
 
   @override
-  ThemeData get themeData;
+  AppThemeEnum get appThemeEnum;
   @override
   @JsonKey(ignore: true)
   _$$ThemeStateImplCopyWith<_$ThemeStateImpl> get copyWith =>
