@@ -28,12 +28,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    themeBloc = Modular.get<ThemeBloc>();
     initData();
   }
 
   // Main function
   Future<void> initData() async {
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Modular.to.navigate(
         OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
       );
