@@ -5,8 +5,8 @@ import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
-import 'package:gene_tree_app/modules/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/modules/utils/theme/models/app_theme_model.dart';
+import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/utils/theme/models/app_theme_model.dart';
 import './bloc/splash_bloc.dart';
 part './models/splash_argument.dart';
 

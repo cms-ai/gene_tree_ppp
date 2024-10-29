@@ -8,8 +8,8 @@ import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaff
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/common/components/cm_text_field/cp_cm_text_field.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
-import 'package:gene_tree_app/modules/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/modules/utils/theme/models/app_theme_model.dart';
+import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/utils/theme/models/app_theme_model.dart';
 import './bloc/sign_in_bloc.dart';
 part './models/sign_in_argument.dart';
 

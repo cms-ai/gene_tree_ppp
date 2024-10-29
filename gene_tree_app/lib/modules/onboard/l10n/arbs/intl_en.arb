@@ -1,0 +1,12 @@
+{
+  "@@locale": "en",
+  "onboard": "Màn hình onboard",
+  "enterEmailHint": "Enter email",
+  "enterPassHint": "Enter password",
+  "forgotPass": "Forgot password",
+  "noAccountBefore1": "You don’t have an account",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "signInWithGoogle": "Sign in with Google",
+  "haveAcountBefore": "You already have an account"
+}

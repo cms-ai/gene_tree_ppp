@@ -1,5 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gene_tree_app/modules/utils/theme/models/font_size/app_font_size_model_impl.dart';
+import 'package:gene_tree_app/utils/theme/models/font_size/app_font_size_model_impl.dart';
 
 class AppFontSizeModel extends AppFontSizeModelImpl {
   @override

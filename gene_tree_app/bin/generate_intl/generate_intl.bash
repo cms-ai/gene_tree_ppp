@@ -5,7 +5,8 @@ set -e
 
 # Thư mục gốc của dự án chính
 PROJECT_DIR=$(pwd)
-PUBSPEC_FILE="$PROJECT_DIR/pubspec.yaml"
+# PUBSPEC_FILE="$PROJECT_DIR/pubspec.yaml"
+PUBSPEC_FILE="$PROJECT_DIR/bin/templates/pubspec.yaml.tmpl"
 parent_directory="$PROJECT_DIR/lib/modules"
 
 
@@ -36,13 +37,12 @@ generate_intl() {
 
 
     # Kiểm tra xem file pubspec.yaml có tồn tại không
-    if [[ -f "$PUBSPEC_FILE" ]]; then
-      # echo "File pubspec.yaml đã tồn tại. Tạo bản sao lưu."
-      cp "$PUBSPEC_FILE" "$PUBSPEC_FILE.bak"
-    else
-      echo "File pubspec.yaml không tồn tại. Tạo mới."
+    if [ ! -f "$TEMPLATE_FILE" ]; then
+      echo "Template pubspec.yaml.tmpl không tồn tại tại: $TEMPLATE_FILE"
+      exit 1
     fi
 
+    echo "Bắt đầu tạo pubspec.yaml cho từng module..."
     # Hiển thị giá trị của các biến để kiểm tra
     # echo "ENABLED: $ENABLED"
     # echo "ARB_DIR: $ARB_DIR"
@@ -73,11 +73,95 @@ generate_intl() {
   # done
 }
 
-# Khởi tạo mảng để chứa danh sách thư mục
-MODULES=$(ls -d "$parent_directory"/*/ | xargs -n 1 basename)
 
-# Chạy intl cho từng module
-for folder in "${MODULES[@]}"; do
-  echo "Intilizing modulle: $folder"
-  generate_intl $folder
+generate_intl_new() {
+  MODULE_DIR="$PROJECT_DIR/lib/modules/$1"
+  TEMPLATE_FILE="$PROJECT_DIR/bin/templates/intl/pubspec.yaml.tmpl"
+
+  #  Tham số truyền vào
+  ENABLED="true"
+  ARB_DIR="lib/modules/$1/l10n/arbs"
+  OUTPUT_DIR="lib/modules/$1/l10n/generated"
+  DEFAULT_LOCALE="vi"
+  classname="${1}Localizations"
+
+
+  # Kiểm tra nếu file template tồn tại
+  if [ ! -f "$TEMPLATE_FILE" ]; then
+    echo "Template pubspec.yaml.tmpl không tồn tại tại: $TEMPLATE_FILE"
+    exit 1
+  fi
+
+  echo "Bắt đầu tạo pubspec.yaml cho module $1..."
+
+  output_file="$MODULE_DIR/pubspec.yaml"
+  sed -e "s|\$CLASS_NAME|$classname|g" \
+      -e "s|\$PATH_ARB|$ARB_DIR|g" \
+      -e "s|\$PATH_GENERATED|$OUTPUT_DIR|g" \
+      "$TEMPLATE_FILE" > "$output_file"
+    # Xóa file pubspec.yaml sau khi tạo xong
+  rm "$output_file"
+  echo "Đã xóa pubspec.yaml cho module: $1"
+}
+
+# Khởi tạo mảng để chứa danh sách thư mục
+# MODULES=$(ls -d "$parent_directory"/*/ | xargs -n 1 basename)
+
+# # Chạy intl cho từng module
+# for folder in "${MODULES[@]}"; do
+#   echo "Intilizing modulle: $folder"
+#   generate_intl_new $folder
+# done
+
+# echo "Hoàn thành tạo pubspec.yaml cho tất cả các module."
+
+
+
+#!/bin/bash
+
+# Đường dẫn đến thư mục chứa các modules
+MODULES_DIR="${PROJECT_DIR}/lib/modules"
+
+# Đường dẫn đến template pubspec.yaml.tmpl
+TEMPLATE_FILE="${PROJECT_DIR}/bin/templates/intl/pubspec.yaml.tmpl"
+
+# Kiểm tra nếu file template tồn tại
+if [ ! -f "$TEMPLATE_FILE" ]; then
+  echo "Template pubspec.yaml.tmpl không tồn tại tại: $TEMPLATE_FILE"
+  exit 1
+fi
+
+echo "Bắt đầu tạo pubspec.yaml cho từng module..."
+
+# Lặp qua từng thư mục trong MODULES_DIR
+for module_dir in "$MODULES_DIR"/*/; do
+  module_name=$(basename "$module_dir")
+
+  # Đường dẫn đến thư mục arb và output cho module này
+  arb_path="lib/modules/$module_name/l10n/arbs"
+  generated_path="lib/modules/$module_name/l10n"
+  OUTPUT_DIR="lib/modules/$1/l10n/generated"
+  class_name="${module_name}Localizations" # Đặt tên class, ví dụ Auth => AuthLocalization
+  tag_module="$module_name"
+
+  # Tạo pubspec.yaml từ template cho module hiện tại
+  output_file="$module_dir/pubspec.yaml"
+  sed -e "s|\$CLASS_NAME|$class_name|g" \
+      -e "s|\$PATH_ARB|$arb_path|g" \
+      -e "s|\$PATH_GENERATED|$OUTPUT_DIR|g" \
+      -e "s|\$TAG_MODULE|$tag_module|g" \
+      "$TEMPLATE_FILE" > "$output_file"
+
+  echo "Đã tạo pubspec.yaml cho module: $module_name"
+
+  # Chạy flutter pub get trong module để đảm bảo file được cập nhật nếu cần thiết
+  (cd "$module_dir" && flutter pub get)
+
+  # Xóa file pubspec.yaml, pubspec.lock và thư mục .dart_tool sau khi hoàn tất
+  rm "$output_file"
+  rm "$module_dir/pubspec.lock"
+  rm -rf "$module_dir/.dart_tool"
+  echo "Đã xóa pubspec.yaml, pubspec.lock, và .dart_tool cho module: $module_name"
 done
+
+echo "Hoàn thành tạo và xóa pubspec.yaml, pubspec.lock, và .dart_tool cho tất cả các module."

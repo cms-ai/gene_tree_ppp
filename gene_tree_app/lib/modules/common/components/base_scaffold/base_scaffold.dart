@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gene_tree_app/modules/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/modules/utils/theme/models/app_theme_model.dart';
+import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/utils/theme/models/app_theme_model.dart';
 
 part 'base_scaffold_configs.dart';
 
