@@ -9,4 +9,6 @@ abstract class AppSpacingModelImpl {
   double get s14;
   double get s16;
   double get s18;
+  double get screenHorizontal;
+  double get screenVertical;
 }

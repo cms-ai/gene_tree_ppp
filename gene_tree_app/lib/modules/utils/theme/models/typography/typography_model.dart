@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gene_tree_app/gen/fonts.gen.dart';
+import 'package:gene_tree_app/modules/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/modules/utils/theme/models/typography/typography_model_impl.dart';
 
 ///
@@ -7,40 +10,100 @@ import 'package:gene_tree_app/modules/utils/theme/models/typography/typography_m
 
 class LightTypographyModel extends TypographyModelImpl {
   @override
-  TextStyle get t10Bold => const TextStyle();
+  TextStyle get t10Bold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 10.sp,
+        fontWeight: FontWeight.bold,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t10Regular => const TextStyle();
+  TextStyle get t10Regular => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w400,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t10Semibold => const TextStyle();
+  TextStyle get t10Semibold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w600,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t12Bold => const TextStyle();
+  TextStyle get t12Bold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 12.sp,
+        fontWeight: FontWeight.bold,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t12Regular => const TextStyle();
+  TextStyle get t12Regular => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t12Semibold => const TextStyle();
+  TextStyle get t12Semibold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w600,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t14Bold => const TextStyle();
+  TextStyle get t14Bold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.bold,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t14Regular => const TextStyle();
+  TextStyle get t14Regular => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t14Semibold => const TextStyle();
+  TextStyle get t14Semibold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t16Bold => const TextStyle();
+  TextStyle get t16Bold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t16Regular => const TextStyle();
+  TextStyle get t16Regular => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w400,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t16Semibold => const TextStyle();
+  TextStyle get t16Semibold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w600,
+        color: themeData.theme.colorScheme.primary,
+      );
 }
 
 ///
@@ -49,38 +112,98 @@ class LightTypographyModel extends TypographyModelImpl {
 
 class DarkTypographyModel extends TypographyModelImpl {
   @override
-  TextStyle get t10Bold => const TextStyle();
+  TextStyle get t10Bold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 10.sp,
+        fontWeight: FontWeight.bold,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t10Regular => const TextStyle();
+  TextStyle get t10Regular => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w400,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t10Semibold => const TextStyle();
+  TextStyle get t10Semibold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w600,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t12Bold => const TextStyle();
+  TextStyle get t12Bold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 12.sp,
+        fontWeight: FontWeight.bold,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t12Regular => const TextStyle();
+  TextStyle get t12Regular => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t12Semibold => const TextStyle();
+  TextStyle get t12Semibold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w600,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t14Bold => const TextStyle();
+  TextStyle get t14Bold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.bold,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t14Regular => const TextStyle();
+  TextStyle get t14Regular => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t14Semibold => const TextStyle();
+  TextStyle get t14Semibold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t16Bold => const TextStyle();
+  TextStyle get t16Bold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t16Regular => const TextStyle();
+  TextStyle get t16Regular => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w400,
+        color: themeData.theme.colorScheme.primary,
+      );
 
   @override
-  TextStyle get t16Semibold => const TextStyle();
+  TextStyle get t16Semibold => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w600,
+        color: themeData.theme.colorScheme.primary,
+      );
 }

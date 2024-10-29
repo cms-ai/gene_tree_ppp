@@ -52,22 +52,16 @@ class _SplashScreenState extends State<SplashScreen> {
               lazy: false,
               create: (context) => SplashBloc(),
               child: Center(
-                child: BlocBuilder<ThemeBloc, ThemeState>(
-                  buildWhen: (previous, current) =>
-                      previous.appThemeEnum != current.appThemeEnum,
-                  builder: (context, state) {
-                    return GestureDetector(
-                      onTap: () {
-                        themeBloc.add(const ThemeEvent.toogleTheme());
-
-                        // Modular.to.navigate(
-                        //     "/onboard" + OnboardModuleEnum.signIn.path);
-                      },
-                      child: state.appThemeEnum == AppThemeEnum.darkTheme
-                          ? Assets.images.darkLogo.svg()
-                          : Assets.images.lightLogo.svg(),
-                    );
+                child: GestureDetector(
+                  onTap: () {
+                    themeBloc.add(const ThemeEvent.toogleTheme());
+                
+                    // Modular.to.navigate(
+                    //     "/onboard" + OnboardModuleEnum.signIn.path);
                   },
+                  child: appThemeEnum == AppThemeEnum.darkTheme
+                      ? Assets.images.darkLogo.svg()
+                      : Assets.images.lightLogo.svg(),
                 ),
               ),
             ),
