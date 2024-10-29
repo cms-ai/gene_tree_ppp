@@ -3,6 +3,7 @@
   "onboard": "Màn hình onboard",
   "enterEmailHint": "Enter email",
   "enterPassHint": "Enter password",
+  "reEnterPassHint": "Re-enter password",
   "forgotPass": "Forgot password",
   "noAccountBefore1": "You don’t have an account",
   "signIn": "Sign in",

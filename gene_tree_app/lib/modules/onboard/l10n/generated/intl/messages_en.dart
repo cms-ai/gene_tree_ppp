@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "noAccountBefore1":
             MessageLookupByLibrary.simpleMessage("You don’t have an account"),
         "onboard": MessageLookupByLibrary.simpleMessage("Màn hình onboard"),
+        "reEnterPassHint":
+            MessageLookupByLibrary.simpleMessage("Re-enter password"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign in"),
         "signInWithGoogle":
             MessageLookupByLibrary.simpleMessage("Sign in with Google"),

@@ -3,6 +3,7 @@
   "onboard": "Màn hình onboard",
   "enterEmailHint": "Nhập email",
   "enterPassHint": "Nhập password",
+  "reEnterPassHint": "Nhập password",
   "forgotPass": "Quên mật khẩu",
   "noAccountBefore1": "Bạn chưa có tài khoản",
   "signIn": "Đăng nhập",

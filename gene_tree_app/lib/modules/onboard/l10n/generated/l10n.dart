@@ -81,6 +81,16 @@ class OnboardLocalizations {
     );
   }
 
+  /// `Re-enter password`
+  String get reEnterPassHint {
+    return Intl.message(
+      'Re-enter password',
+      name: 'reEnterPassHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Forgot password`
   String get forgotPass {
     return Intl.message(
