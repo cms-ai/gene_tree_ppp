@@ -101,10 +101,10 @@ class OnboardLocalizations {
     );
   }
 
-  /// `You don’t have an account`
+  /// `You don't have an account`
   String get noAccountBefore1 {
     return Intl.message(
-      'You don’t have an account',
+      'You don\'t have an account',
       name: 'noAccountBefore1',
       desc: '',
       args: [],
@@ -146,6 +146,66 @@ class OnboardLocalizations {
     return Intl.message(
       'You already have an account',
       name: 'haveAcountBefore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gia tộc - Cội nguồn của mọi gia đình`
+  String get familyOriginTitle {
+    return Intl.message(
+      'Gia tộc - Cội nguồn của mọi gia đình',
+      name: 'familyOriginTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gia tộc không chỉ là sự gắn bó của những người có cùng dòng máu, mà còn là nền tảng của sự yêu thương và bảo vệ. Đó là cội nguồn, nơi khởi đầu và sự nối tiếp qua bao thế hệ.`
+  String get familyOriginContent {
+    return Intl.message(
+      'Gia tộc không chỉ là sự gắn bó của những người có cùng dòng máu, mà còn là nền tảng của sự yêu thương và bảo vệ. Đó là cội nguồn, nơi khởi đầu và sự nối tiếp qua bao thế hệ.',
+      name: 'familyOriginContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Truyền thống - Giá trị gia tộc trường tồn`
+  String get familyTraditionTitle {
+    return Intl.message(
+      'Truyền thống - Giá trị gia tộc trường tồn',
+      name: 'familyTraditionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Truyền thống không chỉ là những giá trị văn hóa, mà còn là bài học quý báu được truyền từ đời này sang đời khác. Đó là bản sắc, là niềm tự hào và trách nhiệm của từng thành viên trong gia đình.`
+  String get familyTraditionContent {
+    return Intl.message(
+      'Truyền thống không chỉ là những giá trị văn hóa, mà còn là bài học quý báu được truyền từ đời này sang đời khác. Đó là bản sắc, là niềm tự hào và trách nhiệm của từng thành viên trong gia đình.',
+      name: 'familyTraditionContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tương lai - Nơi gắn kết các thế hệ`
+  String get familyFutureTitle {
+    return Intl.message(
+      'Tương lai - Nơi gắn kết các thế hệ',
+      name: 'familyFutureTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gia tộc là nền tảng cho sự phát triển của từng cá nhân, là nơi mỗi thế hệ tiếp nối, xây dựng và vun đắp. Hãy để những giá trị tốt đẹp của gia đình tiếp tục lan tỏa đến tương lai, gắn kết thêm nhiều thế hệ nữa.`
+  String get familyFutureContent {
+    return Intl.message(
+      'Gia tộc là nền tảng cho sự phát triển của từng cá nhân, là nơi mỗi thế hệ tiếp nối, xây dựng và vun đắp. Hãy để những giá trị tốt đẹp của gia đình tiếp tục lan tỏa đến tương lai, gắn kết thêm nhiều thế hệ nữa.',
+      name: 'familyFutureContent',
       desc: '',
       args: [],
     );

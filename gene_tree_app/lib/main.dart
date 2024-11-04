@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/app_module.dart';
+import 'package:gene_tree_app/modules/common/l10n/generated/l10n.dart';
+import 'package:gene_tree_app/modules/onboard/l10n/generated/l10n.dart';
+import 'package:gene_tree_app/utils/localizations/app_localizations.dart';
 import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/utils/theme/models/app_theme_model.dart';
 // import 'firebase_options.dart';
@@ -57,6 +60,7 @@ class _MyAppState extends State<MyApp> {
             },
             builder: (context, state) {
               return MaterialApp.router(
+                localizationsDelegates: AppLocalizations.appLocalizations,
                 routerConfig: Modular.routerConfig,
                 title: 'Flutter Demo',
                 theme: state.appThemeEnum.themeData().theme,

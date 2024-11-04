@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gene_tree_app/modules/onboard/container/intro/intro_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/sign_in_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_up/sign_up_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/splash/bloc/splash_bloc.dart';
@@ -18,6 +19,10 @@ class OnboardModule extends Module {
     r.child(
       '/',
       child: (context) => SplashScreen(argument: r.args.data),
+    );
+    r.child(
+      OnboardModuleEnum.intro.path,
+      child: (context) => IntroScreen(argument: r.args.data),
     );
 
     r.child(
@@ -62,6 +67,7 @@ class OnboardModule extends Module {
 
 enum OnboardModuleEnum {
   splash("/"),
+  intro("/intro"),
   welcome("/welcome"),
   signIn("/signIn"),
   signUp("/signUp"),
