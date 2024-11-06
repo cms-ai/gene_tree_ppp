@@ -6,7 +6,7 @@ part 'auth_response.g.dart';
 @freezed
 class AuthResponse with _$AuthResponse {
   const factory AuthResponse({
-    @JsonKey(name: 'user_id') String? id,
+    String? id,
   }) = _AuthResponse;
 
   factory AuthResponse.fromJson(Map<String, dynamic> json) =>
