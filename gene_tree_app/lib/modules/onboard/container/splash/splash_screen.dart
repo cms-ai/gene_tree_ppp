@@ -55,13 +55,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: GestureDetector(
                   onTap: () {
                     themeBloc.add(const ThemeEvent.toogleTheme());
-                
-                    // Modular.to.navigate(
-                    //     "/onboard" + OnboardModuleEnum.signIn.path);
                   },
                   child: appThemeEnum == AppThemeEnum.darkTheme
-                      ? Assets.images.darkLogo.svg()
-                      : Assets.images.lightLogo.svg(),
+                      ? Assets.images.lightLogo.svg()
+                      : Assets.images.darkLogo.svg(),
                 ),
               ),
             ),

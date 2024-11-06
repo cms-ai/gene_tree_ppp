@@ -55,8 +55,7 @@ class SignInScreen extends StatelessWidget {
                     CPCmTextField(
                       configs: CPCmTextFieldConfigs(
                         hintTextConfigs: HintTextConfigs(
-                          hintText:
-                              OnboardLocalizations.current.reEnterPassHint,
+                          hintText: OnboardLocalizations.current.enterPassHint,
                         ),
                       ),
                     ),
@@ -72,7 +71,7 @@ class SignInScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Sign In',
+                          OnboardLocalizations.current.signIn,
                           style: themeData.typo.t14Semibold.copyWith(
                             color: Colors.white,
                           ),

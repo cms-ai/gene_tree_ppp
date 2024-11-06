@@ -1,0 +1,19 @@
+
+abstract class $ClassName$RequestImpl {
+  Map<String, dynamic> toJson();
+}
+
+/// AUTO GENERATE PLEASE DON't MODIFY, 
+/// you can remove id if it not nesscessary
+class $ClassName$Request extends $ClassName$RequestImpl {
+  final String? id;
+  $ClassName$Request({
+    this.id,
+  });
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+    };
+  }
+}
