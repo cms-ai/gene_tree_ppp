@@ -20,7 +20,8 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AuthResponse {
-  String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
+  String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $AuthResponseCopyWith<$Res> {
           AuthResponse value, $Res Function(AuthResponse) then) =
       _$AuthResponseCopyWithImpl<$Res, AuthResponse>;
   @useResult
-  $Res call({String id});
+  $Res call({@JsonKey(name: 'user_id') String? id});
 }
 
 /// @nodoc
@@ -50,13 +51,13 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -69,7 +70,7 @@ abstract class _$$AuthResponseImplCopyWith<$Res>
       __$$AuthResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id});
+  $Res call({@JsonKey(name: 'user_id') String? id});
 }
 
 /// @nodoc
@@ -83,13 +84,13 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
   }) {
     return _then(_$AuthResponseImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -97,13 +98,14 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuthResponseImpl implements _AuthResponse {
-  const _$AuthResponseImpl({required this.id});
+  const _$AuthResponseImpl({@JsonKey(name: 'user_id') this.id});
 
   factory _$AuthResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthResponseImplFromJson(json);
 
   @override
-  final String id;
+  @JsonKey(name: 'user_id')
+  final String? id;
 
   @override
   String toString() {
@@ -137,13 +139,15 @@ class _$AuthResponseImpl implements _AuthResponse {
 }
 
 abstract class _AuthResponse implements AuthResponse {
-  const factory _AuthResponse({required final String id}) = _$AuthResponseImpl;
+  const factory _AuthResponse({@JsonKey(name: 'user_id') final String? id}) =
+      _$AuthResponseImpl;
 
   factory _AuthResponse.fromJson(Map<String, dynamic> json) =
       _$AuthResponseImpl.fromJson;
 
   @override
-  String get id;
+  @JsonKey(name: 'user_id')
+  String? get id;
   @override
   @JsonKey(ignore: true)
   _$$AuthResponseImplCopyWith<_$AuthResponseImpl> get copyWith =>

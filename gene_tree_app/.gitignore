@@ -29,6 +29,11 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
+.freezed.dart
+# Generated files by freezed
+*.freezed.dart
+*.g.dart
+
 /env/
 /build/
 

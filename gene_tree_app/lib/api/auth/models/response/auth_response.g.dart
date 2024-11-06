@@ -8,10 +8,10 @@ part of 'auth_response.dart';
 
 _$AuthResponseImpl _$$AuthResponseImplFromJson(Map<String, dynamic> json) =>
     _$AuthResponseImpl(
-      id: json['id'] as String,
+      id: json['user_id'] as String?,
     );
 
 Map<String, dynamic> _$$AuthResponseImplToJson(_$AuthResponseImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'user_id': instance.id,
     };
