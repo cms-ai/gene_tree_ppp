@@ -7,4 +7,11 @@ class SplashState with _$SplashState {
   factory SplashState.initial() {
     return const SplashState();
   }
+
+  factory SplashState.unAuthenticated() {
+    return const SplashState();
+  }
+  factory SplashState.authenticated() {
+    return const SplashState();
+  }
 }

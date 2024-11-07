@@ -25,6 +25,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
           backgroundColor:
               state.appThemeEnum.themeData().theme.colorScheme.background,
           body: widget.configs.body,
+          bottomNavigationBar: widget.configs.bottomNavigationBar,
         );
       },
     );

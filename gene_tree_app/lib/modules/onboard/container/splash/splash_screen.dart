@@ -26,19 +26,9 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   late ThemeBloc themeBloc;
   @override
-  void initState() {
+  void initState() async {
     super.initState();
     themeBloc = Modular.get<ThemeBloc>();
-    initData();
-  }
-
-  // Main function
-  Future<void> initData() async {
-    Future.delayed(const Duration(seconds: 5), () {
-      Modular.to.navigate(
-        OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
-      );
-    });
   }
 
   @override
@@ -51,14 +41,28 @@ class _SplashScreenState extends State<SplashScreen> {
             body: BlocProvider(
               lazy: false,
               create: (context) => SplashBloc(),
-              child: Center(
-                child: GestureDetector(
-                  onTap: () {
-                    themeBloc.add(const ThemeEvent.toogleTheme());
-                  },
-                  child: appThemeEnum == AppThemeEnum.darkTheme
-                      ? Assets.images.lightLogo.svg()
-                      : Assets.images.darkLogo.svg(),
+              child: BlocListener<SplashBloc, SplashState>(
+                listener: (context, state) {
+                  if (state == SplashState.authenticated()) {
+                    // TODO: Đã đăng nhập chuyển đến màn hình home
+                  } else if (state == SplashState.unAuthenticated()) {
+                    Future.delayed(const Duration(seconds: 3), () {
+                      Modular.to.navigate(
+                        OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
+                      );
+                    });
+                  }
+                },
+                listenWhen: (previous, current) => previous != current,
+                child: Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      themeBloc.add(const ThemeEvent.toogleTheme());
+                    },
+                    child: appThemeEnum == AppThemeEnum.darkTheme
+                        ? Assets.images.lightLogo.svg()
+                        : Assets.images.darkLogo.svg(),
+                  ),
                 ),
               ),
             ),

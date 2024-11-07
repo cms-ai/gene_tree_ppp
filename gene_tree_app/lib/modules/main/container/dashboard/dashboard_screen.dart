@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
-import './bloc/$FileName$_bloc.dart';
-part './models/$FileName$_argument.dart';
+import './bloc/dashboard_bloc.dart';
+part './models/dashboard_argument.dart';
 
-class $ClassName$Screen extends StatelessWidget {
-  const $ClassName$Screen({
+class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({
     super.key,
     this.argument,
   });
-  final $ClassName$Argument? argument;
+  final DashboardArgument? argument;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,10 @@ class $ClassName$Screen extends StatelessWidget {
       scaffoldBuilder: () {
         return BlocProvider(
           lazy: false,
-          create: (context) => $ClassName$Bloc(),
+          create: (context) => DashboardBloc(),
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
-              nameScreen: "$ClassName$",
+              nameScreen: "Dashboard",
               body: Container(),
             ),
           ),
