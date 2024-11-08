@@ -12,42 +12,42 @@ import 'intl/messages_all.dart';
 // ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
 // ignore_for_file: avoid_redundant_argument_values, avoid_escaping_inner_quotes
 
-class CommonLocalizations {
-  CommonLocalizations();
+class MainLocalizations {
+  MainLocalizations();
 
-  static CommonLocalizations? _current;
+  static MainLocalizations? _current;
 
-  static CommonLocalizations get current {
+  static MainLocalizations get current {
     assert(_current != null,
-        'No instance of CommonLocalizations was loaded. Try to initialize the CommonLocalizations delegate before accessing CommonLocalizations.current.');
+        'No instance of MainLocalizations was loaded. Try to initialize the MainLocalizations delegate before accessing MainLocalizations.current.');
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
-  static Future<CommonLocalizations> load(Locale locale) {
+  static Future<MainLocalizations> load(Locale locale) {
     final name = (locale.countryCode?.isEmpty ?? false)
         ? locale.languageCode
         : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      final instance = CommonLocalizations();
-      CommonLocalizations._current = instance;
+      final instance = MainLocalizations();
+      MainLocalizations._current = instance;
 
       return instance;
     });
   }
 
-  static CommonLocalizations of(BuildContext context) {
-    final instance = CommonLocalizations.maybeOf(context);
+  static MainLocalizations of(BuildContext context) {
+    final instance = MainLocalizations.maybeOf(context);
     assert(instance != null,
-        'No instance of CommonLocalizations present in the widget tree. Did you add CommonLocalizations.delegate in localizationsDelegates?');
+        'No instance of MainLocalizations present in the widget tree. Did you add MainLocalizations.delegate in localizationsDelegates?');
     return instance!;
   }
 
-  static CommonLocalizations? maybeOf(BuildContext context) {
-    return Localizations.of<CommonLocalizations>(context, CommonLocalizations);
+  static MainLocalizations? maybeOf(BuildContext context) {
+    return Localizations.of<MainLocalizations>(context, MainLocalizations);
   }
 
   /// `Enter email`
@@ -131,8 +131,7 @@ class CommonLocalizations {
   }
 }
 
-class AppLocalizationDelegate
-    extends LocalizationsDelegate<CommonLocalizations> {
+class AppLocalizationDelegate extends LocalizationsDelegate<MainLocalizations> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
@@ -145,8 +144,8 @@ class AppLocalizationDelegate
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
   @override
-  Future<CommonLocalizations> load(Locale locale) =>
-      CommonLocalizations.load(locale);
+  Future<MainLocalizations> load(Locale locale) =>
+      MainLocalizations.load(locale);
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

@@ -25,6 +25,54 @@ class $EnvGen {
   List<String> get values => [aEnvDev, aEnvProd];
 }
 
+class $AssetsGifGen {
+  const $AssetsGifGen();
+
+  /// File path: assets/gif/ic_chat_dark.json
+  String get icChatDark => 'assets/gif/ic_chat_dark.json';
+
+  /// File path: assets/gif/ic_chat_light.json
+  String get icChatLight => 'assets/gif/ic_chat_light.json';
+
+  /// File path: assets/gif/ic_gene_dark.json
+  String get icGeneDark => 'assets/gif/ic_gene_dark.json';
+
+  /// File path: assets/gif/ic_gene_light.json
+  String get icGeneLight => 'assets/gif/ic_gene_light.json';
+
+  /// File path: assets/gif/ic_home_dark.json
+  String get icHomeDark => 'assets/gif/ic_home_dark.json';
+
+  /// File path: assets/gif/ic_home_light.json
+  String get icHomeLight => 'assets/gif/ic_home_light.json';
+
+  /// File path: assets/gif/ic_notify_dark.json
+  String get icNotifyDark => 'assets/gif/ic_notify_dark.json';
+
+  /// File path: assets/gif/ic_notify_light.json
+  String get icNotifyLight => 'assets/gif/ic_notify_light.json';
+
+  /// File path: assets/gif/ic_profile_dark.json
+  String get icProfileDark => 'assets/gif/ic_profile_dark.json';
+
+  /// File path: assets/gif/ic_profile_light.json
+  String get icProfileLight => 'assets/gif/ic_profile_light.json';
+
+  /// List of all assets
+  List<String> get values => [
+        icChatDark,
+        icChatLight,
+        icGeneDark,
+        icGeneLight,
+        icHomeDark,
+        icHomeLight,
+        icNotifyDark,
+        icNotifyLight,
+        icProfileDark,
+        icProfileLight
+      ];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -84,6 +132,7 @@ class Assets {
   Assets._();
 
   static const String aEnv = '.env';
+  static const $AssetsGifGen gif = $AssetsGifGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $EnvGen env = $EnvGen();

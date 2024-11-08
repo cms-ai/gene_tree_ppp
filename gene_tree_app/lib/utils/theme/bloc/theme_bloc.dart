@@ -17,7 +17,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc()
       : super(ThemeState.initial(
           AppThemeEnum.lightTheme,
-          Color(0xFF00BF4D),
+          const Color(0xFF00BF4D),
         )) {
     on<ThemeEvent>(
       (event, emit) async {

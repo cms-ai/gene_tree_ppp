@@ -41,7 +41,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
           ),
           bottomNavigationBar: widget.configs.bottomNavigationBar != null
               ? widget.configs.bottomNavigationBar!(state)
-              : Container(),
+              : null,
         );
       },
     );

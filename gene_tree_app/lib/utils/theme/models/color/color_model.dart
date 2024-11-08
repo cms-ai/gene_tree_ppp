@@ -3,10 +3,10 @@ import 'package:gene_tree_app/utils/theme/models/color/color_model_impl.dart';
 
 class LightColorModel implements ColorModelImpl {
   @override
-  Color get bgColor1 => const Color(0xFFE7D6C6);
+  Color get bgColor1 => const Color(0xFFFFFFFF);
 
   @override
-  Color get bgColor2 => const Color(0xFFFBF7F1);
+  Color get bgColor2 => const Color(0xFF000000);
 
   @override
   Color get btnColor1 => const Color(0xFFF2D5A9);
@@ -69,10 +69,10 @@ class LightColorModel implements ColorModelImpl {
 
 class DarkColorModel implements ColorModelImpl {
   @override
-  Color get bgColor1 => const Color(0xFFE7D6C6);
+  Color get bgColor1 => const Color(0xFF000000);
 
   @override
-  Color get bgColor2 => const Color(0xFFFBF7F1);
+  Color get bgColor2 => const Color(0xFFFFFFFF);
 
   @override
   Color get btnColor1 => const Color(0xFFF2D5A9);
