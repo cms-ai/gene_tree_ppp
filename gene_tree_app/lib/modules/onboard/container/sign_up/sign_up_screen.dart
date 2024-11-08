@@ -28,7 +28,7 @@ class SignUpScreen extends StatelessWidget {
         return BaseScaffold(
           configs: BaseScaffoldConfigs(
             nameScreen: "Home",
-            body: BlocProvider(
+            body: (themeState) =>  BlocProvider(
               lazy: false,
               create: (context) => SignUpBloc(),
               child: Container(
@@ -40,7 +40,7 @@ class SignUpScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Spacer(),
-                    appThemeEnum == AppThemeEnum.darkTheme
+                    themeState.appThemeEnum == AppThemeEnum.darkTheme
                         ? Assets.images.darkLogo.svg(height: 40.h)
                         : Assets.images.lightLogo.svg(height: 40.h),
                     SizedBox(height: 30.h),
@@ -73,7 +73,7 @@ class SignUpScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
-                        color: mainColor,
+                        color:themeState.mainColor,
                         borderRadius: BorderRadius.circular(4.r),
                       ),
                       child: Center(
@@ -97,7 +97,7 @@ class SignUpScreen extends StatelessWidget {
                           TextSpan(
                               text: " ${OnboardLocalizations.current.signIn}",
                               style: themeData.typo.t12Bold.copyWith(
-                                color: mainColor,
+                                color: themeState.mainColor,
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {

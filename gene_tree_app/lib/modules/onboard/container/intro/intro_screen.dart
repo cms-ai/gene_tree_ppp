@@ -53,7 +53,7 @@ class _IntroScreenState extends State<IntroScreen> {
         return BaseScaffold(
           configs: BaseScaffoldConfigs(
             nameScreen: "Intro",
-            body: BlocProvider(
+            body: (themeState) => BlocProvider(
               lazy: false,
               create: (context) => IntroBloc(),
               child: PageView.builder(

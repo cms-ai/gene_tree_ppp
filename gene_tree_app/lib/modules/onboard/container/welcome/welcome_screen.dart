@@ -19,7 +19,7 @@ class WelcomeScreen extends StatelessWidget {
         return BaseScaffold(
           configs: BaseScaffoldConfigs(
             nameScreen: "Home",
-            body: BlocProvider(
+            body: (themeState) => BlocProvider(
               lazy: false,
               create: (context) => WelcomeBloc(),
               child: Container(),

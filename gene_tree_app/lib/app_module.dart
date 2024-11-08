@@ -1,4 +1,3 @@
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/api/auth/auth_firebase_service.dart';
 import 'package:gene_tree_app/api/auth/auth_service.dart';
@@ -30,7 +29,7 @@ class AppModule extends Module {
   }
 
   void initApiServices(Injector i) {
-    i.addSingleton(() => AuthServices);
-    i.addSingleton(() => AuthFirebaseService);
+    i.addSingleton(() => AuthServices());
+    i.addSingleton(() => AuthFirebaseService());
   }
 }

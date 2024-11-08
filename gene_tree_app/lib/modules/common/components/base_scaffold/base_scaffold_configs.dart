@@ -7,12 +7,12 @@ class BaseScaffoldConfigs {
     this.bottomNavigationBar,
   });
   final String nameScreen;
-  final Widget body;
-  final Widget? bottomNavigationBar;
+  final Widget Function(ThemeState themeState) body;
+  final Widget? Function(ThemeState themeState)? bottomNavigationBar;
   BaseScaffoldConfigs copyWith({
     String? nameScreen,
-    Widget? body,
-    Widget? bottomNavigationBar,
+    Widget Function(ThemeState themeState)? body,
+    Widget? Function(ThemeState themeState)? bottomNavigationBar,
   }) {
     return BaseScaffoldConfigs(
       nameScreen: nameScreen ?? this.nameScreen,

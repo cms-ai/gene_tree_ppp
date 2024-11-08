@@ -12,6 +12,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart' as _svg;
 import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
+class $EnvGen {
+  const $EnvGen();
+
+  /// File path: env/.env.dev
+  String get aEnvDev => 'env/.env.dev';
+
+  /// File path: env/.env.prod
+  String get aEnvProd => 'env/.env.prod';
+
+  /// List of all assets
+  List<String> get values => [aEnvDev, aEnvProd];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -70,8 +83,13 @@ class $AssetsImagesGen {
 class Assets {
   Assets._();
 
+  static const String aEnv = '.env';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $EnvGen env = $EnvGen();
+
+  /// List of all assets
+  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {

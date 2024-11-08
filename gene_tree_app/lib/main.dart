@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/app_module.dart';
 import 'package:gene_tree_app/utils/localizations/app_localizations.dart';
+import 'package:gene_tree_app/utils/logger_utils.dart';
 import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/utils/theme/models/app_theme_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -18,6 +21,7 @@ late final FirebaseAuth auth;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   const String environment = String.fromEnvironment('env', defaultValue: 'dev');
+  LoggerUtil.infoLog("ENIROMENT: $environment");
   await dotenv.load(fileName: "env/.env.$environment");
 
   // KHởi tạo router chạy đầu tiên

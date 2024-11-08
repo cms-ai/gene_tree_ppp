@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
 part './models/cp_cm_text_field_configs.dart';
@@ -18,6 +19,7 @@ class CPCmTextField extends StatefulWidget {
 
 class _CPCmTextFieldState extends State<CPCmTextField> {
   final TextEditingController _controller = TextEditingController();
+  final ThemeState themeState = Modular.get<ThemeBloc>().state;
   @override
   void dispose() {
     super.dispose();
@@ -51,12 +53,12 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: mainColor,
+            color: themeState.mainColor,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: mainColor,
+            color: themeState.mainColor,
           ),
         ),
       ),
@@ -74,7 +76,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
         isDense: true,
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: mainColor,
+            color: themeState.mainColor,
           ),
         ),
       ),
@@ -92,7 +94,7 @@ class _CPCmTextFieldState extends State<CPCmTextField> {
         isDense: true,
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: mainColor,
+            color: themeState.mainColor,
           ),
         ),
       ),

@@ -1,9 +1,8 @@
-
 abstract class AuthRequestImpl {
   Map<String, dynamic> toJson();
 }
 
-class AuthRequest extends AuthRequestImpl {
+class AuthRequest implements AuthRequestImpl {
   final String? id;
   AuthRequest({
     this.id,

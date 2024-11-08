@@ -22,7 +22,7 @@ class DashboardScreen extends StatelessWidget {
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "Dashboard",
-              body: Container(),
+              body: (themeState) => Container(),
             ),
           ),
         );

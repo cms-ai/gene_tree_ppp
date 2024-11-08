@@ -28,7 +28,7 @@ class SignInScreen extends StatelessWidget {
         return BaseScaffold(
           configs: BaseScaffoldConfigs(
             nameScreen: "Home",
-            body: BlocProvider(
+            body: (themeState) =>  BlocProvider(
               lazy: false,
               create: (context) => SignInBloc(),
               child: Container(
@@ -40,7 +40,7 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Spacer(),
-                    appThemeEnum == AppThemeEnum.darkTheme
+                    themeState.appThemeEnum == AppThemeEnum.darkTheme
                         ? Assets.images.darkLogo.svg(height: 40.h)
                         : Assets.images.lightLogo.svg(height: 40.h),
                     SizedBox(height: 30.h),
@@ -66,7 +66,7 @@ class SignInScreen extends StatelessWidget {
                         vertical: 10.h,
                       ),
                       decoration: BoxDecoration(
-                        color: mainColor,
+                        color: themeState.mainColor,
                         borderRadius: BorderRadius.circular(4.r),
                       ),
                       child: Center(
@@ -84,7 +84,7 @@ class SignInScreen extends StatelessWidget {
                       child: Text(
                         OnboardLocalizations.current.forgotPass,
                         style: themeData.typo.t12Regular.copyWith(
-                          color: mainColor,
+                          color: themeState.mainColor,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -98,7 +98,7 @@ class SignInScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border.all(
-                          color: mainColor,
+                          color: themeState.mainColor,
                         ),
                         borderRadius: BorderRadius.circular(4.r),
                       ),
@@ -127,7 +127,7 @@ class SignInScreen extends StatelessWidget {
                           TextSpan(
                               text: " ${OnboardLocalizations.current.signUp}",
                               style: themeData.typo.t12Bold.copyWith(
-                                color: mainColor,
+                                color: themeState.mainColor,
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {

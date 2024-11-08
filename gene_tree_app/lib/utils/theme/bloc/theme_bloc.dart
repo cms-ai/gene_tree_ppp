@@ -11,17 +11,12 @@ part 'theme_bloc.freezed.dart';
 
 AppThemeModel get themeData =>
     Modular.tryGet<ThemeBloc>()?.state.appThemeEnum.themeData() ??
-    AppThemeEnum.lighTheme.themeData();
-Color get mainColor =>
-    Modular.tryGet<ThemeBloc>()?.state.mainColor ?? const Color(0xFF00BF4D);
-
-AppThemeEnum get appThemeEnum =>
-    Modular.tryGet<ThemeBloc>()?.state.appThemeEnum ?? AppThemeEnum.lighTheme;
+    AppThemeEnum.lightTheme.themeData();
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc()
       : super(ThemeState.initial(
-          AppThemeEnum.lighTheme,
+          AppThemeEnum.lightTheme,
           Color(0xFF00BF4D),
         )) {
     on<ThemeEvent>(
@@ -40,9 +35,9 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
           toogleTheme: (value) async {
             emit(
               state.copyWith(
-                appThemeEnum: state.appThemeEnum == AppThemeEnum.lighTheme
+                appThemeEnum: state.appThemeEnum == AppThemeEnum.lightTheme
                     ? AppThemeEnum.darkTheme
-                    : AppThemeEnum.lighTheme,
+                    : AppThemeEnum.lightTheme,
               ),
             );
 
