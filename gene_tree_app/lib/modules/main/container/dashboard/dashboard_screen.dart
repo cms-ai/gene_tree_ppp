@@ -38,53 +38,47 @@ class _DashboardScreenState extends State<DashboardScreen> {
         return BlocProvider(
           lazy: false,
           create: (context) => _bloc,
-          child: BlocListener<DashboardBloc, DashboardState>(
-            listener: (context, state) {
-              // TODO: implement listener
-              print("Ai debug: ${state.tab}");
-            },
-            child: BaseScaffold(
-              configs: BaseScaffoldConfigs(
-                nameScreen: "Dashboard",
-                body: (themeState) => Container(),
-                bottomNavigationBar: (_) => Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: _.appThemeEnum
-                            .themeData()
-                            .color
-                            .bgColor2
-                            .withOpacity(.7),
-                        blurRadius: 4,
-                        spreadRadius: 2,
-                        offset: Offset(4, 2),
-                      )
-                    ],
-                  ),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-                  child: BlocBuilder<DashboardBloc, DashboardState>(
-                    // buildWhen: (previous, current) => previous.tab != current.tab,
-                    builder: (context, state) {
-                      return Row(
-                        children: [
-                          ...DashboardTabEnum.values.map(
-                            (_) => _buildNavBarItem(
-                              url: _.getIconPath(),
-                              isSelected: state.tab == _,
-                              onTap: () {
-                                _bloc.add(
-                                  DashboardEvent.changeTab(_),
-                                );
-                              },
-                            ),
-                          )
-                        ],
-                      );
-                    },
-                  ),
+          child: BaseScaffold(
+            configs: BaseScaffoldConfigs(
+              nameScreen: "Dashboard",
+              body: (themeState) => Container(),
+              bottomNavigationBar: (theme) => Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: theme.appThemeEnum
+                          .themeData()
+                          .color
+                          .bgColor2
+                          .withOpacity(.7),
+                      blurRadius: 4,
+                      spreadRadius: 2,
+                      offset: const Offset(4, 2),
+                    )
+                  ],
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                child: BlocBuilder<DashboardBloc, DashboardState>(
+                  // buildWhen: (previous, current) => previous.tab != current.tab,
+                  builder: (context, state) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ...DashboardTabEnum.values.map(
+                          (data) => _buildNavBarItem(
+                            url: data.getIconPath(),
+                            isSelected: state.tab == data,
+                            onTap: () {
+                              _bloc.add(
+                                DashboardEvent.changeTab(data),
+                              );
+                            },
+                          ),
+                        )
+                      ],
+                    );
+                  },
                 ),
               ),
             ),
@@ -108,7 +102,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: CPLottie(
           configs: CPLottieConfigs(
             url: url,
-            height: 30.h,
+            height: 25.h,
             onTap: (controller) {
               onTap();
               controller.forward(from: 0);

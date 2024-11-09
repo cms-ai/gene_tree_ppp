@@ -7,15 +7,14 @@ part 'dashboard_state.dart';
 part 'dashboard_bloc.freezed.dart';
 
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
-  DashboardBloc() : super(DashboardState.initial(tab: DashboardTabEnum.home)) {
+  DashboardBloc()
+      : super(DashboardState.initial(tab: DashboardTabEnum.values.first)) {
     on<DashboardEvent>((event, emit) async {
       await event.map(
         initial: (value) async {},
         changeTab: (value) async {
           emit(
-            state.copyWith(
-              tab: value.tab,
-            ),
+            state.copyWith(tab: value.tab),
           );
         },
       );
