@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:gene_tree_app/gen/assets.gen.dart';
+import 'package:gene_tree_app/modules/main/container/event/event_screen.dart';
 
 enum DashboardTabEnum {
   home,
@@ -21,6 +23,22 @@ extension DashboardEnumExt on DashboardTabEnum {
         return Assets.gif.icMember.path;
       case DashboardTabEnum.profile:
         return Assets.gif.icProfileDark.path;
+    }
+  }
+
+  Widget getBody() {
+    switch (this) {
+      case DashboardTabEnum.event:
+        return const EventScreen();
+      default:
+        return Container(
+          child: Center(
+            child: Text(
+              "${this.name}",
+              style: TextStyle(color: Colors.red),
+            ),
+          ),
+        );
     }
   }
 }

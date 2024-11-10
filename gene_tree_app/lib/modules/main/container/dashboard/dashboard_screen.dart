@@ -7,7 +7,6 @@ import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.
 import 'package:gene_tree_app/modules/common/components/lottie/cp_lottie.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/models/enums/dashboard_enum.dart';
 import 'package:gene_tree_app/utils/theme/models/app_theme_model.dart';
-import 'package:lottie/lottie.dart';
 import './bloc/dashboard_bloc.dart';
 part './models/dashboard_argument.dart';
 
@@ -41,7 +40,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "Dashboard",
-              body: (themeState) => Container(),
+              body: (themeState) => BlocBuilder<DashboardBloc, DashboardState>(
+                buildWhen: (previous, current) => previous.tab != current.tab,
+                builder: (context, state) {
+                  return IndexedStack(
+                    index: state.tab.index,
+                    children: [
+                      ...DashboardTabEnum.values.map((e) => e.getBody()),
+                    ],
+                  );
+                },
+              ),
               bottomNavigationBar: (theme) => Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -60,10 +69,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                 child: BlocBuilder<DashboardBloc, DashboardState>(
-                  // buildWhen: (previous, current) => previous.tab != current.tab,
+                  buildWhen: (previous, current) => previous.tab != current.tab,
                   builder: (context, state) {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ...DashboardTabEnum.values.map(
                           (data) => _buildNavBarItem(
@@ -99,15 +109,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
           isSelected ? Colors.red.withOpacity(0.7) : Colors.black,
           BlendMode.srcATop,
         ),
-        child: CPLottie(
-          configs: CPLottieConfigs(
-            url: url,
-            height: 25.h,
-            onTap: (controller) {
-              onTap();
-              controller.forward(from: 0);
-            },
-          ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: CPLottie(
+                configs: CPLottieConfigs(
+                  url: url,
+                  height: 25.h,
+                  onTap: (controller) {
+                    onTap();
+                    controller.forward(from: 0);
+                  },
+                ),
+              ),
+            ),
+            Container(
+              height: 5.h,
+              margin: EdgeInsets.only(top: 2.h),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+                width: isSelected ? 5.h : 0,
+                height: isSelected ? 5.h : 0,
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

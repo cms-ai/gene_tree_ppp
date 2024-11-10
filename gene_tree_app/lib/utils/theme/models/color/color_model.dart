@@ -28,7 +28,7 @@ class LightColorModel implements ColorModelImpl {
   Color get mainBgColor1 => const Color(0xFFFFFFFF);
 
   @override
-  Color get mainPrimaryColor => const Color(0xFFA43A16);
+  Color get mainPrimaryColor => const Color(0xFF000000);
 
   @override
   Color get mainSecondaryColor1 => const Color(0xFFCDA66F);
@@ -94,7 +94,7 @@ class DarkColorModel implements ColorModelImpl {
   // Color get mainBgColor1 => const Color(0xFF821C0D);
 
   @override
-  Color get mainPrimaryColor => const Color(0xFFA43A16);
+  Color get mainPrimaryColor => const Color(0xFFFFFFFF);
 
   @override
   Color get mainSecondaryColor1 => const Color(0xFFCDA66F);

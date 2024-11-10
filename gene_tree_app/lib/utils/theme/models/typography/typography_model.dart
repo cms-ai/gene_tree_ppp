@@ -3,20 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/gen/fonts.gen.dart';
 import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/utils/theme/models/typography/typography_model_impl.dart';
-import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/utils/theme/models/typography/typography_model_impl.dart';
 
 ///
 /// text dùng cho dark theme vs giá trị [ThemeData.dark]
 ///
 
-class LightTypographyModel extends TypographyModelImpl {
+class LightTypographyModel implements TypographyModelImpl {
   @override
   TextStyle get t10Bold => TextStyle(
         fontFamily: FontFamily.poppins,
         fontSize: 10.sp,
         fontWeight: FontWeight.bold,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -24,7 +22,7 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 10.sp,
         fontWeight: FontWeight.w400,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -32,7 +30,7 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 10.sp,
         fontWeight: FontWeight.w600,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -40,7 +38,7 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 12.sp,
         fontWeight: FontWeight.bold,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -48,7 +46,7 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 12.sp,
         fontWeight: FontWeight.w400,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -56,7 +54,7 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 12.sp,
         fontWeight: FontWeight.w600,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -64,7 +62,7 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 14.sp,
         fontWeight: FontWeight.bold,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -72,7 +70,7 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -80,7 +78,7 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 14.sp,
         fontWeight: FontWeight.w600,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -88,7 +86,7 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 16.sp,
         fontWeight: FontWeight.bold,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -96,7 +94,7 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 16.sp,
         fontWeight: FontWeight.w400,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -104,7 +102,15 @@ class LightTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 16.sp,
         fontWeight: FontWeight.w600,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
+      );
+
+  @override
+  TextStyle get tHeader => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w600,
+        color: themeData.color.mainPrimaryColor,
       );
 }
 
@@ -112,13 +118,20 @@ class LightTypographyModel extends TypographyModelImpl {
 /// text dùng cho dark theme vs giá trị [ThemeData.dark]
 ///
 
-class DarkTypographyModel extends TypographyModelImpl {
+class DarkTypographyModel implements TypographyModelImpl {
+  @override
+  TextStyle get tHeader => TextStyle(
+        fontFamily: FontFamily.poppins,
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w600,
+        color: themeData.color.mainPrimaryColor,
+      );
   @override
   TextStyle get t10Bold => TextStyle(
         fontFamily: FontFamily.poppins,
         fontSize: 10.sp,
         fontWeight: FontWeight.bold,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -126,7 +139,7 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 10.sp,
         fontWeight: FontWeight.w400,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -134,7 +147,7 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 10.sp,
         fontWeight: FontWeight.w600,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -142,7 +155,7 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 12.sp,
         fontWeight: FontWeight.bold,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -150,7 +163,7 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 12.sp,
         fontWeight: FontWeight.w400,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -158,7 +171,7 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 12.sp,
         fontWeight: FontWeight.w600,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -166,7 +179,7 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 14.sp,
         fontWeight: FontWeight.bold,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -174,7 +187,7 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -182,7 +195,7 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 14.sp,
         fontWeight: FontWeight.w600,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -190,7 +203,7 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 16.sp,
         fontWeight: FontWeight.bold,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -198,7 +211,7 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 16.sp,
         fontWeight: FontWeight.w400,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 
   @override
@@ -206,6 +219,6 @@ class DarkTypographyModel extends TypographyModelImpl {
         fontFamily: FontFamily.poppins,
         fontSize: 16.sp,
         fontWeight: FontWeight.w600,
-        color: themeData.theme.colorScheme.primary,
+        color: themeData.color.mainPrimaryColor,
       );
 }

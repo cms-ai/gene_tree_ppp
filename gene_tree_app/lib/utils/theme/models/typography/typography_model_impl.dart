@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class TypographyModelImpl {
+  TextStyle get tHeader;
+
   TextStyle get t10Regular;
   TextStyle get t10Semibold;
   TextStyle get t10Bold;
