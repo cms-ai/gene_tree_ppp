@@ -26,19 +26,25 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final ThemeBloc themeBloc = Modular.get();
+  final SplashBloc splashBloc = Modular.get();
+
+  @override
+  void initState() {
+    super.initState();
+    splashBloc.add(const SplashEvent.started());
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       lazy: false,
-      create: (context) => SplashBloc(),
+      create: (context) => splashBloc,
       child: BaseScreen(
         scaffoldBuilder: () {
           return BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "Splash",
               body: (themeState) => BlocListener<SplashBloc, SplashState>(
-                bloc: SplashBloc()..add(const SplashEvent.started()),
                 listener: (context, state) {
                   Future.delayed(const Duration(seconds: 3), () {
                     if (state == const SplashState.authenticated()) {
@@ -46,6 +52,10 @@ class _SplashScreenState extends State<SplashScreen> {
                     } else if (state == const SplashState.unAuthenticated()) {
                       Modular.to.navigate(
                         OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
+                      );
+                    } else if (state == const SplashState.firstLogin()) {
+                      Modular.to.navigate(
+                        OnboardModule.getRoutePath(OnboardModuleEnum.intro),
                       );
                     }
                   });

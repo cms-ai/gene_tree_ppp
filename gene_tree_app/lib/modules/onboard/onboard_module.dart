@@ -24,6 +24,12 @@ class OnboardModule extends Module {
     r.child(
       OnboardModuleEnum.intro.path,
       child: (context) => IntroScreen(argument: r.args.data),
+      children: [
+        ChildRoute(
+          OnboardModuleEnum.signIn.path,
+          child: (context) => SignInScreen(argument: r.args.data),
+        )
+      ],
     );
 
     r.child(

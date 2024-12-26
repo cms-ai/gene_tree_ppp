@@ -1,9 +1,31 @@
 part of '../cp_button.dart';
 
-class CPButtonConfigs {
-  const CPButtonConfigs();
+enum ButtonType {
+  primary,
+  secondary,
+  danger,
+  outline,
+}
 
-  CPButtonConfigs copyWith() {
-    return const CPButtonConfigs();
+class CPButtonConfigs {
+  final ButtonType type;
+  final String content;
+  final double? width;
+  final double? height;
+  final EdgeInsetsGeometry? padding;
+  final void Function()? onTap;
+  const CPButtonConfigs({
+    this.type = ButtonType.primary,
+    this.content = '',
+    this.width,
+    this.height,
+    this.padding,
+    this.onTap,
+  });
+
+  CPButtonConfigs copyWith(ButtonType? type) {
+    return CPButtonConfigs(
+      type: type ?? this.type,
+    );
   }
 }

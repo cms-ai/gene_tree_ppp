@@ -23,7 +23,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       (event, emit) async {
         await event.map(
           initial: (value) async {
-            var localTheme = await SharePreferenceKeys.currentTheme.getData();
+            var localTheme = await SharePreferenceKeys.currentTheme.getData<String>();
             if (localTheme != null) {
               if (localTheme == AppThemeEnum.darkTheme.name) {
                 emit(state.copyWith(appThemeEnum: AppThemeEnum.darkTheme));
@@ -41,7 +41,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
               ),
             );
 
-            SharePreferenceKeys.currentTheme.saveData(
+            SharePreferenceKeys.currentTheme.saveData<String>(
               state.appThemeEnum.name,
             );
           },

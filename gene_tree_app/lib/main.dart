@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -45,6 +46,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  double _xPosition = 20; // Vị trí ban đầu theo trục X
+  double _yPosition = 20; // Vị trí ban đầu theo trục Y
   @override
   void initState() {
     final themeBloc = Modular.get<ThemeBloc>();
@@ -54,6 +57,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -64,7 +69,7 @@ class _MyAppState extends State<MyApp> {
           providers: [BlocProvider.value(value: Modular.get<ThemeBloc>())],
           child: BlocConsumer<ThemeBloc, ThemeState>(
             listener: (context, state) {
-              setState(() {});
+              LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
             },
             builder: (context, state) {
               return MaterialApp.router(
@@ -72,6 +77,50 @@ class _MyAppState extends State<MyApp> {
                 routerConfig: Modular.routerConfig,
                 title: 'Flutter Demo',
                 theme: state.appThemeEnum.themeData().theme,
+                builder: (context, child) {
+                  return Stack(
+                    children: [
+                      child ?? const SizedBox(),
+                      if (kDebugMode)
+                        Positioned(
+                          left: _xPosition,
+                          top: _yPosition,
+                          child: GestureDetector(
+                            onPanUpdate: (details) {
+                              setState(() {
+                                // Cập nhật vị trí nút
+                                _xPosition += details.delta.dx;
+                                _yPosition += details.delta.dy;
+
+                                // Giới hạn vị trí trong màn hình
+                                _xPosition = _xPosition.clamp(
+                                    0,
+                                    screenSize.width -
+                                        56); // 56 là kích thước nút
+                                _yPosition = _yPosition.clamp(
+                                    0, screenSize.height - 56 - kToolbarHeight);
+                              });
+                            },
+                            child: FloatingActionButton(
+                              backgroundColor: state.appThemeEnum
+                                  .themeData()
+                                  .color
+                                  .mainSecondaryColor2
+                                  .withOpacity(.4),
+                              onPressed: () {
+                                Modular.get<ThemeBloc>()
+                                    .add(const ThemeEvent.toogleTheme());
+                              },
+                              child: const Icon(
+                                Icons.bug_report,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
                 // home: const MyApp(),
               );
             },

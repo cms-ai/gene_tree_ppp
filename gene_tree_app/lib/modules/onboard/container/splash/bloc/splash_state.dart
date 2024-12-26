@@ -5,4 +5,5 @@ class SplashState with _$SplashState {
   const factory SplashState.initial() = _Initial;
   const factory SplashState.unAuthenticated() = _UnAuthenticated;
   const factory SplashState.authenticated() = _Authenticated;
+  const factory SplashState.firstLogin() = _FirstLogin;
 }

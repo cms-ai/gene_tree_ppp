@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
+import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/onboard/l10n/generated/l10n.dart';
+import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
 import './bloc/intro_bloc.dart';
 part './models/intro_argument.dart';
@@ -23,19 +26,20 @@ class IntroScreen extends StatefulWidget {
 
 class _IntroScreenState extends State<IntroScreen> {
   final PageController controller = PageController();
+  int indexPage = 0;
   final itemList = [
     IntroItemModel(
-      image: Assets.images.onboarding1.image(),
+      image: Assets.images.onboarding1.image(fit: BoxFit.cover),
       title: OnboardLocalizations.current.familyOriginTitle,
       sub: OnboardLocalizations.current.familyOriginContent,
     ),
     IntroItemModel(
-      image: Assets.images.onboarding2.image(),
+      image: Assets.images.onboarding2.image(fit: BoxFit.cover),
       title: OnboardLocalizations.current.familyTraditionTitle,
       sub: OnboardLocalizations.current.familyTraditionContent,
     ),
     IntroItemModel(
-      image: Assets.images.onboarding1.image(),
+      image: Assets.images.onboarding1.image(fit: BoxFit.cover),
       title: OnboardLocalizations.current.familyFutureTitle,
       sub: OnboardLocalizations.current.familyFutureContent,
     ),
@@ -48,6 +52,7 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return BaseScreen(
       scaffoldBuilder: () {
         return BaseScaffold(
@@ -56,16 +61,77 @@ class _IntroScreenState extends State<IntroScreen> {
             body: (themeState) => BlocProvider(
               lazy: false,
               create: (context) => IntroBloc(),
-              child: PageView.builder(
-                controller: controller,
-                itemCount: itemList.length,
-                onPageChanged: (value) {},
-                itemBuilder: (context, index) {
-                  return _buildPageViewItem(
-                    itemList[index],
-                    index,
-                  );
-                },
+              child: Column(
+                children: [
+                  Expanded(
+                    child: PageView.builder(
+                      controller: controller,
+                      itemCount: itemList.length,
+                      onPageChanged: (value) {
+                        indexPage = value;
+                        setState(() {});
+                      },
+                      itemBuilder: (context, index) {
+                        return _buildPageViewItem(
+                          itemList[index],
+                          index,
+                        );
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 40.w, vertical: 20.h),
+                    child: indexPage >= itemList.length - 1
+                        ? CPButton(
+                            configs: CPButtonConfigs(
+                              content: "Start",
+                              width: size.width * 0.8,
+                              onTap: () {
+                                Modular.to.navigate(
+                                  OnboardModule.getRoutePath(
+                                    OnboardModuleEnum.signIn,
+                                  ),
+                                );
+                              },
+                            ),
+                          )
+                        : Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Modular.to.navigate(
+                                    OnboardModule.getRoutePath(
+                                      OnboardModuleEnum.signIn,
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Skip",
+                                  textAlign: TextAlign.center,
+                                  style: themeData.typo.t16Bold.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              CPButton(
+                                configs: CPButtonConfigs(
+                                  content: "Next",
+                                  width: 100.w,
+                                  onTap: () {
+                                    controller.nextPage(
+                                      duration:
+                                          const Duration(milliseconds: 300),
+                                      curve: Curves.easeInOut,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -83,21 +149,46 @@ class _IntroScreenState extends State<IntroScreen> {
   ) {
     return SizedBox(
       key: ValueKey(index),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 200.h,
-            child: data.image,
-          ),
-          Text(
-            data.title,
-            style: themeData.typo.t14Bold,
-          ),
-          Text(
-            data.sub,
-            style: themeData.typo.t14Bold,
-          )
-        ],
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 20.h),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 3,
+              child: SizedBox(width: double.infinity, child: data.image),
+            ),
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Column(
+                  children: [
+                    SizedBox(height: 20.h),
+                    Text(
+                      data.title,
+                      textAlign: TextAlign.center,
+                      style: themeData.typo.t16Semibold.copyWith(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: themeData.spacing.s18,
+                    ),
+                    Text(
+                      data.sub,
+                      textAlign: TextAlign.center,
+                      style: themeData.typo.t12Regular.copyWith(
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
