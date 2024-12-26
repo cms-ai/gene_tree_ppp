@@ -20,15 +20,47 @@ class CPButton extends StatelessWidget {
                 EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             width: configs.width,
             height: configs.height,
-            decoration: BoxDecoration(
-              color: themeData.color.btnColor2, // Màu nền của button
-              borderRadius: BorderRadius.circular(8.0), // Bo góc
-            ),
+            decoration: configs.decoration ??
+                BoxDecoration(
+                  color: themeData.color.btnColor2, // Màu nền của button
+                  borderRadius: BorderRadius.circular(8.0), // Bo góc
+                ),
             child: Center(
               child: Text(
                 configs.content,
-                style: themeData.typo.t14Semibold.copyWith(),
+                style:
+                    configs.textStyle ?? themeData.typo.t14Semibold.copyWith(),
               ),
+            ),
+          ),
+        );
+      case ButtonType.outline:
+        return GestureDetector(
+          onTap: configs.onTap,
+          child: Container(
+            padding: configs.padding ??
+                EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+            width: configs.width,
+            height: configs.height,
+            decoration: configs.decoration ??
+                BoxDecoration(
+                  border: Border.all(
+                      color: themeData.color.btnColor2 // Màu viền của button
+                      ),
+                  borderRadius: BorderRadius.circular(8.0), // Bo góc
+                ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                configs.prefixIcon ?? Container(),
+                Text(
+                  configs.content,
+                  style: themeData.typo.t14Semibold.copyWith(
+                    color:
+                        themeData.color.mainPrimaryColor, // Màu chữ của button
+                  ),
+                ),
+              ],
             ),
           ),
         );

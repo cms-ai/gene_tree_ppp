@@ -101,11 +101,14 @@ class $AssetsIconsGen {
   AssetGenImage get avatarIconTest =>
       const AssetGenImage('assets/icons/avatarIconTest.jpg');
 
+  /// File path: assets/icons/ic_apple.svg
+  SvgGenImage get icApple => const SvgGenImage('assets/icons/ic_apple.svg');
+
   /// File path: assets/icons/ic_google.svg
   SvgGenImage get icGoogle => const SvgGenImage('assets/icons/ic_google.svg');
 
   /// List of all assets
-  List<dynamic> get values => [avatarIconTest, icGoogle];
+  List<dynamic> get values => [avatarIconTest, icApple, icGoogle];
 }
 
 class $AssetsImagesGen {

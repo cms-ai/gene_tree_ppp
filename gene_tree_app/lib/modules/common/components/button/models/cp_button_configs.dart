@@ -13,7 +13,10 @@ class CPButtonConfigs {
   final double? width;
   final double? height;
   final EdgeInsetsGeometry? padding;
+  final Widget? prefixIcon;
   final void Function()? onTap;
+  final TextStyle? textStyle;
+  final Decoration? decoration;
   const CPButtonConfigs({
     this.type = ButtonType.primary,
     this.content = '',
@@ -21,6 +24,9 @@ class CPButtonConfigs {
     this.height,
     this.padding,
     this.onTap,
+    this.prefixIcon,
+    this.textStyle,
+    this.decoration,
   });
 
   CPButtonConfigs copyWith(ButtonType? type) {
