@@ -55,7 +55,7 @@ class SignInScreen extends StatelessWidget {
                           margin: EdgeInsets.only(right: 10.w),
                           child: Assets.icons.icGoogle.svg(height: 20.h),
                         ),
-                        content: "Sign in with google",
+                        content: OnboardLocalizations.current.signInWithGoogle,
                         type: ButtonType.outline,
                         decoration: BoxDecoration(
                           color: themeData.color.btnColor2.withOpacity(.1),
