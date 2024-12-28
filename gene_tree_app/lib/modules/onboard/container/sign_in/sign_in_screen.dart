@@ -26,6 +26,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SignInBloc signInBloc = Modular.get();
     return BaseScreen(
       scaffoldBuilder: () {
         return BaseScaffold(
@@ -33,7 +34,7 @@ class SignInScreen extends StatelessWidget {
             nameScreen: "Home",
             body: (themeState) => BlocProvider(
               lazy: false,
-              create: (context) => SignInBloc(),
+              create: (context) => signInBloc,
               child: Container(
                 height: double.infinity,
                 padding: EdgeInsets.symmetric(
@@ -65,7 +66,8 @@ class SignInScreen extends StatelessWidget {
                               ),
                           borderRadius: BorderRadius.circular(8.0), // Bo góc
                         ),
-                        onTap: () {},
+                        onTap: () => signInBloc
+                            .add(const SignInEvent.signInWithGoogle()),
                       ),
                     ),
                     SizedBox(height: 20.h),

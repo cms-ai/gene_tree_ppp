@@ -12,7 +12,6 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     on<SplashEvent>((event, emit) async {
       await event.map(
         started: (value) async {
-          print("=======ư");
           var firstLogin =
               await SharePreferenceKeys.firstLogin.getData<bool>() ?? true;
 

@@ -24,6 +24,7 @@ Future<void> main() async {
   const String environment = String.fromEnvironment('env', defaultValue: 'dev');
   LoggerUtil.infoLog("ENIROMENT: $environment");
   await dotenv.load(fileName: "env/.env.$environment");
+  await Firebase.initializeApp();
 
   // KHởi tạo router chạy đầu tiên
 

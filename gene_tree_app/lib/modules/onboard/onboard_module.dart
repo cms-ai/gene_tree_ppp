@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/dashboard_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/intro/intro_screen.dart';
+import 'package:gene_tree_app/modules/onboard/container/sign_in/bloc/sign_in_bloc.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/sign_in_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_up/sign_up_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/splash/bloc/splash_bloc.dart';
@@ -54,6 +55,12 @@ class OnboardModule extends Module {
     super.binds(i);
     i.addSingleton<SplashBloc>(
       SplashBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addSingleton<SignInBloc>(
+      SignInBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
