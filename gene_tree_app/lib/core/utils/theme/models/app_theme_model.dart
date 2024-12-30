@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gene_tree_app/utils/theme/models/color/color_model.dart';
-import 'package:gene_tree_app/utils/theme/models/color/color_model_impl.dart';
-import 'package:gene_tree_app/utils/theme/models/font_size/app_font_size_model.dart';
-import 'package:gene_tree_app/utils/theme/models/radius/app_radius_model.dart';
-import 'package:gene_tree_app/utils/theme/models/spacing/app_spacing_model_impl.dart';
-import 'package:gene_tree_app/utils/theme/models/typography/typography_model_impl.dart';
-import 'package:gene_tree_app/utils/theme/models/spacing/app_spacing_model.dart';
-import 'package:gene_tree_app/utils/theme/models/typography/typography_model.dart';
+import 'package:gene_tree_app/core/utils/theme/models/color/color_model.dart';
+import 'package:gene_tree_app/core/utils/theme/models/color/color_model_impl.dart';
+import 'package:gene_tree_app/core/utils/theme/models/font_size/app_font_size_model.dart';
+import 'package:gene_tree_app/core/utils/theme/models/radius/app_radius_model.dart';
+import 'package:gene_tree_app/core/utils/theme/models/spacing/app_spacing_model_impl.dart';
+import 'package:gene_tree_app/core/utils/theme/models/typography/typography_model_impl.dart';
+import 'package:gene_tree_app/core/utils/theme/models/spacing/app_spacing_model.dart';
+import 'package:gene_tree_app/core/utils/theme/models/typography/typography_model.dart';
 
 class AppThemeModel {
   final TypographyModelImpl typo;

@@ -8,8 +8,8 @@ import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.
 import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/onboard/l10n/generated/l10n.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
-import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/utils/theme/models/app_theme_model.dart';
+import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 import './bloc/sign_in_bloc.dart';
 part './models/sign_in_argument.dart';
 

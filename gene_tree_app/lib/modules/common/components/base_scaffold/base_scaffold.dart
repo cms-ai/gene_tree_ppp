@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gene_tree_app/utils/logger_utils.dart';
-import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/utils/theme/models/app_theme_model.dart';
+import 'package:gene_tree_app/core/utils/logger_utils.dart';
+import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 
 part 'base_scaffold_configs.dart';
 

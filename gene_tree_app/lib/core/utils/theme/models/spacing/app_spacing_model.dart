@@ -1,5 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gene_tree_app/utils/theme/models/spacing/app_spacing_model_impl.dart';
+import 'package:gene_tree_app/core/utils/theme/models/spacing/app_spacing_model_impl.dart';
 
 class AppSpacingModel extends AppSpacingModelImpl {
   @override

@@ -8,7 +8,7 @@ import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.
 import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
 import 'package:gene_tree_app/modules/onboard/l10n/generated/l10n.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
-import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import './bloc/intro_bloc.dart';
 part './models/intro_argument.dart';
 part './models/intro_item_model.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gene_tree_app/utils/databasse/share_preference_keys.dart';
+import 'package:gene_tree_app/core/utils/databasse/share_preference_keys.dart';
 
 part 'splash_event.dart';
 part 'splash_state.dart';

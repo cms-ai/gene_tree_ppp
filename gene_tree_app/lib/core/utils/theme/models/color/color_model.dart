@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gene_tree_app/utils/theme/models/color/color_model_impl.dart';
+import 'package:gene_tree_app/core/utils/theme/models/color/color_model_impl.dart';
 
 class LightColorModel implements ColorModelImpl {
   @override

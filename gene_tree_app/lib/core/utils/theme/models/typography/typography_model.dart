@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/gen/fonts.gen.dart';
-import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/utils/theme/models/typography/typography_model_impl.dart';
+import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/core/utils/theme/models/typography/typography_model_impl.dart';
 
 ///
 /// text dùng cho dark theme vs giá trị [ThemeData.dark]

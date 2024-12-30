@@ -6,7 +6,7 @@ import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaff
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/common/components/lottie/cp_lottie.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/models/enums/dashboard_enum.dart';
-import 'package:gene_tree_app/utils/theme/models/app_theme_model.dart';
+import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 import './bloc/dashboard_bloc.dart';
 part './models/dashboard_argument.dart';
 

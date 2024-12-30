@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gene_tree_app/modules/common/components/lottie/models/cp_lottie_ennum.dart';
-import 'package:gene_tree_app/utils/logger_utils.dart';
+import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:lottie/lottie.dart';
 part './models/cp_lottie_configs.dart';
 

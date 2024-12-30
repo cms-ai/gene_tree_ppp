@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 part './models/cp_button_configs.dart';
 
 class CPButton extends StatelessWidget {

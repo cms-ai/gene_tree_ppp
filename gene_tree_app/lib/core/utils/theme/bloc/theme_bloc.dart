@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gene_tree_app/utils/databasse/share_preference_keys.dart';
-import 'package:gene_tree_app/utils/theme/models/app_theme_model.dart';
+import 'package:gene_tree_app/core/utils/databasse/share_preference_keys.dart';
+import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 
 part 'theme_event.dart';
 part 'theme_state.dart';
