@@ -24,7 +24,7 @@ class BaseResponse<T> {
     return {
       'status': status,
       'message': message,
-      'data': data != null ? toJsonT(data!) : null,
+      'data': data != null ? toJsonT(data as T) : null,
     };
   }
 }

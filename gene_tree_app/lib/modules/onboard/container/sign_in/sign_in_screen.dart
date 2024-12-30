@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -9,7 +6,6 @@ import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
-import 'package:gene_tree_app/modules/common/components/cm_text_field/cp_cm_text_field.dart';
 import 'package:gene_tree_app/modules/onboard/l10n/generated/l10n.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import 'package:gene_tree_app/utils/theme/bloc/theme_bloc.dart';

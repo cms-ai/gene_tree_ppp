@@ -31,12 +31,10 @@ extension DashboardEnumExt on DashboardTabEnum {
       case DashboardTabEnum.event:
         return const EventScreen();
       default:
-        return Container(
-          child: Center(
-            child: Text(
-              "${this.name}",
-              style: TextStyle(color: Colors.red),
-            ),
+        return Center(
+          child: Text(
+            name,
+            style: const TextStyle(color: Colors.red),
           ),
         );
     }

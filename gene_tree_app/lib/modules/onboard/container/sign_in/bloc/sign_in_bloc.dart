@@ -10,15 +10,15 @@ part 'sign_in_bloc.freezed.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc() : super(SignInState.initial()) {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final GoogleSignIn googleSignIn = GoogleSignIn();
     on<SignInEvent>((event, emit) async {
       await event.map(
         initial: (value) async {
           emit(SignInState.initial());
         },
         signInWithGoogle: (value) async {
-          final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+          final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
           final GoogleSignInAuthentication? googleAuth =
               await googleUser?.authentication;
 
@@ -30,7 +30,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
           // Sign in with Firebase
           final UserCredential userCredential =
-              await _auth.signInWithCredential(credential);
+              await auth.signInWithCredential(credential);
           LoggerUtil.debugLog(userCredential.user.toString());
           // await _googleSignIn.signOut();
           // await _auth.signOut();

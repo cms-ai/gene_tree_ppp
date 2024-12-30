@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gene_tree_app/modules/common/components/lottie/models/cp_lottie_ennum.dart';
+import 'package:gene_tree_app/utils/logger_utils.dart';
 import 'package:lottie/lottie.dart';
 part './models/cp_lottie_configs.dart';
 
@@ -28,7 +28,7 @@ class _CPLottieState extends State<CPLottie> with TickerProviderStateMixin {
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         // Khi animation hoàn thành, thực hiện hành động ở đây
-        print("Animation completed!");
+        LoggerUtil.debugLog("Animation completed!");
       }
     });
   }

@@ -90,7 +90,7 @@ class DarkColorModel implements ColorModelImpl {
   LinearGradient get linegradientColor2 => throw UnimplementedError();
 
   @override
-  Color get mainBgColor1 => Color(0xFF000000);
+  Color get mainBgColor1 => const Color(0xFF000000);
   // Color get mainBgColor1 => const Color(0xFF821C0D);
 
   @override
