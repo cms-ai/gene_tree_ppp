@@ -27,41 +27,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  void configLoading(AppThemeEnum theme) {
-    switch (theme) {
-      case AppThemeEnum.lightTheme:
-        EasyLoading.instance
-          ..displayDuration = const Duration(milliseconds: 2000)
-          ..indicatorType = EasyLoadingIndicatorType.fadingCircle
-          ..loadingStyle = EasyLoadingStyle.dark
-          ..indicatorSize = 45.0
-          ..radius = 10.0
-          ..progressColor = Colors.yellow
-          ..backgroundColor = Colors.green
-          ..indicatorColor = Colors.yellow
-          ..textColor = Colors.yellow
-          ..maskColor = Colors.blue.withOpacity(0.5)
-          ..userInteractions = true
-          ..dismissOnTap = false;
-        break;
-      case AppThemeEnum.darkTheme:
-        EasyLoading.instance
-          ..displayDuration = const Duration(milliseconds: 2000)
-          ..indicatorType = EasyLoadingIndicatorType.fadingCircle
-          ..loadingStyle = EasyLoadingStyle.light
-          ..indicatorSize = 45.0
-          ..radius = 10.0
-          ..progressColor = Colors.yellow
-          ..backgroundColor = Colors.green
-          ..indicatorColor = Colors.yellow
-          ..textColor = Colors.yellow
-          ..maskColor = Colors.blue.withOpacity(0.5)
-          ..userInteractions = true
-          ..dismissOnTap = false;
-        break;
-      default:
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +49,6 @@ class _MyAppState extends State<MyApp> {
               LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
               await SharePreferenceKeys.currentTheme
                   .saveData<String>(state.appThemeEnum.name);
-              configLoading(state.appThemeEnum);
             },
             builder: (context, state) {
               return MaterialApp.router(

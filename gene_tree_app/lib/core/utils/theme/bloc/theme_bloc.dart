@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gene_tree_app/core/utils/databasse/share_preference_keys.dart';
@@ -32,6 +33,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
                 emit(state.copyWith(appThemeEnum: AppThemeEnum.lightTheme));
               }
             }
+            configLoading(state.appThemeEnum);
           },
           toogleTheme: (value) async {
             emit(
@@ -45,6 +47,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
             SharePreferenceKeys.currentTheme.saveData<String>(
               state.appThemeEnum.name,
             );
+            configLoading(state.appThemeEnum);
           },
           changeMainColor: (_ChangeMainColor value) async {
             emit(state.copyWith(
@@ -54,5 +57,41 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         );
       },
     );
+  }
+
+  void configLoading(AppThemeEnum theme) {
+    switch (theme) {
+      case AppThemeEnum.lightTheme:
+        EasyLoading.instance
+          ..displayDuration = const Duration(milliseconds: 2000)
+          ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+          ..loadingStyle = EasyLoadingStyle.dark
+          ..indicatorSize = 45.0
+          ..radius = 10.0
+          ..progressColor = Colors.yellow
+          ..backgroundColor = Colors.green
+          ..indicatorColor = Colors.yellow
+          ..textColor = Colors.yellow
+          ..maskColor = Colors.blue.withOpacity(0.5)
+          ..userInteractions = true
+          ..dismissOnTap = false;
+        break;
+      case AppThemeEnum.darkTheme:
+        EasyLoading.instance
+          ..displayDuration = const Duration(milliseconds: 2000)
+          ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+          ..loadingStyle = EasyLoadingStyle.light
+          ..indicatorSize = 45.0
+          ..radius = 10.0
+          ..progressColor = Colors.yellow
+          ..backgroundColor = Colors.green
+          ..indicatorColor = Colors.yellow
+          ..textColor = Colors.yellow
+          ..maskColor = Colors.blue.withOpacity(0.5)
+          ..userInteractions = true
+          ..dismissOnTap = false;
+        break;
+      default:
+    }
   }
 }
