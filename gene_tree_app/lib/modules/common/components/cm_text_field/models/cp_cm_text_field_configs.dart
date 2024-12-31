@@ -10,15 +10,13 @@ class CPCmTextFieldConfigs {
   final CMTexFieldTypeEnum type;
   final HintTextConfigs? hintTextConfigs;
   final EdgeInsetsGeometry? contentPadding;
+  final TextEditingController? controller;
   const CPCmTextFieldConfigs({
     this.type = CMTexFieldTypeEnum.normal,
     this.contentPadding,
     this.hintTextConfigs,
+    this.controller,
   });
-
-  CPCmTextFieldConfigs copyWith() {
-    return const CPCmTextFieldConfigs();
-  }
 }
 
 class HintTextConfigs {

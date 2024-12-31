@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       Modular.to.navigate(MainModule.path);
                     } else if (state == const SplashState.unAuthenticated()) {
                       Modular.to.navigate(
-                        OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
+                        OnboardModule.getRoutePath(OnboardModuleEnum.welcome),
                       );
                     } else if (state == const SplashState.firstLogin()) {
                       Modular.to.navigate(

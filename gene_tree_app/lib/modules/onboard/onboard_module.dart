@@ -1,4 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan/create_clan/create_clan_screen.dart';
+import 'package:gene_tree_app/modules/main/main_module.dart';
 import 'package:gene_tree_app/modules/onboard/container/intro/intro_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/bloc/sign_in_bloc.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/sign_in_screen.dart';
@@ -45,6 +48,10 @@ class OnboardModule extends Module {
       OnboardModuleEnum.welcome.path,
       child: (context) => WelcomeScreen(argument: r.args.data),
     );
+    r.child(
+      OnboardModuleEnum.createClan.path,
+      child: (context) => CreateClanScreen(argument: r.args.data),
+    );
 
     super.routes(r);
   }
@@ -52,19 +59,26 @@ class OnboardModule extends Module {
   @override
   void binds(Injector i) {
     super.binds(i);
-    i.addSingleton<SplashBloc>(
+    i.addLazySingleton<SplashBloc>(
       SplashBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
     );
-    i.addSingleton<SignInBloc>(
+    i.addLazySingleton<SignInBloc>(
       SignInBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
     );
-    i.addSingleton<WelcomeBloc>(
+    i.addSingleton<CreateClanBloc>(
+      CreateClanBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+
+    i.addLazySingleton<WelcomeBloc>(
       WelcomeBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
@@ -84,7 +98,7 @@ enum OnboardModuleEnum {
   welcome("/welcome"),
   signIn("/signIn"),
   signUp("/signUp"),
-  ;
+  createClan("/createClan");
 
   final String path;
   const OnboardModuleEnum(this.path);

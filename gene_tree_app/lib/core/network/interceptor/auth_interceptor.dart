@@ -8,6 +8,7 @@ class AuthInterceptor extends Interceptor {
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     final token = await SharePreferenceKeys.token.getData<String>() ?? "";
+    print("======= ${token}");
     if (token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
     } else {

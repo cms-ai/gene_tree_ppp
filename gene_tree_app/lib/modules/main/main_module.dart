@@ -1,4 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan/create_clan/create_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/dashboard_screen.dart';
 
@@ -22,8 +24,14 @@ class MainModule extends Module {
   @override
   void binds(Injector i) {
     super.binds(i);
-    i.addSingleton<DashboardBloc>(
+    i.addLazySingleton<DashboardBloc>(
       DashboardBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addLazySingleton<CreateClanBloc>(
+      CreateClanBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
@@ -38,7 +46,9 @@ class MainModule extends Module {
 
 enum MainModuleEnum {
   dashboard("/"),
-  ;
+  // clan
+  createClan('/clan/create'),
+  updateClan('/clan/update');
 
   final String path;
   const MainModuleEnum(this.path);

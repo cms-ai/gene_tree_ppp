@@ -22,7 +22,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
             if (token.isEmpty) {
               emit(const SplashState.unAuthenticated());
             } else {
-              emit(const SplashState.authenticated());
+              emit(const SplashState.unAuthenticated());
             }
           }
         },

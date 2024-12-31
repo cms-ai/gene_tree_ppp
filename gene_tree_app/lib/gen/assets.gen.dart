@@ -140,6 +140,9 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding4 =>
       const AssetGenImage('assets/images/onboarding_4.png');
 
+  /// File path: assets/images/welcome.png
+  AssetGenImage get welcome => const AssetGenImage('assets/images/welcome.png');
+
   /// List of all assets
   List<dynamic> get values => [
         avatar,
@@ -148,7 +151,8 @@ class $AssetsImagesGen {
         onboarding1,
         onboarding2,
         onboarding3,
-        onboarding4
+        onboarding4,
+        welcome
       ];
 }
 

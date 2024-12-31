@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
+import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
+part './models/cp_cm_app_bar_configs.dart';
+
+class CPCmAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CPCmAppBar({
+    super.key,
+    required this.configs,
+  });
+  final CPCmAppBarConfigs configs;
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      buildWhen: (previous, current) =>
+          previous.appThemeEnum != current.appThemeEnum,
+      builder: (context, state) {
+        return AppBar(
+          leading: configs.prefixIcon ??
+              IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: state.appThemeEnum.themeData().color.mainPrimaryColor,
+                ),
+                onPressed: () {
+                  Modular.to.pop();
+                },
+              ),
+          centerTitle: true,
+          title: Text(
+            configs.title,
+            style: themeData.typo.t16Bold,
+          ),
+          backgroundColor: state.appThemeEnum.themeData().color.mainBgColor1,
+          elevation: 0, // Tùy chỉnh shadow của AppBar
+        );
+      },
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}

@@ -35,6 +35,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: state.appThemeEnum.themeData().color.mainBgColor1,
+          appBar: widget.configs.appBar,
           body: Stack(
             children: [
               SafeArea(

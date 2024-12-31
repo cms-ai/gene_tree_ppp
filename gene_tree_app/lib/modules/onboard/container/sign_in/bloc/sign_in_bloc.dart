@@ -8,8 +8,11 @@ import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/data/models/auth/login_google_request.dart';
 import 'package:gene_tree_app/data/models/auth/login_google_response.dart';
 import 'package:gene_tree_app/domain/repositories/auth_repository.dart';
+import 'package:gene_tree_app/domain/repositories/clan_repository.dart';
 import 'package:gene_tree_app/domain/usecase/auth/login_google.usecase.dart';
+import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
 import 'package:gene_tree_app/modules/main/main_module.dart';
+import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 part 'sign_in_event.dart';
@@ -19,7 +22,9 @@ part 'sign_in_bloc.freezed.dart';
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc() : super(SignInState.initial()) {
     final FirebaseAuth auth = FirebaseAuth.instance;
-    final AuthRepository authRepository = Modular.get();
+    final AuthRepository authRepo = Modular.get();
+    final ClanRepository clanRepo = Modular.get();
+    final AuthRepository userRepo = Modular.get();
     final GoogleSignIn googleSignIn = GoogleSignIn();
     on<SignInEvent>((event, emit) async {
       await event.map(
@@ -51,8 +56,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             );
 
             // Xử lý api login google
-            final response =
-                await LoginGoogleUsecase(authRepository).call(data);
+            final response = await LoginGoogleUsecase(authRepo).call(data);
 
             if (response == null || response.user.isDeleted == true) {
               EasyLoading.showError("Login failed.");
@@ -60,9 +64,19 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
               // Lưu local data của user
               await _saveUserLocalData(response);
 
-              EasyLoading.showSuccess("Succesfully");
-              // Điều hướng tới main module
-              Modular.to.navigate(MainModule.path);
+              final clanSnap = await GetAllClanUsecase(clanRepo)
+                  .call(response.user.userId ?? "");
+
+              if (clanSnap.isEmpty) {
+                // Điều hướng tới main module
+                EasyLoading.showSuccess("Login successfully");
+                Modular.to.navigate(MainModule.path);
+              } else {
+                EasyLoading.dismiss();
+                Modular.to.pushNamed(
+                  OnboardModule.getRoutePath(OnboardModuleEnum.createClan),
+                );
+              }
             }
           } catch (e) {
             EasyLoading.showError(e.toString());

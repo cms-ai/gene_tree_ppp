@@ -28,7 +28,7 @@ class SignUpScreen extends StatelessWidget {
         return BaseScaffold(
           configs: BaseScaffoldConfigs(
             nameScreen: "Home",
-            body: (themeState) =>  BlocProvider(
+            body: (themeState) => BlocProvider(
               lazy: false,
               create: (context) => SignUpBloc(),
               child: Container(
@@ -73,7 +73,7 @@ class SignUpScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 10),
                       decoration: BoxDecoration(
-                        color:themeState.mainColor,
+                        color: themeState.mainColor,
                         borderRadius: BorderRadius.circular(4.r),
                       ),
                       child: Center(

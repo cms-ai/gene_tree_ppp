@@ -22,7 +22,9 @@ class $ClassName$Screen extends StatelessWidget {
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "$ClassName$",
-              body: (themeState) => Container(),
+              body: (themeState) => Container(
+                child: Text("$ClassName$Screen"),
+              ),
             ),
           ),
         );
