@@ -24,5 +24,5 @@ class BaseResponse<T> {
   // Phương thức chuyển sang JSON
   Map<String, dynamic> toJson(Object Function(T value) toJsonT) =>
       _$BaseResponseToJson(this, (value) => toJsonT(value))
-        ..['data'] = toJsonT(data!);
+        ..['data'] = toJsonT(data as T);
 }

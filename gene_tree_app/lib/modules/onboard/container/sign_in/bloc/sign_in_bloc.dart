@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -10,6 +9,7 @@ import 'package:gene_tree_app/data/models/auth/login_google_request.dart';
 import 'package:gene_tree_app/data/models/auth/login_google_response.dart';
 import 'package:gene_tree_app/domain/repositories/auth_repository.dart';
 import 'package:gene_tree_app/domain/usecase/auth/login_google.usecase.dart';
+import 'package:gene_tree_app/modules/main/main_module.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 part 'sign_in_event.dart';
@@ -27,35 +27,45 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           emit(SignInState.initial());
         },
         signInWithGoogle: (value) async {
-          final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-          final GoogleSignInAuthentication? googleAuth =
-              await googleUser?.authentication;
+          try {
+            EasyLoading.show(status: "Loading....");
+            final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+            final GoogleSignInAuthentication? googleAuth =
+                await googleUser?.authentication;
 
-          // Create a new credential
-          final credential = GoogleAuthProvider.credential(
-            accessToken: googleAuth?.accessToken,
-            idToken: googleAuth?.idToken,
-          );
+            // Create a new credential
+            final credential = GoogleAuthProvider.credential(
+              accessToken: googleAuth?.accessToken,
+              idToken: googleAuth?.idToken,
+            );
 
-          // Sign in with Firebase
-          final UserCredential userCredential =
-              await auth.signInWithCredential(credential);
-          LoggerUtil.debugLog(userCredential.user.toString());
+            // Sign in with Firebase
+            final UserCredential userCredential =
+                await auth.signInWithCredential(credential);
+            LoggerUtil.debugLog(userCredential.user.toString());
 
-          final LoginGoogleRequest data = LoginGoogleRequest(
-            email: userCredential.user?.email ?? "",
-            name: userCredential.user?.displayName ?? "",
-            avatarUrl: userCredential.user?.photoURL ?? "",
-          );
+            final LoginGoogleRequest data = LoginGoogleRequest(
+              email: userCredential.user?.email ?? "",
+              name: userCredential.user?.displayName ?? "",
+              avatarUrl: userCredential.user?.photoURL ?? "",
+            );
 
-          // Xử lý api login google
-          final response = await LoginGoogleUsecase(authRepository).call(data);
+            // Xử lý api login google
+            final response =
+                await LoginGoogleUsecase(authRepository).call(data);
 
-          if (response != null) {
-            // Lưu local data của user
-            await _saveUserLocalData(response);
-            // Điều hướng tới main module
-            // Modular.to.navigate(MainModule.path);
+            if (response == null || response.user.isDeleted == true) {
+              EasyLoading.showError("Login failed.");
+            } else {
+              // Lưu local data của user
+              await _saveUserLocalData(response);
+
+              EasyLoading.showSuccess("Succesfully");
+              // Điều hướng tới main module
+              Modular.to.navigate(MainModule.path);
+            }
+          } catch (e) {
+            EasyLoading.showError(e.toString());
           }
         },
       );

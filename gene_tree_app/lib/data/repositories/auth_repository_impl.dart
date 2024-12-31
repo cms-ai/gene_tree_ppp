@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/core/network/base_response.dart';
-import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/data/api_services/auth_api_service.dart';
 import 'package:gene_tree_app/data/models/auth/login_google_request.dart';
 import 'package:gene_tree_app/data/models/auth/login_google_response.dart';

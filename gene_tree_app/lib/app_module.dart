@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/core/network/dio_client.dart';

@@ -13,16 +13,17 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         started: (value) async {
           var firstLogin =
               await SharePreferenceKeys.firstLogin.getData<bool>() ?? true;
+          var token = await SharePreferenceKeys.token.getData<String>() ?? "";
 
           if (firstLogin) {
             await SharePreferenceKeys.firstLogin.saveData<bool>(false);
             emit(const SplashState.firstLogin());
           } else {
-            await SharePreferenceKeys.firstLogin.saveData<bool>(true);
-
-            // emit(const SplashState.unAuthenticated());
-            emit(const SplashState.firstLogin());
-
+            if (token.isEmpty) {
+              emit(const SplashState.unAuthenticated());
+            } else {
+              emit(const SplashState.authenticated());
+            }
           }
         },
       );

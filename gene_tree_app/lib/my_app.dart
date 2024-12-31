@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gene_tree_app/core/utils/databasse/share_preference_keys.dart';
 import 'package:gene_tree_app/core/utils/localizations/app_localizations.dart';
 import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
@@ -26,6 +27,42 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
+  void configLoading(AppThemeEnum theme) {
+    switch (theme) {
+      case AppThemeEnum.lightTheme:
+        EasyLoading.instance
+          ..displayDuration = const Duration(milliseconds: 2000)
+          ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+          ..loadingStyle = EasyLoadingStyle.dark
+          ..indicatorSize = 45.0
+          ..radius = 10.0
+          ..progressColor = Colors.yellow
+          ..backgroundColor = Colors.green
+          ..indicatorColor = Colors.yellow
+          ..textColor = Colors.yellow
+          ..maskColor = Colors.blue.withOpacity(0.5)
+          ..userInteractions = true
+          ..dismissOnTap = false;
+        break;
+      case AppThemeEnum.darkTheme:
+        EasyLoading.instance
+          ..displayDuration = const Duration(milliseconds: 2000)
+          ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+          ..loadingStyle = EasyLoadingStyle.light
+          ..indicatorSize = 45.0
+          ..radius = 10.0
+          ..progressColor = Colors.yellow
+          ..backgroundColor = Colors.green
+          ..indicatorColor = Colors.yellow
+          ..textColor = Colors.yellow
+          ..maskColor = Colors.blue.withOpacity(0.5)
+          ..userInteractions = true
+          ..dismissOnTap = false;
+        break;
+      default:
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -42,8 +79,11 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
           child: BlocConsumer<ThemeBloc, ThemeState>(
-            listener: (context, state) {
+            listener: (context, state) async {
               LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
+              await SharePreferenceKeys.currentTheme
+                  .saveData<String>(state.appThemeEnum.name);
+              configLoading(state.appThemeEnum);
             },
             builder: (context, state) {
               return MaterialApp.router(
