@@ -47,11 +47,17 @@ class _SplashScreenState extends State<SplashScreen> {
               body: (themeState) => BlocListener<SplashBloc, SplashState>(
                 listener: (context, state) {
                   Future.delayed(const Duration(seconds: 3), () {
-                    if (state == const SplashState.authenticated()) {
+                    if (state == const SplashState.authenticated(true)) {
                       Modular.to.navigate(MainModule.path);
+                    } else if (state ==
+                        const SplashState.authenticated(false)) {
+                      Modular.to.navigate(
+                        OnboardModule.getRoutePath(
+                            OnboardModuleEnum.createClan),
+                      );
                     } else if (state == const SplashState.unAuthenticated()) {
                       Modular.to.navigate(
-                        OnboardModule.getRoutePath(OnboardModuleEnum.welcome),
+                        OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
                       );
                     } else if (state == const SplashState.firstLogin()) {
                       Modular.to.navigate(
