@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gene_tree_app/core/utils/databasse/share_preference_keys.dart';
 import 'package:gene_tree_app/core/utils/logger_utils.dart';
-import 'package:gene_tree_app/data/models/clan/create_clan_request.dart';
+import 'package:gene_tree_app/data/models/clan/request/create_clan_request.dart';
 import 'package:gene_tree_app/domain/repositories/clan_repository.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 

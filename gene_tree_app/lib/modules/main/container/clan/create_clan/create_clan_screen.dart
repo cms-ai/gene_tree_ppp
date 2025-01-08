@@ -52,8 +52,7 @@ class _CreateClanScreenState extends State<CreateClanScreen> {
               ),
               body: (themeState) => Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: Container(
-                    child: Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 60.h),
@@ -65,7 +64,7 @@ class _CreateClanScreenState extends State<CreateClanScreen> {
                     CPCmTextField(
                       configs: CPCmTextFieldConfigs(
                         controller: nameController,
-                        hintTextConfigs: HintTextConfigs(
+                        hintTextConfigs: const HintTextConfigs(
                           hintText: "Nhập tên gia tộc",
                         ),
                       ),
@@ -79,7 +78,7 @@ class _CreateClanScreenState extends State<CreateClanScreen> {
                     CPCmTextField(
                       configs: CPCmTextFieldConfigs(
                         controller: desController,
-                        hintTextConfigs: HintTextConfigs(
+                        hintTextConfigs: const HintTextConfigs(
                           hintText: "Nhập mô tả",
                         ),
                       ),
@@ -89,8 +88,6 @@ class _CreateClanScreenState extends State<CreateClanScreen> {
                       configs: CPButtonConfigs(
                         content: "Create",
                         onTap: () {
-                          // TODO; Tạo clan
-
                           createClanBloc.add(
                             CreateClanEvent.createClanEvent(
                                 name: nameController.text.trim(),
@@ -101,7 +98,7 @@ class _CreateClanScreenState extends State<CreateClanScreen> {
                     ),
                     SizedBox(height: 16.h)
                   ],
-                )),
+                ),
               ),
             ),
           ),

@@ -1,5 +1,5 @@
-import 'package:gene_tree_app/data/models/auth/refesh_token_request.dart';
-import 'package:gene_tree_app/data/models/auth/refesh_token_response.dart';
+import 'package:gene_tree_app/data/models/auth/response/refesh_token_request.dart';
+import 'package:gene_tree_app/data/models/auth/response/refesh_token_response.dart';
 import 'package:gene_tree_app/domain/repositories/auth_repository.dart';
 
 class RefreshTokenUsecase {

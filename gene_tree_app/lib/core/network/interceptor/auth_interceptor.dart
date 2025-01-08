@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gene_tree_app/core/network/dio_client.dart';
 import 'package:gene_tree_app/core/utils/databasse/share_preference_keys.dart';
 import 'package:gene_tree_app/core/utils/logger_utils.dart';
-import 'package:gene_tree_app/data/models/auth/refesh_token_request.dart';
+import 'package:gene_tree_app/data/models/auth/response/refesh_token_request.dart';
 import 'package:gene_tree_app/domain/repositories/auth_repository.dart';
 import 'package:gene_tree_app/domain/usecase/auth/refresh_token.usecase.dart';
 
@@ -31,7 +28,6 @@ class AuthInterceptor extends Interceptor {
     if (responseData is Map<String, dynamic>) {
       // Xử lý theo errorCode nếu cần
       if (responseData["errorCode"] == "INVALID_TOKEN") {
-        print("============ INVALID_TOKEN");
         final result = await handleRefreshTokenn(); // Gọi hàm refresh token
         if (result) {
           handler.resolve(
@@ -47,14 +43,13 @@ class AuthInterceptor extends Interceptor {
           );
           return;
         }
-        ;
       }
     }
     handler.next(err);
   }
 
   Future<bool> handleRefreshTokenn() async {
-    LoggerUtil.debugLog("Token experied");
+    LoggerUtil.debugLog("Token expired");
     final AuthRepository authRepo = Modular.get();
     final refreshToken =
         await SharePreferenceKeys.refreshToken.getData<String>() ?? "";
@@ -63,7 +58,7 @@ class AuthInterceptor extends Interceptor {
           .call(RefreshTokenRequest(refreshToken: refreshToken));
 
       if ((response?.accessToken ?? "").isNotEmpty) {
-        print("Refresh token success");
+        LoggerUtil.debugLog("Refresh token success");
         await SharePreferenceKeys.token.saveData<String>(response!.accessToken);
         return true;
       } else {

@@ -16,16 +16,16 @@ abstract class UserApiService {
 
   @GET("/user/{id}")
   Future<BaseResponse<UserEntity>> getUser(
-    @Path() String id, 
+    @Path() String id,
   );
 
   @PUT("/user/{id}")
   Future<BaseResponse<UserEntity>> updateUser(
-    @Path() String id, 
+    @Path() String id,
   );
 
   @DELETE("/user/{id}")
   Future<BaseResponse<UserEntity>> deleteUser(
-    @Path() String id, 
+    @Path() String id,
   );
 }

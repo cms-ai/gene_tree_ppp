@@ -9,6 +9,9 @@ import 'package:gene_tree_app/core/utils/localizations/app_localizations.dart';
 import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
+import 'package:gene_tree_app/core/utils/global_keys.dart';
+import 'package:gene_tree_app/modules/common/bloc/bloc/app_bloc.dart';
+import 'package:gene_tree_app/modules/common/components/cm_dialog/cm_dialog_screen.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -22,12 +25,12 @@ class _MyAppState extends State<MyApp> {
   double _yPosition = 20; // Vị trí ban đầu theo trục Y
   @override
   void initState() {
+    Modular.setNavigatorKey(GlobalKeys().navigatorKey);
+
     final themeBloc = Modular.get<ThemeBloc>();
     themeBloc.add(const ThemeEvent.initial());
     super.initState();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,32 +46,51 @@ class _MyAppState extends State<MyApp> {
             BlocProvider.value(
               value: Modular.get<ThemeBloc>(),
             ),
+            BlocProvider.value(
+              value: Modular.get<AppBloc>(),
+            ),
           ],
-          child: BlocConsumer<ThemeBloc, ThemeState>(
-            listener: (context, state) async {
-              LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
-              await SharePreferenceKeys.currentTheme
-                  .saveData<String>(state.appThemeEnum.name);
-            },
-            builder: (context, state) {
-              return MaterialApp.router(
-                localizationsDelegates: AppLocalizations.appLocalizations,
-                routerConfig: Modular.routerConfig,
-                title: 'Flutter Demo',
-                theme: state.appThemeEnum.themeData().theme,
-                builder: EasyLoading.init(
-                  builder: (context, child) {
-                    return Stack(
-                      children: [
-                        child ?? const SizedBox(),
-                        if (kDebugMode) _buildDebugWidget(screenSize, state),
-                      ],
-                    );
-                  },
-                ),
-                // home: const MyApp(),
+          child: BlocListener<AppBloc, AppState>(
+            listener: (context, state) {
+              state.when(
+                initial: () {},
+                error: (error) {
+                  CmDialogScreen(
+                    argument: CmDialogArgument(
+                      type: CmDialogType.alert,
+                      content: error.toString(),
+                    ),
+                  ).show(GlobalKeys().navigatorKey.currentState!.context);
+                },
               );
             },
+            child: BlocConsumer<ThemeBloc, ThemeState>(
+              listener: (context, state) async {
+                LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
+                await SharePreferenceKeys.currentTheme
+                    .saveData<String>(state.appThemeEnum.name);
+              },
+              builder: (context, state) {
+                return MaterialApp.router(
+                  // key: GlobalKeys().navigatorKey,
+                  localizationsDelegates: AppLocalizations.appLocalizations,
+                  routerConfig: Modular.routerConfig,
+                  title: 'Gene tree app',
+                  theme: state.appThemeEnum.themeData().theme,
+                  builder: EasyLoading.init(
+                    builder: (context, child) {
+                      return Stack(
+                        children: [
+                          child ?? const SizedBox(),
+                          if (kDebugMode) _buildDebugWidget(screenSize, state),
+                        ],
+                      );
+                    },
+                  ),
+                  // home: const MyApp(),
+                );
+              },
+            ),
           ),
         );
       },
@@ -101,6 +123,10 @@ class _MyAppState extends State<MyApp> {
               .withOpacity(.4),
           onPressed: () {
             Modular.get<ThemeBloc>().add(const ThemeEvent.toogleTheme());
+            // CmDialogScreen(
+            //   argument: CmDialogArgument(
+            //       type: CmDialogType.loading, content: "Login successfully"),
+            // ).show(GlobalKeys().navigatorKey.currentState!.context);
           },
           child: const Icon(
             Icons.bug_report,

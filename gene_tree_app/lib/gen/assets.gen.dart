@@ -41,6 +41,10 @@ class $AssetsGifGen {
   LottieGenImage get icChatLight =>
       const LottieGenImage('assets/gif/ic_chat_light.json');
 
+  /// File path: assets/gif/ic_error.json
+  LottieGenImage get icError =>
+      const LottieGenImage('assets/gif/ic_error.json');
+
   /// File path: assets/gif/ic_gene_dark.json
   LottieGenImage get icGeneDark =>
       const LottieGenImage('assets/gif/ic_gene_dark.json');
@@ -56,6 +60,10 @@ class $AssetsGifGen {
   /// File path: assets/gif/ic_home_light.json
   LottieGenImage get icHomeLight =>
       const LottieGenImage('assets/gif/ic_home_light.json');
+
+  /// File path: assets/gif/ic_loading.json
+  LottieGenImage get icLoading =>
+      const LottieGenImage('assets/gif/ic_loading.json');
 
   /// File path: assets/gif/ic_member.json
   LottieGenImage get icMember =>
@@ -77,20 +85,27 @@ class $AssetsGifGen {
   LottieGenImage get icProfileLight =>
       const LottieGenImage('assets/gif/ic_profile_light.json');
 
+  /// File path: assets/gif/ic_success.json
+  LottieGenImage get icSuccess =>
+      const LottieGenImage('assets/gif/ic_success.json');
+
   /// List of all assets
   List<LottieGenImage> get values => [
         icCalendar,
         icChatDark,
         icChatLight,
+        icError,
         icGeneDark,
         icGeneLight,
         icHomeDark,
         icHomeLight,
+        icLoading,
         icMember,
         icNotifyDark,
         icNotifyLight,
         icProfileDark,
-        icProfileLight
+        icProfileLight,
+        icSuccess
       ];
 }
 

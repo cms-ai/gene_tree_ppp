@@ -24,7 +24,12 @@ class _CPLottieState extends State<CPLottie> with TickerProviderStateMixin {
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1200),
-    );
+    )..repeat(reverse: widget.configs.reverse ?? false);
+
+    if (widget.configs.repeat == true) {
+      _controller.repeat(reverse: widget.configs.reverse ?? false);
+    }
+
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         // Khi animation hoàn thành, thực hiện hành động ở đây
@@ -56,6 +61,8 @@ class _CPLottieState extends State<CPLottie> with TickerProviderStateMixin {
           configs.url,
           controller: _controller,
           width: configs.width,
+          repeat: configs.repeat,
+          reverse: configs.reverse,
           height: configs.height,
           fit: BoxFit.contain,
           onLoaded: (p0) {
@@ -67,6 +74,7 @@ class _CPLottieState extends State<CPLottie> with TickerProviderStateMixin {
           configs.url,
           controller: _controller,
           width: configs.width,
+          repeat: configs.repeat,
           height: configs.height,
           fit: BoxFit.contain,
         );

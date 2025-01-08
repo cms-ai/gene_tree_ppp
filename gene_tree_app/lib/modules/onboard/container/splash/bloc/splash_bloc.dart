@@ -25,22 +25,37 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
           if (firstLogin) {
             await SharePreferenceKeys.firstLogin.saveData<bool>(false);
-            emit(const SplashState.firstLogin());
+            add(
+              const SplashEvent.changeSplashState(SplashStateEnum.firstLogin),
+            );
           } else {
             if (token.isEmpty) {
-              emit(const SplashState.unAuthenticated());
+              emit(state.copyWith(
+                  splashStateEnum: SplashStateEnum.unAuthenticated));
             } else {
               final user = await GetUserUsecase(userRepository).call(userId);
               final clanList =
                   await GetAllClanUsecase(clanRepository).call(userId);
               if (user != null) {
                 bool hasComplete = clanList.isNotEmpty;
-                emit(SplashState.authenticated(hasComplete));
-                return;
+                if (!hasComplete) {
+                  add(const SplashEvent.changeSplashState(
+                      SplashStateEnum.unAuthenticated));
+
+                  return;
+                }
               }
-              emit(const SplashState.unAuthenticated());
+              add(const SplashEvent.changeSplashState(
+                  SplashStateEnum.authenticated));
             }
           }
+        },
+        changeSplashState: (_ChangeSplashState value) {
+          emit(
+            state.copyWith(
+              splashStateEnum: value.data,
+            ),
+          );
         },
       );
     });

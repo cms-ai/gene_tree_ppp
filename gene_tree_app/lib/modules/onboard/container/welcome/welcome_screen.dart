@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 import 'package:gene_tree_app/gen/assets.gen.dart';
@@ -23,10 +24,10 @@ class WelcomeScreen extends StatelessWidget {
   Future<void> getAppInfo() async {
     final packageInfo = await PackageInfo.fromPlatform();
 
-    print('App Name: ${packageInfo.appName}');
-    print('Package Name: ${packageInfo.packageName}');
-    print('Version: ${packageInfo.version}');
-    print('Build Number: ${packageInfo.buildNumber}');
+    LoggerUtil.debugLog('App Name: ${packageInfo.appName}');
+    LoggerUtil.debugLog('Package Name: ${packageInfo.packageName}');
+    LoggerUtil.debugLog('Version: ${packageInfo.version}');
+    LoggerUtil.debugLog('Build Number: ${packageInfo.buildNumber}');
   }
 
   @override

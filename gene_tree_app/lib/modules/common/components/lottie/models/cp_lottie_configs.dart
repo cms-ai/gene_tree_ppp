@@ -5,6 +5,8 @@ class CPLottieConfigs {
   final String url;
   final double? width;
   final double? height;
+  final bool? repeat;
+  final bool? reverse;
   final Function(AnimationController controller)? onTap;
   const CPLottieConfigs({
     this.type = CpLottieEnum.asset,
@@ -12,6 +14,8 @@ class CPLottieConfigs {
     this.width,
     this.height,
     this.onTap,
+    this.repeat,
+    this.reverse,
   });
   // CPLottieConfigs copyWith({
   //   CpLottieEnum? type,

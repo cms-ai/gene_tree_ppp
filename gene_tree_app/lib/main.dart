@@ -5,8 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/app_module.dart';
+import 'package:gene_tree_app/core/config/env_config.dart';
 import 'package:gene_tree_app/core/utils/logger_utils.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:gene_tree_app/my_app.dart';
 
 // import 'firebase_options.dart';
@@ -18,7 +18,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   const String environment = String.fromEnvironment('env', defaultValue: 'dev');
   LoggerUtil.infoLog("ENIROMENT: $environment");
-  await dotenv.load(fileName: "env/.env.$environment");
+  await EnvConfig.loadEnv(environment);
   await Firebase.initializeApp();
 
   // KHởi tạo router chạy đầu tiên

@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/create_clan_screen.dart';
-import 'package:gene_tree_app/modules/main/main_module.dart';
 import 'package:gene_tree_app/modules/onboard/container/intro/intro_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/bloc/sign_in_bloc.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/sign_in_screen.dart';
