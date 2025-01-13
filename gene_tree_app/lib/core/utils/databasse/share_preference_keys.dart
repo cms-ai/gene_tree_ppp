@@ -79,6 +79,8 @@ extension SharePreferenceKeysExt on SharePreferenceKeys {
 
   Future<void> clearAllData() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
+    for (var key in SharePreferenceKeys.values) {
+      await prefs.remove(key.name);
+    }
   }
 }

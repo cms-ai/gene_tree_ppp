@@ -18,6 +18,10 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     on<SplashEvent>((event, emit) async {
       await event.map(
         started: (value) async {
+          // add(const SplashEvent.changeSplashState(
+          //     SplashStateEnum.unAuthenticated));
+          // return;
+
           var firstLogin =
               await SharePreferenceKeys.firstLogin.getData<bool>() ?? true;
           var token = await SharePreferenceKeys.token.getData<String>() ?? "";

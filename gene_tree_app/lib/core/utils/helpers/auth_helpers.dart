@@ -5,8 +5,9 @@ class GoogleAuthHelper {
   static final GoogleAuthHelper _instance = GoogleAuthHelper._internal();
   factory GoogleAuthHelper() => _instance;
   GoogleAuthHelper._internal();
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn = GoogleSignIn();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  GoogleSignIn googleSignIn = GoogleSignIn();
+
 
   Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
@@ -19,5 +20,9 @@ class GoogleAuthHelper {
     );
 
     return await auth.signInWithCredential(credential);
+  }
+
+  Future<void> signOut() async {
+    auth.signOut();
   }
 }

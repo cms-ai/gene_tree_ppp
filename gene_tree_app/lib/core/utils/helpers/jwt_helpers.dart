@@ -1,37 +1,34 @@
-import 'dart:convert';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
-class JWTHelper {
-  /// Decode a JWT and return its payload as a Map.
-  static Map<String, dynamic>? decode(String token) {
+class JwtHelper {
+  /// Decode JWT token và lấy thông tin userId
+  String? getUserIdFromToken(String token) {
     try {
-      final parts = token.split('.');
-      if (parts.length != 3) {
-        throw Exception("Invalid JWT format");
-      }
-      final payload = base64Url.normalize(parts[1]);
-      final decoded = utf8.decode(base64Url.decode(payload));
-      return jsonDecode(decoded);
+      final decodedToken = JwtDecoder.decode(token);
+      return decodedToken["id"];
     } catch (e) {
+      print("JWT decode error: $e");
       return null;
     }
   }
 
-  /// Get expiration date from a JWT.
-  static DateTime? getExpiration(String token) {
-    final payload = decode(token);
-    if (payload != null && payload.containsKey('exp')) {
-      final exp = payload['exp'] as int;
-      return DateTime.fromMillisecondsSinceEpoch(exp * 1000);
+  /// Kiểm tra token có hợp lệ hay không (có hết hạn chưa)
+  bool isTokenValid(String token) {
+    try {
+      return !JwtDecoder.isExpired(token);
+    } catch (e) {
+      print("Token validation error: $e");
+      return false;
     }
-    return null;
   }
 
-  /// Check if the JWT is valid (not expired).
-  static bool isValid(String token) {
-    final expiration = getExpiration(token);
-    if (expiration != null) {
-      return DateTime.now().isBefore(expiration);
+  /// Lấy ngày hết hạn của token
+  DateTime? getTokenExpiryDate(String token) {
+    try {
+      return JwtDecoder.getExpirationDate(token);
+    } catch (e) {
+      print("Token expiry error: $e");
+      return null;
     }
-    return false;
   }
 }

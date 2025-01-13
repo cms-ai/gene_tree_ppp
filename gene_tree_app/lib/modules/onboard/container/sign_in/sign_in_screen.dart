@@ -112,7 +112,7 @@ class SignInScreen extends StatelessWidget {
                   ),
               borderRadius: BorderRadius.circular(8.0), // Bo góc
             ),
-            onTap: () => signInBloc.add(SignInEvent.signInWithGoogle(context)),
+            onTap: () => signInBloc.add(const SignInEvent.signInWithGoogle()),
           ),
         ),
         SizedBox(height: 20.h),

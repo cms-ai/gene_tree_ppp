@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gene_tree_app/core/utils/helpers/auth_helpers.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/create_clan_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/intro/intro_screen.dart';
@@ -65,7 +66,11 @@ class OnboardModule extends Module {
       ),
     );
     i.addLazySingleton<SignInBloc>(
-      SignInBloc.new,
+      () => SignInBloc(
+        authHelper: GoogleAuthHelper(),
+        authRepo: Modular.get(),
+        clanRepo: Modular.get(),
+      ),
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),

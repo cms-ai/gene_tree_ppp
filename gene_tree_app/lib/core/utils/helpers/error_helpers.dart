@@ -3,9 +3,9 @@ import 'package:gene_tree_app/core/exceptions/http_exceptions.dart';
 
 extension ErrorHelpers on ErrorResponse {
   String getDefaultError() {
-    String errorText = message ?? "";
+    String errorText = message ?? "An error occurred";
     if (kDebugMode) {
-      errorText += "\n($errorCode";
+      errorText += "\n($errorCode)";
     }
     return errorText;
   }

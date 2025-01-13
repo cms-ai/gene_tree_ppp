@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/core/config/env_config.dart';
 import 'package:gene_tree_app/core/network/interceptor/app_interceptor.dart';
 import 'package:gene_tree_app/core/network/interceptor/auth_interceptor.dart';
@@ -15,7 +16,7 @@ class DioClient {
         )) {
     _dio.interceptors.addAll(
       [
-        AuthInterceptor(_dio),
+        AuthInterceptor(_dio, Modular.get()),
         LoggingInterceptor(),
         AppInterceptor(),
       ],

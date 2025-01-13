@@ -3,5 +3,5 @@ part of 'sign_in_bloc.dart';
 @freezed
 class SignInEvent with _$SignInEvent {
   const factory SignInEvent.initial() = _Initial;
-  const factory SignInEvent.signInWithGoogle(BuildContext context) = _SignInWithGoogle;
+  const factory SignInEvent.signInWithGoogle() = _SignInWithGoogle;
 }

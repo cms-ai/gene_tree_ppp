@@ -57,17 +57,17 @@ class AppModule extends Module {
 
     // Đăng ký AuthRepository
     i.addSingleton<AuthRepository>(
-      () => AuthRepositoryImpl(),
+      () => AuthRepositoryImpl(i.get<AuthApiService>()),
     );
 
     // Đăng ký UserRepository
     i.addSingleton<UserRepository>(
-      () => UserRepositoryImpl(),
+      () => UserRepositoryImpl(i.get<UserApiService>()),
     );
 
     // Đăng ký ClanRepository
     i.addSingleton<ClanRepository>(
-      () => ClannRepositoryImpl(),
+      () => ClanRepositoryImpl(i.get<ClanApiService>()),
     );
   }
 }

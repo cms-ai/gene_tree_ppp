@@ -6,7 +6,8 @@ import 'package:gene_tree_app/domain/entities/user_entity.dart';
 import 'package:gene_tree_app/domain/repositories/user_repository.dart';
 
 class UserRepositoryImpl extends BaseRepository implements UserRepository {
-  final UserApiService userApiService = Modular.get();
+  final UserApiService userApiService;
+  UserRepositoryImpl(this.userApiService);
 
   @override
   Future<BaseResponse<UserEntity>> getUser(
@@ -42,7 +43,7 @@ class UserRepositoryImpl extends BaseRepository implements UserRepository {
     OnExecuteDone<BaseResponse<UserEntity>>? onExecuteDone,
     OnExecuteError? onExecuteError,
   }) {
-     return execute<BaseResponse<UserEntity>>(
+    return execute<BaseResponse<UserEntity>>(
       request: () => userApiService.deleteUser(userId),
       onExecuteDone: onExecuteDone,
       onExecuteError: onExecuteError,

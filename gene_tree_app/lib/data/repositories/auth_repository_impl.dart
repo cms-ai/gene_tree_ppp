@@ -9,7 +9,9 @@ import 'package:gene_tree_app/data/repositories/base_repository.dart';
 import 'package:gene_tree_app/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl extends BaseRepository implements AuthRepository {
-  final AuthApiService authApiService = Modular.get();
+  final AuthApiService authApiService;
+
+  AuthRepositoryImpl(this.authApiService);
   @override
   Future<BaseResponse<LoginGoogleResponse>> loginGoogle(
     LoginGoogleRequest body, {

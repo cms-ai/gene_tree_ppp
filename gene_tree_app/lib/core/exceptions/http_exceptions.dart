@@ -1,38 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:gene_tree_app/core/utils/logger_utils.dart';
-import 'package:gene_tree_app/core/utils/global_keys.dart';
-import 'package:gene_tree_app/modules/common/components/cm_dialog/cm_dialog_screen.dart';
 
 extension HttpExceptions on DioException {
-  Future<void> showDefaultError() async {
-    try {
-      // final errorCode = response?.data['errorCode'] ?? "";
-      if (response?.data != null) {
-        // print("====== ${this}");
-        final errorRes = ErrorResponse.fromJson(response?.data);
-        CmDialogScreen(
-          argument: CmDialogArgument(
-            title: errorRes.errorCode,
-            content: errorRes.message,
-            type: CmDialogType.alert,
-          ),
-        ).show(
-          GlobalKeys().navigatorKey.currentState!.context,
-        );
-      } else {
-        CmDialogScreen(
-          argument: CmDialogArgument(
-            title: "Error",
-            content: message,
-            type: CmDialogType.alert,
-          ),
-        ).show(
-          GlobalKeys().navigatorKey.currentState!.context,
-        );
-      }
-    } catch (e) {
-      LoggerUtil.errorLog("Error aitc: $e");
+  Future<String?> getMessageError() async {
+    if (response?.data != null) {
+      final errorData = ErrorResponse.fromJson(response?.data);
+      return errorData.message;
     }
+    return null;
   }
 }
 
@@ -63,5 +37,14 @@ class ErrorResponse {
       'errorCode': errorCode,
       'message': message,
     };
+  }
+}
+
+extension ExceptionError on Object {
+  Future<String?> getMessageErr() async {
+    if (this is DioException) {
+      return (this as DioException).getMessageError();
+    }
+    return toString();
   }
 }
