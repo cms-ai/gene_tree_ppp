@@ -1,9 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gene_tree_app/core/utils/databasse/share_preference_keys.dart';
-import 'package:gene_tree_app/domain/repositories/clan_repository.dart';
-import 'package:gene_tree_app/domain/repositories/user_repository.dart';
+import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
+import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/user/get_user.usecase.dart';
 
@@ -12,54 +10,58 @@ part 'splash_state.dart';
 part 'splash_bloc.freezed.dart';
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
-  final UserRepository userRepository = Modular.get();
-  final ClanRepository clanRepository = Modular.get();
-  SplashBloc() : super(const SplashState.initial()) {
+  final LocalStorage localStorage;
+  final GetUserUsecase getUserUsecase;
+  final GetAllClanUsecase getAllClanUsecase;
+
+  SplashBloc({
+    // required this.userRepository,
+    // required this.clanRepository,
+    required this.localStorage,
+    required this.getUserUsecase,
+    required this.getAllClanUsecase,
+  }) : super(const SplashState.initial()) {
     on<SplashEvent>((event, emit) async {
       await event.map(
         started: (value) async {
-          // add(const SplashEvent.changeSplashState(
-          //     SplashStateEnum.unAuthenticated));
-          // return;
+          try {
+            // User lần đầu sử dụng app
+            var firstLogin = await localStorage
+                    .get<bool>(SharePreferenceKeys.firstLogin.name) ??
+                false;
 
-          var firstLogin =
-              await SharePreferenceKeys.firstLogin.getData<bool>() ?? true;
-          var token = await SharePreferenceKeys.token.getData<String>() ?? "";
-          var userId = await SharePreferenceKeys.userId.getData<String>() ?? "";
+            final token = await localStorage.get<String>(
+                  SharePreferenceKeys.token.name,
+                ) ??
+                "";
 
-          if (firstLogin) {
-            await SharePreferenceKeys.firstLogin.saveData<bool>(false);
-            add(
-              const SplashEvent.changeSplashState(SplashStateEnum.firstLogin),
-            );
-          } else {
-            if (token.isEmpty) {
-              emit(state.copyWith(
-                  splashStateEnum: SplashStateEnum.unAuthenticated));
+            final userId = await localStorage
+                    .get<String>(SharePreferenceKeys.userId.name) ??
+                "";
+
+            if (token.isEmpty || userId.isEmpty || firstLogin) {
+              await localStorage.save<bool>(
+                SharePreferenceKeys.firstLogin.name,
+                false,
+              );
+              emit(SplashState.unAuthenticated(firstLogin: firstLogin));
             } else {
-              final user = await GetUserUsecase(userRepository).call(userId);
-              final clanList =
-                  await GetAllClanUsecase(clanRepository).call(userId);
-              if (user != null) {
-                bool hasComplete = clanList.isNotEmpty;
-                if (!hasComplete) {
-                  add(const SplashEvent.changeSplashState(
-                      SplashStateEnum.unAuthenticated));
+              // get user api
+              final user = await getUserUsecase.call(userId);
 
-                  return;
-                }
+              // get clan API
+              final clanList = await getAllClanUsecase.call(userId);
+              if (user != null) {
+                emit(
+                  SplashState.authenticated(
+                    completedUser: clanList.isNotEmpty,
+                  ),
+                );
               }
-              add(const SplashEvent.changeSplashState(
-                  SplashStateEnum.authenticated));
             }
+          } catch (e) {
+            emit(const SplashState.unAuthenticated(firstLogin: false));
           }
-        },
-        changeSplashState: (_ChangeSplashState value) {
-          emit(
-            state.copyWith(
-              splashStateEnum: value.data,
-            ),
-          );
         },
       );
     });

@@ -1,3 +1,4 @@
+import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class JwtHelper {
@@ -7,7 +8,7 @@ class JwtHelper {
       final decodedToken = JwtDecoder.decode(token);
       return decodedToken["id"];
     } catch (e) {
-      print("JWT decode error: $e");
+      LoggerUtil.debugLog("JWT decode error: $e");
       return null;
     }
   }
@@ -17,7 +18,7 @@ class JwtHelper {
     try {
       return !JwtDecoder.isExpired(token);
     } catch (e) {
-      print("Token validation error: $e");
+      LoggerUtil.debugLog("Token validation error: $e");
       return false;
     }
   }
@@ -27,7 +28,7 @@ class JwtHelper {
     try {
       return JwtDecoder.getExpirationDate(token);
     } catch (e) {
-      print("Token expiry error: $e");
+      LoggerUtil.debugLog("Token expiry error: $e");
       return null;
     }
   }

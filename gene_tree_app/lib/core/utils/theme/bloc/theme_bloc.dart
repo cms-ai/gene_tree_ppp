@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gene_tree_app/core/utils/databasse/share_preference_keys.dart';
+import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
+import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 
 part 'theme_event.dart';
@@ -15,7 +16,8 @@ AppThemeModel get themeData =>
     AppThemeEnum.lightTheme.themeData();
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-  ThemeBloc()
+  final LocalStorage localStorage;
+  ThemeBloc({required this.localStorage})
       : super(ThemeState.initial(
           AppThemeEnum.lightTheme,
           const Color(0xFF00BF4D),
@@ -24,8 +26,8 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       (event, emit) async {
         await event.map(
           initial: (value) async {
-            var localTheme =
-                await SharePreferenceKeys.currentTheme.getData<String>();
+            final localTheme = await localStorage
+                .get<String>(SharePreferenceKeys.currentTheme.name);
             if (localTheme != null) {
               if (localTheme == AppThemeEnum.darkTheme.name) {
                 emit(state.copyWith(appThemeEnum: AppThemeEnum.darkTheme));
@@ -44,7 +46,8 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
               ),
             );
 
-            SharePreferenceKeys.currentTheme.saveData<String>(
+            localStorage.save<String>(
+              SharePreferenceKeys.currentTheme.name,
               state.appThemeEnum.name,
             );
             configLoading(state.appThemeEnum);

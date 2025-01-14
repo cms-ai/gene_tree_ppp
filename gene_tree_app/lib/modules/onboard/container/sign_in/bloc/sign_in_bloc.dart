@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gene_tree_app/core/exceptions/http_exceptions.dart';
-import 'package:gene_tree_app/core/utils/databasse/share_preference_keys.dart';
+import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
+import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/helpers/helpers.dart';
 import 'package:gene_tree_app/data/models/auth/request/login_google_request.dart';
 import 'package:gene_tree_app/data/models/auth/response/login_google_response.dart';
@@ -18,10 +19,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final GoogleAuthHelper authHelper;
   final AuthRepository authRepo;
   final ClanRepository clanRepo;
+  final LocalStorage localStorage;
   SignInBloc({
     required this.authHelper,
     required this.authRepo,
     required this.clanRepo,
+    required this.localStorage,
   }) : super(SignInState.initial()) {
     on<SignInEvent>((event, emit) async {
       await event.map(
@@ -71,10 +74,11 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   Future<void> _saveUserLocalData(
       LoginGoogleResponse? response, String userId) async {
-    await SharePreferenceKeys.token
-        .saveData<String>(response?.accessToken ?? "");
-    await SharePreferenceKeys.refreshToken
-        .saveData<String>(response?.refreshToken ?? "");
-    await SharePreferenceKeys.userId.saveData<String>(userId);
+    await localStorage.save(
+        SharePreferenceKeys.token.name, response?.accessToken ?? "");
+    await localStorage.save(
+        SharePreferenceKeys.refreshToken.name, response?.refreshToken ?? "");
+
+    await localStorage.save(SharePreferenceKeys.userId.name, userId);
   }
 }

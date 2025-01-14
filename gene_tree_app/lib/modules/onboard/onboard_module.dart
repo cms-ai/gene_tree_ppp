@@ -1,7 +1,12 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
 import 'package:gene_tree_app/core/utils/helpers/auth_helpers.dart';
+import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
+import 'package:gene_tree_app/domain/usecase/user/get_user.usecase.dart';
+import 'package:gene_tree_app/modules/common/common_module.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/create_clan_screen.dart';
+import 'package:gene_tree_app/modules/main/main_module.dart';
 import 'package:gene_tree_app/modules/onboard/container/intro/intro_screen.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/bloc/sign_in_bloc.dart';
 import 'package:gene_tree_app/modules/onboard/container/sign_in/sign_in_screen.dart';
@@ -57,20 +62,16 @@ class OnboardModule extends Module {
   }
 
   @override
+  List<Module> get imports => [CommonModule()];
+
+  @override
   void binds(Injector i) {
-    super.binds(i);
-    i.addLazySingleton<SplashBloc>(
+    i.addSingleton<SplashBloc>(
       SplashBloc.new,
-      config: BindConfig(
-        onDispose: (bloc) => bloc.close(),
-      ),
+      config: BindConfig(onDispose: (bloc) => bloc.close()),
     );
-    i.addLazySingleton<SignInBloc>(
-      () => SignInBloc(
-        authHelper: GoogleAuthHelper(),
-        authRepo: Modular.get(),
-        clanRepo: Modular.get(),
-      ),
+    i.addSingleton<SignInBloc>(
+      SignInBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
@@ -82,12 +83,13 @@ class OnboardModule extends Module {
       ),
     );
 
-    i.addLazySingleton<WelcomeBloc>(
+    i.addSingleton<WelcomeBloc>(
       WelcomeBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
     );
+    super.binds(i);
   }
 }
 

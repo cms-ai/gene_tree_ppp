@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gene_tree_app/core/utils/databasse/share_preference_keys.dart';
+import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
+import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/localizations/app_localizations.dart';
 import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final SharedPreferencesStorage localStorage = SharedPreferencesStorage();
   double _xPosition = 20; // Vị trí ban đầu theo trục X
   double _yPosition = 20; // Vị trí ban đầu theo trục Y
   @override
@@ -67,8 +69,10 @@ class _MyAppState extends State<MyApp> {
             child: BlocConsumer<ThemeBloc, ThemeState>(
               listener: (context, state) async {
                 LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
-                await SharePreferenceKeys.currentTheme
-                    .saveData<String>(state.appThemeEnum.name);
+                localStorage.save<String>(SharePreferenceKeys.currentTheme.name,
+                    state.appThemeEnum.name);
+                // await SharePreferenceKeys.currentTheme
+                //     .saveData<String>(state.appThemeEnum.name);
               },
               builder: (context, state) {
                 return MaterialApp.router(

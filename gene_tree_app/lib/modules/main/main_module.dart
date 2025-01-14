@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gene_tree_app/modules/common/common_module.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/dashboard_screen.dart';
@@ -21,15 +22,18 @@ class MainModule extends Module {
   }
 
   @override
+  List<Module> get imports => [CommonModule()];
+
+  @override
   void binds(Injector i) {
     super.binds(i);
-    i.addLazySingleton<DashboardBloc>(
+    i.addSingleton<DashboardBloc>(
       DashboardBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
     );
-    i.addLazySingleton<CreateClanBloc>(
+    i.addSingleton<CreateClanBloc>(
       CreateClanBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),

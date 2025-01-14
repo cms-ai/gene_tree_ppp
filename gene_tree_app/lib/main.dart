@@ -22,6 +22,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
 
   // KHởi tạo router chạy đầu tiên
+  // Modular.init(AppModule());
 
   AppModule().initRoute();
 

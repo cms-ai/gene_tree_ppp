@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gene_tree_app/gen/assets.gen.dart';
+import 'package:gene_tree_app/core/utils/helpers/helpers.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/main/main_module.dart';
 import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
-import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
 import './bloc/splash_bloc.dart';
 part './models/splash_argument.dart';
 
@@ -46,38 +45,36 @@ class _SplashScreenState extends State<SplashScreen> {
               nameScreen: "Splash",
               body: (themeState) => BlocListener<SplashBloc, SplashState>(
                 listener: (context, state) {
-                  Future.delayed(const Duration(seconds: 3), () {
-                    switch (state.splashStateEnum) {
-                      case SplashStateEnum.authenticated:
-                        Modular.to.navigate(MainModule.path);
-                        break;
-
-                      case SplashStateEnum.unAuthenticated:
+                  state.map(
+                    initial: (value) {},
+                    unAuthenticated: (value) {
+                      if (value.firstLogin == true) {
                         Modular.to.navigate(
                           OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
                         );
-                        break;
-                      case SplashStateEnum.firstLogin:
+                      } else {
                         Modular.to.navigate(
-                          OnboardModule.getRoutePath(OnboardModuleEnum.intro),
+                          OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
                         );
-                        break;
-                      case SplashStateEnum.completeUser:
+                      }
+                    },
+                    authenticated: (value) {
+                      if (value.completedUser == true) {
+                        Modular.to.navigate(MainModule.path);
+                      } else {
                         Modular.to.navigate(
                           OnboardModule.getRoutePath(
-                              OnboardModuleEnum.createClan),
+                            OnboardModuleEnum.createClan,
+                          ),
                         );
-                        break;
-                      default:
-                        break;
-                    }
-                  });
+                      }
+                    },
+                  );
                 },
                 listenWhen: (previous, current) => previous != current,
                 child: Center(
-                  child: themeState.appThemeEnum == AppThemeEnum.darkTheme
-                      ? Assets.images.darkLogo.svg()
-                      : Assets.images.lightLogo.svg(),
+                  child: ImageHelpers(themeEnum: themeState.appThemeEnum)
+                      .getLogo(),
                 ),
               ),
             ),

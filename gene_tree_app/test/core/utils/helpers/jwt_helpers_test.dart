@@ -9,10 +9,8 @@ class MockJwtHelper extends Mock implements JwtHelper {}
 
 void main() {
   late MockJwtHelper mockJwtHelper;
-  late MockJwtDecoder mockJwtDecoder;
 
   setUp(() {
-    mockJwtDecoder = MockJwtDecoder();
     mockJwtHelper = MockJwtHelper();
   });
 

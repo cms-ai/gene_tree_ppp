@@ -1,4 +1,3 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/core/network/base_response.dart';
 import 'package:gene_tree_app/data/api_services/user_api_service.dart';
 import 'package:gene_tree_app/data/repositories/base_repository.dart';
