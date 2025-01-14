@@ -23,7 +23,7 @@ class AuthInterceptor extends Interceptor {
     final token =
         await localStorage.get<String>(SharePreferenceKeys.token.name) ?? "";
 
-    print("Token: $token");
+    // print("Token: $token");
     if (token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
     } else {

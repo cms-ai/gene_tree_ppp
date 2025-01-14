@@ -15,9 +15,10 @@ part 'create_clan_bloc.freezed.dart';
 
 class CreateClanBloc extends Bloc<CreateClanEvent, CreateClanState> {
   final LocalStorage localStorage;
-  final ClanRepository clanRepository = Modular.get();
+  final ClanRepository clanRepository;
   CreateClanBloc({
     required this.localStorage,
+    required this.clanRepository,
   }) : super(const CreateClanState.initial(isValid: false)) {
     on<CreateClanEvent>(
       (event, emit) async {

@@ -15,8 +15,6 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final GetAllClanUsecase getAllClanUsecase;
 
   SplashBloc({
-    // required this.userRepository,
-    // required this.clanRepository,
     required this.localStorage,
     required this.getUserUsecase,
     required this.getAllClanUsecase,
