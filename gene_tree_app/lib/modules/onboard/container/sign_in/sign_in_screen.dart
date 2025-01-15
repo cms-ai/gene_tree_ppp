@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -96,7 +98,6 @@ class SignInScreen extends StatelessWidget {
             : Assets.images.lightLogo.svg(height: 50.h),
         SizedBox(height: 30.h),
         const Spacer(),
-
         CPButton(
           configs: CPButtonConfigs(
             prefixIcon: Container(
@@ -116,38 +117,37 @@ class SignInScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 20.h),
-
-        // if (Platform.isIOS)
-        CPButton(
-          configs: CPButtonConfigs(
-            prefixIcon: Container(
-              margin: EdgeInsets.only(right: 10.w),
-              child: Assets.icons.icApple.svg(
-                height: 20.h,
-                colorFilter: ColorFilter.mode(
-                  themeData.color.mainPrimaryColor,
-                  BlendMode.srcIn,
+        if (Platform.isIOS)
+          CPButton(
+            configs: CPButtonConfigs(
+              prefixIcon: Container(
+                margin: EdgeInsets.only(right: 10.w),
+                child: Assets.icons.icApple.svg(
+                  height: 20.h,
+                  colorFilter: ColorFilter.mode(
+                    themeData.color.mainPrimaryColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
-            ),
-            decoration: BoxDecoration(
-              color: themeData.color.btnColor2.withOpacity(.1),
-              border: Border.all(
-                  color: themeData.color.btnColor2 // Màu viền của button
+              decoration: BoxDecoration(
+                color: themeData.color.btnColor2.withOpacity(.1),
+                border: Border.all(
+                    color: themeData.color.btnColor2 // Màu viền của button
+                    ),
+                borderRadius: BorderRadius.circular(8.0), // Bo góc
+              ),
+              content: "Sign in with Apple",
+              type: ButtonType.outline,
+              onTap: () {
+                Modular.to.navigate(
+                  OnboardModule.getRoutePath(
+                    OnboardModuleEnum.signIn,
                   ),
-              borderRadius: BorderRadius.circular(8.0), // Bo góc
+                );
+              },
             ),
-            content: "Sign in with Apple",
-            type: ButtonType.outline,
-            onTap: () {
-              Modular.to.navigate(
-                OnboardModule.getRoutePath(
-                  OnboardModuleEnum.signIn,
-                ),
-              );
-            },
           ),
-        ),
         const Spacer(),
       ],
     );
