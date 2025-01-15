@@ -50,6 +50,10 @@ void main() {
     mockGetAllClanUsecase = MockGetAllClanUsecase();
   });
 
+  tearDown(() {
+    
+  });
+
   group('SignInBloc', () {
     blocTest<SignInBloc, SignInState>(
       'emits [loading, success] when signInWithGoogle is successful',

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gene_tree_app/core/exceptions/http_exceptions.dart';
+import 'package:gene_tree_app/core/exceptions/exceptions.dart';
 import 'package:gene_tree_app/core/utils/logger_utils.dart';
 import 'package:gene_tree_app/modules/common/bloc/bloc/app_bloc.dart';
 

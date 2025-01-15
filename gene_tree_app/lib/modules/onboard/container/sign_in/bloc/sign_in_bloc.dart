@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gene_tree_app/core/exceptions/http_exceptions.dart';
+import 'package:gene_tree_app/core/exceptions/exceptions.dart';
 import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/helpers/helpers.dart';

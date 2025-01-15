@@ -32,6 +32,9 @@ void main() {
       getAllClanUsecase: mockGetAllClanUsecase,
     );
   });
+  tearDown(() {
+    splashBloc.close(); // Đảm bảo đóng Bloc sau mỗi bài kiểm tra
+  });
 
   group('SplashBloc', () {
     test('initial state is SplashState.initial', () {

@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:gene_tree_app/core/exceptions/http_exceptions.dart';
+import 'package:gene_tree_app/core/exceptions/exceptions.dart';
 
 extension ErrorHelpers on ErrorResponse {
   String getDefaultError() {

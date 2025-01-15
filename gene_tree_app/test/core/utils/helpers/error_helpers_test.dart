@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gene_tree_app/core/exceptions/http_exceptions.dart';
+import 'package:gene_tree_app/core/exceptions/exceptions.dart';
 import 'package:gene_tree_app/core/utils/helpers/helpers.dart';
 
 // Chạy unit test trong chế độ debug
