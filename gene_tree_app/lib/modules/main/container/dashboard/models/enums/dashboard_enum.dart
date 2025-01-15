@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gene_tree_app/gen/assets.gen.dart';
-import 'package:gene_tree_app/modules/main/container/event/event_screen.dart';
+import 'package:gene_tree_app/modules/main/container/dashboard/container/event/event_screen.dart';
+import 'package:gene_tree_app/modules/main/container/dashboard/container/home/home_screen.dart';
 
 enum DashboardTabEnum {
   home,
@@ -28,6 +29,8 @@ extension DashboardEnumExt on DashboardTabEnum {
 
   Widget getBody() {
     switch (this) {
+      case DashboardTabEnum.home:
+        return const HomeScreen();
       case DashboardTabEnum.event:
         return const EventScreen();
       default:

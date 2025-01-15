@@ -15,13 +15,34 @@ class LightColorModel implements ColorModelImpl {
   Color get btnColor2 => const Color(0xFFD36C26);
 
   @override
-  LinearGradient get linegradientColor => throw UnimplementedError();
+  LinearGradient get linegradientColor => const LinearGradient(
+        colors: [
+          Color(0xFF89f7fe), // Xanh nhạt
+          Color(0xFF66a6ff), // Xanh dương sáng
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
 
   @override
-  LinearGradient get linegradientColor1 => throw UnimplementedError();
+  LinearGradient get linegradientColor1 => const LinearGradient(
+        colors: [
+          Color(0xFFff9a9e), // Hồng sáng
+          Color(0xFFfad0c4), // Hồng đào
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
 
   @override
-  LinearGradient get linegradientColor2 => throw UnimplementedError();
+  LinearGradient get linegradientColor2 => const LinearGradient(
+        colors: [
+          Color(0xFFe0e0e0), // Xám nhạt
+          Color(0xFFffffff), // Trắng
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
 
   @override
   // Color get mainBgColor1 => const Color(0xFF821C0D);
@@ -81,13 +102,36 @@ class DarkColorModel implements ColorModelImpl {
   Color get btnColor2 => const Color(0xFFD36C26);
 
   @override
-  LinearGradient get linegradientColor => throw UnimplementedError();
+  LinearGradient get linegradientColor => LinearGradient(
+        colors: [
+          Color(0xFF0F2027), // Đen xanh
+          Color(0xFF203A43), // Xanh đậm
+          Color(0xFF2C5364), // Xanh tím
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
 
   @override
-  LinearGradient get linegradientColor1 => throw UnimplementedError();
+  LinearGradient get linegradientColor1 => LinearGradient(
+        colors: [
+          Color(0xFF833ab4), // Tím đậm
+          Color(0xFFfd1d1d), // Đỏ
+          Color(0xFFfcb045), // Cam
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
 
   @override
-  LinearGradient get linegradientColor2 => throw UnimplementedError();
+  LinearGradient get linegradientColor2 => LinearGradient(
+        colors: [
+          Color(0xFF232526), // Xám đen
+          Color(0xFF414345), // Xám trung tính
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      );
 
   @override
   Color get mainBgColor1 => const Color(0xFF000000);

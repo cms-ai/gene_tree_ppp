@@ -5,8 +5,8 @@ import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaff
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/core/utils/theme/models/app_theme_model.dart';
-import './bloc/event_bloc.dart';
-part './models/event_argument.dart';
+import 'bloc/event_bloc.dart';
+part 'models/event_argument.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({

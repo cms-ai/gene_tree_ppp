@@ -53,21 +53,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               bottomNavigationBar: (theme) => Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: theme.appThemeEnum.themeData().color.bgColor1,
                   boxShadow: [
                     BoxShadow(
                       color: theme.appThemeEnum
                           .themeData()
                           .color
-                          .bgColor2
+                          .mainPrimaryColor
                           .withOpacity(.7),
-                      blurRadius: 4,
-                      spreadRadius: 2,
+                      blurRadius: 12,
+                      spreadRadius: 4,
                       offset: const Offset(4, 2),
                     )
                   ],
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
                 child: BlocBuilder<DashboardBloc, DashboardState>(
                   buildWhen: (previous, current) => previous.tab != current.tab,
                   builder: (context, state) {
@@ -77,6 +77,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       children: [
                         ...DashboardTabEnum.values.map(
                           (data) => _buildNavBarItem(
+                            theme.appThemeEnum.themeData(),
                             url: data.getIconPath(),
                             isSelected: state.tab == data,
                             onTap: () {
@@ -98,7 +99,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildNavBarItem({
+  Widget _buildNavBarItem(
+    AppThemeModel themeData, {
     required String url,
     required bool isSelected,
     required Function onTap,
@@ -106,7 +108,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Expanded(
       child: ColorFiltered(
         colorFilter: ColorFilter.mode(
-          isSelected ? Colors.red.withOpacity(0.7) : Colors.black,
+          isSelected
+              ? themeData.color.btnColor2
+              : themeData.color.mainPrimaryColor,
           BlendMode.srcATop,
         ),
         child: Column(
@@ -118,7 +122,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: CPLottie(
                 configs: CPLottieConfigs(
                   url: url,
-                  height: 25.h,
+                  height: 28.h,
                   onTap: (controller) {
                     onTap();
                     controller.forward(from: 0);
@@ -134,8 +138,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 curve: Curves.easeInOut,
                 width: isSelected ? 5.h : 0,
                 height: isSelected ? 5.h : 0,
-                decoration: const BoxDecoration(
-                  color: Colors.red,
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? themeData.color.btnColor1
+                      : themeData.color.mainPrimaryColor,
                   shape: BoxShape.circle,
                 ),
               ),
