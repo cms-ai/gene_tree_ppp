@@ -23,12 +23,12 @@ class CommonModule extends Module {
 
   @override
   void binds(Injector i) {
-    i.addSingleton(AppBloc.new);
     i.addSingleton<LocalStorage>(SharedPreferencesStorage.new);
+    i.addSingleton(AppBloc.new);
     i.addSingleton<JwtHelper>(JwtHelper.new);
     i.addSingleton(ThemeBloc.new);
     i.addSingleton(GoogleAuthHelper.new);
-    i.add(DioClient.new);
+    i.addSingleton(DioClient.new);
 
     initApiServices(i);
 

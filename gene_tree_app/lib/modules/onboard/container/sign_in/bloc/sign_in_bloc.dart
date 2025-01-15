@@ -59,11 +59,16 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             }
           } catch (e) {
             final errorText = await e.getMessageErr();
+
+            // print("======= $errorText and ${e.toString()}");
             emit(SignInState.failure(
               title: "Login failed",
               content: errorText ?? "",
             ));
           }
+        },
+        signInWithApple: (_SignInWithApple value) {
+          // TODO: Sign in with apple
         },
       );
     });

@@ -51,49 +51,34 @@ class _MyAppState extends State<MyApp> {
               value: Modular.get<AppBloc>(),
             ),
           ],
-          child: BlocListener<AppBloc, AppState>(
-            listener: (context, state) {
-              state.when(
-                initial: () {},
-                error: (error) {
-                  CmDialogScreen(
-                    argument: CmDialogArgument(
-                      type: CmDialogType.alert,
-                      content: error.toString(),
-                    ),
-                  ).show(GlobalKeys().navigatorKey.currentState!.context);
-                },
+          child: BlocConsumer<ThemeBloc, ThemeState>(
+            listener: (context, state) async {
+              LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
+              final SharedPreferencesStorage?localStorage = Modular.tryGet();
+          
+              localStorage?.save<String>(SharePreferenceKeys.currentTheme.name,
+                  state.appThemeEnum.name);
+            },
+            builder: (context, state) {
+              return MaterialApp.router(
+                // key: GlobalKeys().navigatorKey,
+                localizationsDelegates: AppLocalizations.appLocalizations,
+                routerConfig: Modular.routerConfig,
+                title: 'Gene tree app',
+                theme: state.appThemeEnum.themeData().theme,
+                builder: EasyLoading.init(
+                  builder: (context, child) {
+                    return Stack(
+                      children: [
+                        child ?? const SizedBox(),
+                        if (kDebugMode) _buildDebugWidget(screenSize, state),
+                      ],
+                    );
+                  },
+                ),
+                // home: const MyApp(),
               );
             },
-            child: BlocConsumer<ThemeBloc, ThemeState>(
-              listener: (context, state) async {
-                LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
-                final SharedPreferencesStorage localStorage = Modular.get();
-
-                localStorage.save<String>(SharePreferenceKeys.currentTheme.name,
-                    state.appThemeEnum.name);
-              },
-              builder: (context, state) {
-                return MaterialApp.router(
-                  // key: GlobalKeys().navigatorKey,
-                  localizationsDelegates: AppLocalizations.appLocalizations,
-                  routerConfig: Modular.routerConfig,
-                  title: 'Gene tree app',
-                  theme: state.appThemeEnum.themeData().theme,
-                  builder: EasyLoading.init(
-                    builder: (context, child) {
-                      return Stack(
-                        children: [
-                          child ?? const SizedBox(),
-                          if (kDebugMode) _buildDebugWidget(screenSize, state),
-                        ],
-                      );
-                    },
-                  ),
-                  // home: const MyApp(),
-                );
-              },
-            ),
           ),
         );
       },

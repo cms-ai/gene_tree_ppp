@@ -6,7 +6,7 @@ extension HttpExceptions on DioException {
       final errorData = ErrorResponse.fromJson(response?.data);
       return errorData.message;
     }
-    return null;
+    return message;
   }
 }
 

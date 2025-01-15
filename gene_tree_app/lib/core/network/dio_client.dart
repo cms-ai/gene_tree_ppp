@@ -3,11 +3,12 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/core/config/env_config.dart';
 import 'package:gene_tree_app/core/network/interceptor/app_interceptor.dart';
 import 'package:gene_tree_app/core/network/interceptor/exports.dart';
+import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
 
 class DioClient {
   final Dio _dio;
-
-  DioClient()
+  final LocalStorage localStorage;
+  DioClient({required this.localStorage})
       : _dio = Dio(BaseOptions(
           baseUrl: EnvConfig.getRequired(EnvKeys.BASE_URL),
           connectTimeout: const Duration(seconds: 20),
@@ -15,10 +16,7 @@ class DioClient {
         )) {
     _dio.interceptors.addAll(
       [
-        AuthInterceptor(
-          _dio,
-          Modular.get(),
-        ),
+        AuthInterceptor(_dio, localStorage),
         LoggingInterceptor(),
         AppInterceptor(),
       ],
