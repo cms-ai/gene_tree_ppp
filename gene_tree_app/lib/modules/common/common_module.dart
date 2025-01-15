@@ -9,6 +9,7 @@ import 'package:gene_tree_app/data/repositories/auth_repository_impl.dart';
 import 'package:gene_tree_app/data/repositories/clan_repository_impl.dart';
 import 'package:gene_tree_app/data/repositories/user_repository_impl.dart';
 import 'package:gene_tree_app/domain/repositories/exports.dart';
+import 'package:gene_tree_app/domain/usecase/auth/login_google.usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/user/get_user.usecase.dart';
 import 'package:gene_tree_app/modules/common/bloc/bloc/app_bloc.dart';
@@ -24,6 +25,7 @@ class CommonModule extends Module {
   void binds(Injector i) {
     i.addSingleton(AppBloc.new);
     i.addSingleton<LocalStorage>(SharedPreferencesStorage.new);
+    i.addSingleton<JwtHelper>(JwtHelper.new);
     i.addSingleton(ThemeBloc.new);
     i.addSingleton(GoogleAuthHelper.new);
     i.add(DioClient.new);
@@ -70,6 +72,7 @@ class CommonModule extends Module {
   void initUsecase(Injector i) {
     i.addSingleton(GetAllClanUsecase.new);
     i.addSingleton(GetUserUsecase.new);
+    i.addSingleton(LoginGoogleUsecase.new);
   }
 }
 

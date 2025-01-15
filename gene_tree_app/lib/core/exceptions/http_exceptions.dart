@@ -44,6 +44,13 @@ extension ExceptionError on Object {
   Future<String?> getMessageErr() async {
     if (this is DioException) {
       return (this as DioException).getMessageError();
+    } else if (this is Exception) {
+      String error = (this as Exception).toString();
+
+      if (error.contains("Exception:")) {
+        error = error.replaceAll("Exception:", "").trim();
+      }
+      return error;
     }
     return toString();
   }

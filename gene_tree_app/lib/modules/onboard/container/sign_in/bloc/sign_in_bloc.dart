@@ -6,8 +6,6 @@ import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/helpers/helpers.dart';
 import 'package:gene_tree_app/data/models/auth/request/login_google_request.dart';
 import 'package:gene_tree_app/data/models/auth/response/login_google_response.dart';
-import 'package:gene_tree_app/domain/repositories/auth_repository.dart';
-import 'package:gene_tree_app/domain/repositories/clan_repository.dart';
 import 'package:gene_tree_app/domain/usecase/auth/login_google.usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
 
@@ -17,14 +15,16 @@ part 'sign_in_bloc.freezed.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final GoogleAuthHelper authHelper;
-  final AuthRepository authRepo;
-  final ClanRepository clanRepo;
+  final JwtHelper jwtHelper;
   final LocalStorage localStorage;
+  final LoginGoogleUsecase loginGoogleUsecase;
+  final GetAllClanUsecase getAllClanUsecase;
   SignInBloc({
     required this.authHelper,
-    required this.authRepo,
-    required this.clanRepo,
+    required this.jwtHelper,
     required this.localStorage,
+    required this.loginGoogleUsecase,
+    required this.getAllClanUsecase,
   }) : super(SignInState.initial()) {
     on<SignInEvent>((event, emit) async {
       await event.map(
@@ -32,11 +32,11 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           emit(SignInState.initial());
         },
         signInWithGoogle: (value) async {
-          emit(const SignInState.loading());
           try {
+            emit(const SignInState.loading());
             final userCredential = await authHelper.signInWithGoogle();
-
-            final loginResponse = await LoginGoogleUsecase(authRepo).call(
+            LoginGoogleResponse? loginRes;
+            loginRes = await loginGoogleUsecase.call(
               LoginGoogleRequest(
                 email: userCredential.user?.email ?? "",
                 name: userCredential.user?.displayName ?? "",
@@ -44,24 +44,21 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
               ),
             );
 
-            final userId = JwtHelper()
-                .getUserIdFromToken(loginResponse?.accessToken ?? "");
+            final userId =
+                jwtHelper.getUserIdFromToken(loginRes?.accessToken ?? "");
 
             if (userId != null) {
-              await _saveUserLocalData(loginResponse, userId);
-
-              final clanSnap = await GetAllClanUsecase(clanRepo).call(userId);
-              emit(SignInState.success(
-                  userId: userId, isCompletedProfile: clanSnap.isNotEmpty));
-            } else {
-              emit(const SignInState.failure(
-                title: "Login failed",
-                content: "User ID not found in token.",
-              ));
+              final clanSnap = await getAllClanUsecase.call(userId);
+              await _saveUserLocalData(loginRes, userId);
+              emit(
+                SignInState.success(
+                  userId: userId,
+                  isCompletedProfile: clanSnap.isNotEmpty,
+                ),
+              );
             }
-          } catch (error) {
-            // authHelper.signOut();
-            final errorText = await error.getMessageErr();
+          } catch (e) {
+            final errorText = await e.getMessageErr();
             emit(SignInState.failure(
               title: "Login failed",
               content: errorText ?? "",
@@ -73,12 +70,18 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   }
 
   Future<void> _saveUserLocalData(
-      LoginGoogleResponse? response, String userId) async {
-    await localStorage.save(
-        SharePreferenceKeys.token.name, response?.accessToken ?? "");
-    await localStorage.save(
-        SharePreferenceKeys.refreshToken.name, response?.refreshToken ?? "");
+    LoginGoogleResponse? response,
+    String userId,
+  ) async {
+    try {
+      await localStorage.save(
+          SharePreferenceKeys.token.name, response?.accessToken ?? "");
+      await localStorage.save(
+          SharePreferenceKeys.refreshToken.name, response?.refreshToken ?? "");
 
-    await localStorage.save(SharePreferenceKeys.userId.name, userId);
+      await localStorage.save(SharePreferenceKeys.userId.name, userId);
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 }

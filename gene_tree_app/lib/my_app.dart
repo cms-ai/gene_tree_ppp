@@ -22,7 +22,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final SharedPreferencesStorage localStorage = SharedPreferencesStorage();
   double _xPosition = 20; // Vị trí ban đầu theo trục X
   double _yPosition = 20; // Vị trí ban đầu theo trục Y
   @override
@@ -69,10 +68,10 @@ class _MyAppState extends State<MyApp> {
             child: BlocConsumer<ThemeBloc, ThemeState>(
               listener: (context, state) async {
                 LoggerUtil.debugLog("Change theme: ${state.appThemeEnum}");
+                final SharedPreferencesStorage localStorage = Modular.get();
+
                 localStorage.save<String>(SharePreferenceKeys.currentTheme.name,
                     state.appThemeEnum.name);
-                // await SharePreferenceKeys.currentTheme
-                //     .saveData<String>(state.appThemeEnum.name);
               },
               builder: (context, state) {
                 return MaterialApp.router(
