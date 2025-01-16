@@ -50,9 +50,7 @@ void main() {
     mockGetAllClanUsecase = MockGetAllClanUsecase();
   });
 
-  tearDown(() {
-    
-  });
+  tearDown(() {});
 
   group('SignInBloc', () {
     blocTest<SignInBloc, SignInState>(
@@ -104,10 +102,11 @@ void main() {
           getAllClanUsecase: mockGetAllClanUsecase,
         );
       },
-      act: (bloc) => bloc.add(SignInEvent.signInWithGoogle()),
+      act: (bloc) => bloc.add(const SignInEvent.signInWithGoogle()),
       expect: () => [
         const SignInState.loading(),
-        SignInState.success(userId: 'mock_user_id', isCompletedProfile: true),
+        const SignInState.success(
+            userId: 'mock_user_id', isCompletedProfile: true),
       ],
       verify: (_) {
         verify(() => mockAuthHelper.signInWithGoogle()).called(1);
@@ -131,7 +130,7 @@ void main() {
           getAllClanUsecase: mockGetAllClanUsecase,
         );
       },
-      act: (bloc) => bloc.add(SignInEvent.signInWithGoogle()),
+      act: (bloc) => bloc.add(const SignInEvent.signInWithGoogle()),
       expect: () => [
         const SignInState.loading(),
         const SignInState.failure(

@@ -16,6 +16,25 @@ enum SharePreferenceKeys {
   refreshToken,
   //// User id với type <String>
   userId,
+
+  // clanId with type <String>
+
+  clanId
+}
+
+// AsyncValue giúp dễ dàng quản lý loading, success và error cho từng phần dữ liệu.
+enum AsyncStatus { loading, success, error }
+
+class AsyncValue<T> {
+  final AsyncStatus status;
+  final T? data;
+  final String? error;
+
+  const AsyncValue._(this.status, this.data, this.error);
+
+  const AsyncValue.loading() : this._(AsyncStatus.loading, null, null);
+  const AsyncValue.success(T data) : this._(AsyncStatus.success, data, null);
+  const AsyncValue.error(String error) : this._(AsyncStatus.error, null, error);
 }
 
 extension GenderEnumExt on GenderEnum {

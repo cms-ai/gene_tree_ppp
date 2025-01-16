@@ -2,6 +2,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/common/common_module.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/dashboard/container/event/bloc/event_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/dashboard_screen.dart';
 
 class MainModule extends Module {
@@ -35,6 +37,18 @@ class MainModule extends Module {
     );
     i.addSingleton<CreateClanBloc>(
       CreateClanBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addSingleton<HomeBloc>(
+      HomeBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addSingleton<EventBloc>(
+      EventBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),

@@ -7,11 +7,19 @@ part 'clan_entity.g.dart';
 class ClanEntity {
   final String id;
   final String? description;
+  @JsonKey(name: "clan_name")
   final String? clanName;
+  @JsonKey(name: "created_at")
   final DateTime? createdAt;
+  @JsonKey(name: "updated_at")
   final DateTime? updatedAt;
+  
   final UserEntity? author;
+  @JsonKey(name: "clan_code")
   final String? clanCode;
+
+  @JsonKey(name: "members")
+  final List<dynamic>? members;
 
   ClanEntity({
     required this.id,
@@ -21,6 +29,7 @@ class ClanEntity {
     this.updatedAt,
     required this.author,
     this.clanCode,
+    this.members,
   });
 
   factory ClanEntity.fromJson(Map<String, dynamic> json) =>

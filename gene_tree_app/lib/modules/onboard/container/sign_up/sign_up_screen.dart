@@ -48,6 +48,7 @@ class SignUpScreen extends StatelessWidget {
                       configs: CPCmTextFieldConfigs(
                         hintTextConfigs: HintTextConfigs(
                           hintText: OnboardLocalizations.current.enterEmailHint,
+                          
                         ),
                       ),
                     ),

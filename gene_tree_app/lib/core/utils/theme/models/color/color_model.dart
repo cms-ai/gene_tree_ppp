@@ -102,7 +102,7 @@ class DarkColorModel implements ColorModelImpl {
   Color get btnColor2 => const Color(0xFFD36C26);
 
   @override
-  LinearGradient get linegradientColor => LinearGradient(
+  LinearGradient get linegradientColor => const LinearGradient(
         colors: [
           Color(0xFF0F2027), // Đen xanh
           Color(0xFF203A43), // Xanh đậm
@@ -113,7 +113,7 @@ class DarkColorModel implements ColorModelImpl {
       );
 
   @override
-  LinearGradient get linegradientColor1 => LinearGradient(
+  LinearGradient get linegradientColor1 => const LinearGradient(
         colors: [
           Color(0xFF833ab4), // Tím đậm
           Color(0xFFfd1d1d), // Đỏ
@@ -124,7 +124,7 @@ class DarkColorModel implements ColorModelImpl {
       );
 
   @override
-  LinearGradient get linegradientColor2 => LinearGradient(
+  LinearGradient get linegradientColor2 => const LinearGradient(
         colors: [
           Color(0xFF232526), // Xám đen
           Color(0xFF414345), // Xám trung tính

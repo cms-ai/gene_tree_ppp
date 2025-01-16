@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/core/config/env_config.dart';
-import 'package:gene_tree_app/core/network/interceptor/app_interceptor.dart';
 import 'package:gene_tree_app/core/network/interceptor/exports.dart';
 import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
 

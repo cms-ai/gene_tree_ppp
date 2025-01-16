@@ -11,6 +11,7 @@ import 'package:gene_tree_app/data/repositories/user_repository_impl.dart';
 import 'package:gene_tree_app/domain/repositories/exports.dart';
 import 'package:gene_tree_app/domain/usecase/auth/login_google.usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
+import 'package:gene_tree_app/domain/usecase/clan/get_clan_events_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/user/get_user.usecase.dart';
 import 'package:gene_tree_app/modules/common/bloc/bloc/app_bloc.dart';
 
@@ -70,8 +71,15 @@ class CommonModule extends Module {
   }
 
   void initUsecase(Injector i) {
+
+    // clan usecase
     i.addSingleton(GetAllClanUsecase.new);
+    i.addSingleton(GetClanEventsUsecase.new);
+
+    // user usecase
     i.addSingleton(GetUserUsecase.new);
+
+    // auth usecase
     i.addSingleton(LoginGoogleUsecase.new);
   }
 }

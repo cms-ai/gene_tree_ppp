@@ -130,7 +130,11 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   /// File path: assets/images/avatar.jpg
-  AssetGenImage get avatar => const AssetGenImage('assets/images/avatar.jpg');
+  AssetGenImage get avatarJpg =>
+      const AssetGenImage('assets/images/avatar.jpg');
+
+  /// File path: assets/images/avatar.svg
+  SvgGenImage get avatarSvg => const SvgGenImage('assets/images/avatar.svg');
 
   /// File path: assets/images/dark_logo.svg
   SvgGenImage get darkLogo => const SvgGenImage('assets/images/dark_logo.svg');
@@ -160,7 +164,8 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
-        avatar,
+        avatarJpg,
+        avatarSvg,
         darkLogo,
         lightLogo,
         onboarding1,

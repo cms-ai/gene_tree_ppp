@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         Modular.to.navigate(
                           OnboardModule.getRoutePath(
                             OnboardModuleEnum.createClan,
-                          ),
+                        )
                         );
                       }
                     },

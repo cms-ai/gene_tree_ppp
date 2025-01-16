@@ -141,9 +141,7 @@ class SignInScreen extends StatelessWidget {
               type: ButtonType.outline,
               onTap: () {
                 Modular.to.navigate(
-                  OnboardModule.getRoutePath(
-                    OnboardModuleEnum.signIn,
-                  ),
+                  OnboardModule.getRoutePath(OnboardModuleEnum.signIn),
                 );
               },
             ),
