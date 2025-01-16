@@ -136,6 +136,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/avatar.svg
   SvgGenImage get avatarSvg => const SvgGenImage('assets/images/avatar.svg');
 
+  /// File path: assets/images/clan.png
+  AssetGenImage get clan => const AssetGenImage('assets/images/clan.png');
+
   /// File path: assets/images/dark_logo.svg
   SvgGenImage get darkLogo => const SvgGenImage('assets/images/dark_logo.svg');
 
@@ -166,6 +169,7 @@ class $AssetsImagesGen {
   List<dynamic> get values => [
         avatarJpg,
         avatarSvg,
+        clan,
         darkLogo,
         lightLogo,
         onboarding1,

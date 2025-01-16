@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/enums/enums.dart';
 import 'package:gene_tree_app/core/utils/helpers/date_time_helpers.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
 import 'package:gene_tree_app/modules/common/components/button/cp_button.dart';
+import 'package:gene_tree_app/modules/main/container/clan/clan_detail/clan_detail_screen.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
+import 'package:gene_tree_app/modules/main/main_module.dart';
+import 'package:gene_tree_app/modules/onboard/onboard_module.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeClan extends StatefulWidget {
@@ -75,7 +79,7 @@ class _HomeClanState extends State<HomeClan> {
                       content: state.clanData.data?.clanName),
                   SizedBox(height: 8.h),
                   _buildClanDes(
-                    title: "Thành viên: ",
+                    title: "Người tạo",
                     content: "${state.clanData.data?.members?.length} member",
                   ),
                   SizedBox(height: 8.h),
@@ -95,6 +99,11 @@ class _HomeClanState extends State<HomeClan> {
                       content: "See details",
                       onTap: () {
                         // TODO: See details clan
+                        Modular.to.pushNamed(
+                          MainModule.getRoutePath(MainModuleEnum.clanDetail),
+                          arguments: ClanDetailArgument(
+                              clanEntity: state.clanData.data),
+                        );
                       },
                     ),
                   ),

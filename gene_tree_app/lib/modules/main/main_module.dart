@@ -1,5 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gene_tree_app/modules/common/common_module.dart';
+import 'package:gene_tree_app/modules/main/container/clan/clan_detail/bloc/clan_detail_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan/clan_detail/clan_detail_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/event/bloc/event_bloc.dart';
@@ -18,6 +20,11 @@ class MainModule extends Module {
     r.child(
       MainModuleEnum.dashboard.path,
       child: (context) => DashboardScreen(argument: r.args.data),
+    );
+
+    r.child(
+      MainModuleEnum.clanDetail.path,
+      child: (context) => ClanDetailScreen(argument: r.args.data),
     );
 
     super.routes(r);
@@ -53,6 +60,13 @@ class MainModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+
+    i.addSingleton<ClanDetailBloc>(
+      ClanDetailBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
 
@@ -64,8 +78,9 @@ class MainModule extends Module {
 enum MainModuleEnum {
   dashboard("/"),
   // clan
-  createClan('/clan/create'),
-  updateClan('/clan/update');
+  createClan('/createClan'),
+  updateClan('/updateClan'),
+  clanDetail('/clanDetail');
 
   final String path;
   const MainModuleEnum(this.path);
