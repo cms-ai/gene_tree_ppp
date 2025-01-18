@@ -2,6 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:gene_tree_app/core/network/base_response.dart';
 import 'package:gene_tree_app/data/models/clan/request/create_clan_request.dart';
+import 'package:gene_tree_app/data/models/clan/request/update_clan_request.dart';
 import 'package:gene_tree_app/domain/entities/clan_entity.dart';
 import 'package:gene_tree_app/domain/entities/clan_event_entity.dart';
 import 'package:retrofit/retrofit.dart';
@@ -19,6 +20,17 @@ abstract class ClanApiService {
   @POST("/clan/create")
   Future<BaseResponse<ClanEntity>> createClan(
     @Body() CreateClanRequest? body,
+  );
+
+  @PUT("/clan/{id}")
+  Future<BaseResponse<ClanEntity>> update(
+    @Path('id') String clanId,
+    @Body() UpdateClanRequest? body,
+  );
+
+  @DELETE("/clan/{id}")
+  Future<BaseResponse<ClanEntity?>> delete(
+    @Path('id') String clanId,
   );
 
   @GET("/clan/all")

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gene_tree_app/core/utils/helpers/helpers.dart';
 import 'package:gene_tree_app/core/utils/theme/bloc/theme_bloc.dart';
@@ -8,7 +9,9 @@ import 'package:gene_tree_app/gen/assets.gen.dart';
 import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaffold.dart';
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/common/components/cm_app_bar/cp_cm_app_bar.dart';
+import 'package:gene_tree_app/modules/main/container/clan/update_clan/update_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/event/event_screen.dart';
+import 'package:gene_tree_app/modules/main/main_module.dart';
 import './bloc/clan_detail_bloc.dart';
 part './models/clan_detail_argument.dart';
 
@@ -38,9 +41,22 @@ class ClanDetailScreen extends StatelessWidget {
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(
               nameScreen: "ClanDetail",
-              appBar: const CPCmAppBar(
+              appBar: CPCmAppBar(
                 configs: CPCmAppBarConfigs(
                   title: "Clan detail",
+                  suffixWidget: argument?.clanEntity != null
+                      ? GestureDetector(
+                          onTap: () {
+                            Modular.to.pushNamed(
+                              MainModule.getRoutePath(
+                                  MainModuleEnum.updateClan),
+                              arguments: UpdateClanArgument(
+                                clanEntity: argument!.clanEntity!,
+                              ),
+                            );
+                          },
+                          child: const Icon(Icons.edit_rounded))
+                      : Container(),
                 ),
               ),
               body: (themeState) => Container(

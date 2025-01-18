@@ -3,6 +3,8 @@ import 'package:gene_tree_app/modules/common/common_module.dart';
 import 'package:gene_tree_app/modules/main/container/clan/clan_detail/bloc/clan_detail_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/clan_detail/clan_detail_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan/update_clan/bloc/update_clan_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan/update_clan/update_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/event/bloc/event_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
@@ -21,6 +23,10 @@ class MainModule extends Module {
       MainModuleEnum.dashboard.path,
       child: (context) => DashboardScreen(argument: r.args.data),
     );
+    r.child(
+      MainModuleEnum.updateClan.path,
+      child: (context) => UpdateClanScreen(argument: r.args.data),
+    );
 
     r.child(
       MainModuleEnum.clanDetail.path,
@@ -36,12 +42,7 @@ class MainModule extends Module {
   @override
   void binds(Injector i) {
     super.binds(i);
-    i.addSingleton<DashboardBloc>(
-      DashboardBloc.new,
-      config: BindConfig(
-        onDispose: (bloc) => bloc.close(),
-      ),
-    );
+
     i.addSingleton<CreateClanBloc>(
       CreateClanBloc.new,
       config: BindConfig(
@@ -61,8 +62,21 @@ class MainModule extends Module {
       ),
     );
 
+    i.addSingleton<DashboardBloc>(
+      DashboardBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+
     i.addSingleton<ClanDetailBloc>(
       ClanDetailBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addSingleton<UpdateClanBloc>(
+      UpdateClanBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),

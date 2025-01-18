@@ -151,7 +151,18 @@ class _HomeClanEventState extends State<HomeClanEvent> {
                   ],
                 );
               default:
-                return Container();
+                return Column(
+                  children: [
+                    SizedBox(height: 60.h),
+                    Text(
+                      "You don't have any clan events",
+                      textAlign: TextAlign.center,
+                      style: themeData.typo.t12Semibold.copyWith(),
+                    ),
+                    SizedBox(height: 20.h),
+                    SizedBox(height: 20.h),
+                  ],
+                );
             }
           },
         )

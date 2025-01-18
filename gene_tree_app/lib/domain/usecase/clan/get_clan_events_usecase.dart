@@ -6,8 +6,8 @@ class GetClanEventsUsecase {
 
   GetClanEventsUsecase(this.repo);
 
-  Future<List<ClanEventEntity>> call(String clanId) async {
-    final result = await repo.getClanEventsByClanId(clanId);
+  Future<List<ClanEventEntity>> call(String userId) async {
+    final result = await repo.getClanEventsByClanId(userId);
     return result.data ?? [];
   }
 }

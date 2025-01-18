@@ -66,52 +66,112 @@ class _HomeClanState extends State<HomeClan> {
             );
 
           case AsyncStatus.success:
-            return Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
-              decoration: BoxDecoration(
-                gradient: themeData.color.linegradientColor,
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: Column(
-                children: [
-                  _buildClanDes(
-                      title: "Tên gia tộc: ",
-                      content: state.clanData.data?.clanName),
-                  SizedBox(height: 8.h),
-                  _buildClanDes(
-                    title: "Người tạo",
-                    content: "${state.clanData.data?.members?.length} member",
-                  ),
-                  SizedBox(height: 8.h),
-                  // if (state.clanData.data?.createdAt != null)
-                  _buildClanDes(
-                    title: "Ngày tạo: ",
-                    content: DateTimeHelper.formatDateTime(
-                      state.clanData.data!.createdAt!,
-                      format: "dd/MM/yyyy",
+            return state.clanData.data != null
+                ? Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
+                    decoration: BoxDecoration(
+                      gradient: themeData.color.linegradientColor,
+                      borderRadius: BorderRadius.circular(10.r),
                     ),
-                  ),
-                  SizedBox(height: 16.h),
-                  CPButton(
-                    configs: CPButtonConfigs(
-                      padding: EdgeInsets.symmetric(vertical: 8.h),
-                      textStyle: themeData.typo.t12Semibold,
-                      content: "See details",
-                      onTap: () {
-                        // TODO: See details clan
-                        Modular.to.pushNamed(
-                          MainModule.getRoutePath(MainModuleEnum.clanDetail),
-                          arguments: ClanDetailArgument(
-                              clanEntity: state.clanData.data),
-                        );
-                      },
+                    child: Column(
+                      children: [
+                        _buildClanDes(
+                            title: "Tên gia tộc: ",
+                            content: state.clanData.data?.clanName),
+                        SizedBox(height: 8.h),
+                        _buildClanDes(
+                          title: "Người tạo",
+                          content: "${state.clanData.data?.author?.fullName}",
+                        ),
+                        SizedBox(height: 8.h),
+                        _buildClanDes(
+                          title: "Số thành viên: ",
+                          content:
+                              "${state.clanData.data?.members?.length ?? 0}",
+                        ),
+                        SizedBox(height: 8.h),
+                        // if (state.clanData.data?.createdAt != null)
+                        _buildClanDes(
+                          title: "Ngày tạo: ",
+                          content: DateTimeHelper.formatDateTime(
+                            state.clanData.data!.createdAt!,
+                            format: "dd/MM/yyyy",
+                          ),
+                        ),
+                        SizedBox(height: 16.h),
+                        CPButton(
+                          configs: CPButtonConfigs(
+                            padding: EdgeInsets.symmetric(vertical: 8.h),
+                            textStyle: themeData.typo.t12Semibold,
+                            content: "See details",
+                            onTap: () {
+                              // TODO: See details clan
+                              Modular.to.pushNamed(
+                                MainModule.getRoutePath(
+                                    MainModuleEnum.clanDetail),
+                                arguments: ClanDetailArgument(
+                                    clanEntity: state.clanData.data),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            );
+                  )
+                : Container(
+                    child: Column(
+                      children: [
+                        Text(
+                          "You don't have any clan",
+                          textAlign: TextAlign.center,
+                          style: themeData.typo.t12Bold.copyWith(),
+                        ),
+                        SizedBox(height: 10.h),
+                        CPButton(
+                          configs: CPButtonConfigs(
+                            padding: EdgeInsets.symmetric(vertical: 8.h),
+                            textStyle: themeData.typo.t12Semibold,
+                            content: "Create now",
+                            onTap: () {
+                              Modular.to.pushNamed(
+                                MainModule.getRoutePath(
+                                  MainModuleEnum.createClan,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
           default:
-            return Container();
+            return Column(
+              children: [
+                Text(
+                  "You don't have any clan",
+                  textAlign: TextAlign.center,
+                  style: themeData.typo.t12Semibold.copyWith(),
+                ),
+                SizedBox(height: 20.h),
+                CPButton(
+                  configs: CPButtonConfigs(
+                    padding: EdgeInsets.symmetric(vertical: 8.h),
+                    width: 200.w,
+                    textStyle: themeData.typo.t12Semibold,
+                    content: "Create now",
+                    onTap: () {
+                      Modular.to.pushNamed(
+                        MainModule.getRoutePath(
+                          MainModuleEnum.createClan,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 20.h),
+              ],
+            );
         }
       },
     );

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gene_tree_app/core/utils/databasse/share_preference_storage.dart';
@@ -8,6 +10,7 @@ import 'package:gene_tree_app/domain/entities/user_entity.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_clan_events_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/user/get_user.usecase.dart';
+import 'package:gene_tree_app/modules/main/container/clan/update_clan/bloc/update_clan_bloc.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -18,18 +21,28 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetClanEventsUsecase getClanEventsUsecase;
   final LocalStorage localStorage;
   final GetUserUsecase getUserUsecase;
-  HomeBloc({
-    required this.getAllClanUsecase,
-    required this.getClanEventsUsecase,
-    required this.localStorage,
-    required this.getUserUsecase,
-  }) : super(
+  final UpdateClanBloc updateClanBloc;
+  late final StreamSubscription updateClanSubscription;
+
+  HomeBloc(
+    this.getAllClanUsecase,
+    this.getClanEventsUsecase,
+    this.localStorage,
+    this.getUserUsecase,
+    this.updateClanBloc,
+  ) : super(
           const HomeState.initial(
             userData: AsyncValue.loading(),
             clanData: AsyncValue.loading(),
             clanEvents: AsyncValue.loading(),
           ),
         ) {
+    updateClanSubscription = updateClanBloc.stream.listen((state) {
+      state.mapOrNull(success: (value) {
+        add(HomeEvent.refreshClanData(clanEntity: value.clanEnity));
+      });
+    });
+
     on<HomeEvent>((event, emit) async {
       await event.map(
         started: (value) async {
@@ -51,26 +64,25 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               await localStorage.get<String>(SharePreferenceKeys.userId.name) ??
                   "";
 
-          String? localClanId = await localStorage.get<String>(
+          final String? localClanId = await localStorage.get<String>(
             SharePreferenceKeys.clanId.name,
           );
           final clanList = await getAllClanUsecase.call(userId);
 
           if (clanList.isNotEmpty) {
-            if (localClanId == null) {
-              localClanId = clanList.first.id;
-              localStorage.save(
-                SharePreferenceKeys.clanId.name,
-                localClanId,
-              );
-            }
-            final clanData = clanList.firstWhere(
+            late final ClanEntity clanData;
+            final int indexClan = clanList.indexWhere(
               (element) => element.id == localClanId,
             );
-            emit(state.copyWith(clanData: AsyncValue.success(clanData)));
+            clanData = indexClan != -1 ? clanList[indexClan] : clanList.first;
 
-            final clanEvents =
-                await getClanEventsUsecase.call(clanList.first.id);
+            localStorage.save(
+              SharePreferenceKeys.clanId.name,
+              clanData.id,
+            );
+
+            emit(state.copyWith(clanData: AsyncValue.success(clanData)));
+            final clanEvents = await getClanEventsUsecase.call(clanData.id);
             emit(
               state.copyWith(
                 clanEvents: AsyncValue.success(clanEvents),
@@ -78,6 +90,27 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             );
           } else {
             localStorage.remove(SharePreferenceKeys.clanId.name);
+            emit(
+              state.copyWith(
+                clanData: AsyncValue.error("No data"),
+                clanEvents: AsyncValue.error("No data"),
+              ),
+            );
+            return;
+          }
+        },
+        refreshClanData: (_RefreshClanData value) {
+          if (value.clanEntity == null) {
+            add(const HomeEvent.fetchClanData());
+          } else {
+            emit(
+              state.copyWith(
+                clanData: AsyncValue.success(state.clanData.data?.copyWith(
+                  clanName: value.clanEntity?.clanName,
+                  clanCode: value.clanEntity?.clanCode,
+                )),
+              ),
+            );
           }
         },
       );

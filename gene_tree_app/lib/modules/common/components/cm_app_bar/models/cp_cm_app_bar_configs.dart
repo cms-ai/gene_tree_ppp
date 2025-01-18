@@ -8,10 +8,12 @@ class CPCmAppBarConfigs {
   final AppBarType type;
   final String title;
   final Widget? prefixIcon;
+  final Widget? suffixWidget;
   const CPCmAppBarConfigs({
     this.type = AppBarType.normal,
     this.title = "",
     this.prefixIcon,
+    this.suffixWidget,
   });
 
   CPCmAppBarConfigs copyWith() {

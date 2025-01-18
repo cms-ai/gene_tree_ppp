@@ -115,6 +115,8 @@ class CmDialogScreen {
                 GestureDetector(
                   onTap: () {
                     Modular.to.pop();
+                    if (argument.onConfirm != null) {}
+                    argument.onConfirm!();
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -244,7 +246,10 @@ class CmDialogScreen {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(argument.title ?? 'Confirmation'),
+          title: Text(
+            argument.title ?? 'Confirmation',
+            style: themeData.typo.t14Bold.copyWith(),
+          ),
           content: Text(argument.content ?? 'Are you sure?'),
           actions: [
             TextButton(
@@ -252,7 +257,12 @@ class CmDialogScreen {
                 Navigator.of(context).pop();
                 if (argument.onCancel != null) argument.onCancel!();
               },
-              child: const Text('Cancel'),
+              child: Text(
+                'Cancel',
+                style: TextStyle(
+                  color: themeData.color.btnColor2,
+                ),
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -264,7 +274,11 @@ class CmDialogScreen {
           ],
         );
       },
-    );
+    ).then((_) {
+      _isDialogShowing = false;
+      type = null;
+    });
+    ;
   }
 
   Future<void> _showCustomContentDialog(BuildContext context) async {
