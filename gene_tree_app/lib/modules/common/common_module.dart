@@ -13,6 +13,7 @@ import 'package:gene_tree_app/domain/usecase/auth/login_google.usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/delete_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_all_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/get_clan_events_usecase.dart';
+import 'package:gene_tree_app/domain/usecase/clan/get_clan_members_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/clan/update_clan_usecase.dart';
 import 'package:gene_tree_app/domain/usecase/user/get_user.usecase.dart';
 import 'package:gene_tree_app/modules/common/bloc/bloc/app_bloc.dart';
@@ -78,6 +79,7 @@ class CommonModule extends Module {
     i.addSingleton(GetClanEventsUsecase.new);
     i.addSingleton(UpdateClanUsecase.new);
     i.addSingleton(DeleteClanUsecase.new);
+    i.addSingleton(GetClanMembersUsecase.new);
 
     // user usecase
     i.addSingleton(GetUserUsecase.new);

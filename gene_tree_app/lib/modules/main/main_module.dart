@@ -6,6 +6,10 @@ import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/creat
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/create_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/bloc/update_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/update_clan_screen.dart';
+import 'package:gene_tree_app/modules/main/container/clan_member/clan_member_list/bloc/clan_member_list_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan_member/clan_member_list/clan_member_list_screen.dart';
+import 'package:gene_tree_app/modules/main/container/clan_member/create_clan_member/bloc/create_clan_member_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan_member/create_clan_member/create_clan_member_screen.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/event/bloc/event_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/home/bloc/home_bloc.dart';
@@ -36,6 +40,20 @@ class MainModule extends Module {
     r.child(
       MainModuleEnum.createClan.path,
       child: (context) => CreateClanScreen(argument: r.args.data),
+    );
+    r.child(
+      MainModuleEnum.clanMemberList.path,
+      child: (context) => ClanMemberListScreen(argument: r.args.data),
+    );
+
+    r.child(
+      MainModuleEnum.clanMemberList.path,
+      child: (context) => ClanMemberListScreen(argument: r.args.data),
+    );
+
+    r.child(
+      MainModuleEnum.createClanMember.path,
+      child: (context) => CreateClanMemberScreen(argument: r.args.data),
     );
 
     super.routes(r);
@@ -84,20 +102,29 @@ class MainModule extends Module {
         onDispose: (bloc) => bloc.close(),
       ),
     );
+    i.addLazySingleton<ClanMemberListBloc>(
+      ClanMemberListBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
+    i.addLazySingleton<CreateClanMemberBloc>(
+      CreateClanMemberBloc.new,
+      config: BindConfig(
+        onDispose: (bloc) => bloc.close(),
+      ),
+    );
   }
 }
-
-// class AuthModulePath {
-//   final String splashPath = "/";
-//   final String singInPath = "/";
-// }
 
 enum MainModuleEnum {
   dashboard("/"),
   // clan
   createClan('/createClan'),
   updateClan('/updateClan'),
-  clanDetail('/clanDetail');
+  clanDetail('/clanDetail'),
+  clanMemberList('/clanMemberList'),
+  createClanMember('/createClanMember');
 
   final String path;
   const MainModuleEnum(this.path);

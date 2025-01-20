@@ -10,6 +10,7 @@ import 'package:gene_tree_app/modules/common/components/base_scaffold/base_scaff
 import 'package:gene_tree_app/modules/common/components/base_screen/base_screen.dart';
 import 'package:gene_tree_app/modules/common/components/cm_app_bar/cp_cm_app_bar.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/update_clan_screen.dart';
+import 'package:gene_tree_app/modules/main/container/clan_member/clan_member_list/clan_member_list_screen.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/container/event/event_screen.dart';
 import 'package:gene_tree_app/modules/main/main_module.dart';
 import './bloc/clan_detail_bloc.dart';
@@ -26,7 +27,16 @@ class ClanDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> items = [
       _buildClanOption(title: "Cõi vĩnh hằng", onTap: () {}),
-      _buildClanOption(title: "Thành viên", onTap: () {}),
+      _buildClanOption(
+          title: "Thành viên",
+          onTap: () {
+            Modular.to.pushNamed(
+              MainModule.getRoutePath(MainModuleEnum.clanMemberList),
+              arguments: ClanMemberListArgument(
+                clanId: argument?.clanEntity?.id ?? "",
+              ),
+            );
+          }),
       _buildClanOption(title: "Bảng vàng", onTap: () {}),
       _buildClanOption(title: "Sự kiện", onTap: () {}),
       _buildClanOption(title: "Công đức", onTap: () {}),
@@ -171,16 +181,19 @@ class ClanDetailScreen extends StatelessWidget {
     required String title,
     required Function onTap,
   }) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        // color: themeData.color.btnColor2.withOpacity(.7),
-        gradient: themeData.color.linegradientColor2,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        title,
-        style: themeData.typo.t10Semibold,
+    return GestureDetector(
+      onTap: () => onTap(),
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          // color: themeData.color.btnColor2.withOpacity(.7),
+          gradient: themeData.color.linegradientColor2,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Text(
+          title,
+          style: themeData.typo.t10Semibold,
+        ),
       ),
     );
   }

@@ -98,6 +98,8 @@ class _UpdateClanScreenState extends State<UpdateClanScreen> {
                         argument: CmDialogArgument(
                           type: CmDialogType.confirmation,
                           title: "Delete clan",
+                          content:
+                              "Bạn muốn xoá gia tộc ${widget.argument?.clanEntity.clanName}",
                           onConfirm: () {
                             bloc.add(
                               UpdateClanEvent.deleteClan(

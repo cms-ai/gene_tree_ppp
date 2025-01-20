@@ -191,8 +191,6 @@ class _HomeClanEventState extends State<HomeClanEvent> {
           SizedBox(height: 6.h),
           Text(
             data.description ?? "",
-
-            // textAlign: TextAlign.center,
             style: themeData.typo.t12Regular.copyWith(),
           ),
           SizedBox(height: 6.h),
