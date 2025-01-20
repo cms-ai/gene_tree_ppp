@@ -32,14 +32,14 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final WelcomeBloc bloc = Modular.get<WelcomeBloc>();
     return BaseScreen(
       scaffoldBuilder: () {
         return BaseScaffold(
           configs: BaseScaffoldConfigs(
-            nameScreen: "Home",
+            nameScreen: "Welcome",
             body: (themeState) => BlocProvider(
-              lazy: false,
-              create: (context) => WelcomeBloc(),
+              create: (context) => bloc,
               child: Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 20.w),

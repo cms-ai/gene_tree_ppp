@@ -20,7 +20,6 @@ class ForgotPasswordScreen extends StatelessWidget {
           configs: BaseScaffoldConfigs(
             nameScreen: "Home",
             body: (themeState) => BlocProvider(
-              lazy: false,
               create: (context) => ForgotPasswordBloc(),
               child: Container(),
             ),

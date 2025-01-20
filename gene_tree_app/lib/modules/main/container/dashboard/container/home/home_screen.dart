@@ -38,7 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return BaseScreen(
       scaffoldBuilder: () {
         return BlocProvider(
-          lazy: false,
           create: (context) => homeBloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(

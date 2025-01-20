@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gene_tree_app/core/exceptions/exceptions.dart';
@@ -26,6 +28,8 @@ class UpdateClanBloc extends Bloc<UpdateClanEvent, UpdateClanState> {
     this.getAllClanUsecase,
     this.localStorage,
   ) : super(const UpdateClanState.initial()) {
+    final _eventStreamController = StreamController<bool>();
+
     on<UpdateClanEvent>((event, emit) async {
       await event.map(
         started: (value) async {},

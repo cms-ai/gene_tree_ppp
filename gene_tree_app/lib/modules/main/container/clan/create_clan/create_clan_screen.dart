@@ -40,7 +40,6 @@ class _CreateClanScreenState extends State<CreateClanScreen> {
     return BaseScreen(
       scaffoldBuilder: () {
         return BlocProvider(
-          lazy: false,
           create: (context) => createClanBloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(

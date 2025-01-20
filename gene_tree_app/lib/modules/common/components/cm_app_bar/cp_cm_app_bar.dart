@@ -15,21 +15,27 @@ class CPCmAppBar extends StatelessWidget implements PreferredSizeWidget {
   final CPCmAppBarConfigs configs;
   @override
   Widget build(BuildContext context) {
+    final canPop = Modular.to.canPop();
     return BlocBuilder<ThemeBloc, ThemeState>(
       buildWhen: (previous, current) =>
           previous.appThemeEnum != current.appThemeEnum,
       builder: (context, state) {
         return AppBar(
-          leading: configs.prefixIcon ??
-              IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: state.appThemeEnum.themeData().color.mainPrimaryColor,
-                ),
-                onPressed: () {
-                  Modular.to.pop();
-                },
-              ),
+          leading: canPop
+              ? configs.prefixIcon ??
+                  IconButton(
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color:
+                          state.appThemeEnum.themeData().color.mainPrimaryColor,
+                    ),
+                    onPressed: () {
+                      if (canPop) {
+                        Modular.to.pop();
+                      }
+                    },
+                  )
+              : null,
           centerTitle: true,
           title: Text(
             configs.title,

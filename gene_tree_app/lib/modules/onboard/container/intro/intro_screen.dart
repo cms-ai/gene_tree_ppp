@@ -59,7 +59,6 @@ class _IntroScreenState extends State<IntroScreen> {
           configs: BaseScaffoldConfigs(
             nameScreen: "Intro",
             body: (themeState) => BlocProvider(
-              lazy: false,
               create: (context) => IntroBloc(),
               child: Column(
                 children: [

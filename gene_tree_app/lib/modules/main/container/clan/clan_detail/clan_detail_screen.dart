@@ -36,7 +36,6 @@ class ClanDetailScreen extends StatelessWidget {
     return BaseScreen(
       scaffoldBuilder: () {
         return BlocProvider(
-          lazy: false,
           create: (context) => ClanDetailBloc(),
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(

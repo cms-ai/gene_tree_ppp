@@ -36,7 +36,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      lazy: false,
       create: (context) => splashBloc,
       child: BaseScreen(
         scaffoldBuilder: () {
@@ -62,11 +61,9 @@ class _SplashScreenState extends State<SplashScreen> {
                       if (value.completedUser == true) {
                         Modular.to.navigate(MainModule.path);
                       } else {
-                        Modular.to.navigate(
-                          OnboardModule.getRoutePath(
-                            OnboardModuleEnum.createClan,
-                        )
-                        );
+                        Modular.to.navigate(OnboardModule.getRoutePath(
+                          OnboardModuleEnum.createClan,
+                        ));
                       }
                     },
                   );

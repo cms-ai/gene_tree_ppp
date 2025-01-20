@@ -23,14 +23,14 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SignUpBloc bloc = Modular.get<SignUpBloc>();
     return BaseScreen(
       scaffoldBuilder: () {
         return BaseScaffold(
           configs: BaseScaffoldConfigs(
             nameScreen: "Home",
             body: (themeState) => BlocProvider(
-              lazy: false,
-              create: (context) => SignUpBloc(),
+              create: (context) => bloc,
               child: Container(
                 height: double.infinity,
                 padding: EdgeInsets.symmetric(
@@ -48,7 +48,6 @@ class SignUpScreen extends StatelessWidget {
                       configs: CPCmTextFieldConfigs(
                         hintTextConfigs: HintTextConfigs(
                           hintText: OnboardLocalizations.current.enterEmailHint,
-                          
                         ),
                       ),
                     ),

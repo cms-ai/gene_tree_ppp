@@ -30,18 +30,14 @@ class _EventScreenState extends State<EventScreen> {
   @override
   void initState() {
     super.initState();
-    eventBloc.add(EventEvent.started());
+    eventBloc.add(const EventEvent.started());
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> bodyWidgetList = [
-      _buildEventTodayList(),
-    ];
     return BaseScreen(
       scaffoldBuilder: () {
         return BlocProvider(
-          lazy: false,
           create: (context) => eventBloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(

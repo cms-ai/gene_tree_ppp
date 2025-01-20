@@ -28,10 +28,11 @@ class UpdateClanScreen extends StatefulWidget {
 class _UpdateClanScreenState extends State<UpdateClanScreen> {
   late final TextEditingController nameController;
   late final TextEditingController desController;
-  final UpdateClanBloc bloc = Modular.get();
+  final UpdateClanBloc bloc = Modular.get<UpdateClanBloc>();
 
   @override
   void initState() {
+    // print("===== ${bloc.isClosed}");
     nameController =
         TextEditingController(text: widget.argument?.clanEntity.clanName);
     desController =
@@ -83,7 +84,6 @@ class _UpdateClanScreenState extends State<UpdateClanScreen> {
     return BaseScreen(
       scaffoldBuilder: () {
         return BlocProvider(
-          lazy: false,
           create: (context) => bloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(

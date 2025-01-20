@@ -35,7 +35,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return BaseScreen(
       scaffoldBuilder: () {
         return BlocProvider(
-          lazy: false,
           create: (context) => _bloc,
           child: BaseScaffold(
             configs: BaseScaffoldConfigs(

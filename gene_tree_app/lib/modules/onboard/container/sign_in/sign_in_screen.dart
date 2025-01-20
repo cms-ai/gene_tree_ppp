@@ -33,7 +33,6 @@ class SignInScreen extends StatelessWidget {
           configs: BaseScaffoldConfigs(
             nameScreen: "Home",
             body: (themeState) => BlocProvider(
-              lazy: false,
               create: (context) => signInBloc,
               child: Container(
                 height: double.infinity,

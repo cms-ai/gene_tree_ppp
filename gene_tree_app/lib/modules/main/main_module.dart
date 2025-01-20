@@ -3,6 +3,7 @@ import 'package:gene_tree_app/modules/common/common_module.dart';
 import 'package:gene_tree_app/modules/main/container/clan/clan_detail/bloc/clan_detail_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/clan_detail/clan_detail_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan/create_clan/bloc/create_clan_bloc.dart';
+import 'package:gene_tree_app/modules/main/container/clan/create_clan/create_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/bloc/update_clan_bloc.dart';
 import 'package:gene_tree_app/modules/main/container/clan/update_clan/update_clan_screen.dart';
 import 'package:gene_tree_app/modules/main/container/dashboard/bloc/dashboard_bloc.dart';
@@ -32,6 +33,10 @@ class MainModule extends Module {
       MainModuleEnum.clanDetail.path,
       child: (context) => ClanDetailScreen(argument: r.args.data),
     );
+    r.child(
+      MainModuleEnum.createClan.path,
+      child: (context) => CreateClanScreen(argument: r.args.data),
+    );
 
     super.routes(r);
   }
@@ -41,41 +46,39 @@ class MainModule extends Module {
 
   @override
   void binds(Injector i) {
-    super.binds(i);
-
-    i.addSingleton<CreateClanBloc>(
+    i.addLazySingleton<CreateClanBloc>(
       CreateClanBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
     );
-    i.addSingleton<HomeBloc>(
+    i.addLazySingleton<HomeBloc>(
       HomeBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
     );
-    i.addSingleton<EventBloc>(
+    i.addLazySingleton<EventBloc>(
       EventBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
     );
 
-    i.addSingleton<DashboardBloc>(
+    i.addLazySingleton<DashboardBloc>(
       DashboardBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
     );
 
-    i.addSingleton<ClanDetailBloc>(
+    i.addLazySingleton<ClanDetailBloc>(
       ClanDetailBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
       ),
     );
-    i.addSingleton<UpdateClanBloc>(
+    i.addLazySingleton<UpdateClanBloc>(
       UpdateClanBloc.new,
       config: BindConfig(
         onDispose: (bloc) => bloc.close(),
